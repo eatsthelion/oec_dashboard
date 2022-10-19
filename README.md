@@ -1,4 +1,4 @@
-#Ocampo-Esta Corporation Workspace Software
+# Ocampo-Esta Corporation Workspace Software
 Program Description:
     This program was made to assist operations within the company workspace. The primary features include Project Organization, Project Tracking, Document Filing, Timesheet and Payroll Allocation, and Work Assistance Tools.
 
