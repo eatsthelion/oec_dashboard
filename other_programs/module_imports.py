@@ -1,0 +1,1 @@
+POPPLER=r"O:\pythonprograms\Database\Release-21.03.0\poppler-21.03.0\Library\bin"
