@@ -1,8 +1,8 @@
 from Backend.database import PROJECTDB, DB_connect
 from Backend.database_get import get_my_applied_tasks, get_my_taskboard, get_taskboard
 from GUI.GUI_Mains import FONTBOLD
-from GUI.project_catalog.info_windows.schedule_info_window import ScheduleInfoWindow
-from GUI.project_catalog.info_windows.project_info_window import BasicProjectInfo
+from GUI.project_catalog.info_windows.info_schedule import ScheduleInfoWindow
+from GUI.project_catalog.info_windows.info_project import BasicProjectInfo
 from GUI.widgets.terminal import Terminal
 from GUI.data_table import DataTableWindow
 from GUI.widgets.basics import *
