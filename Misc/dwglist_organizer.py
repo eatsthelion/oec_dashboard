@@ -16,7 +16,7 @@ from PyPDF2 import PdfFileMerger, PdfFileReader
 from tkinter import filedialog, ttk ,NORMAL, DISABLED, WORD, RIGHT,Y, CENTER, END
 
 from Backend.exports import export_init
-from other_programs.module_imports import POPPLER
+from Misc.module_imports import POPPLER
 
 PROGRAMTITLE = 'Drawing List Organizer'
 PROGRAMFOLDER = export_init(PROGRAMTITLE)

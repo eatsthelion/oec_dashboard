@@ -13,7 +13,7 @@ from tkinter import filedialog, messagebox
 
 from Backend.path_analyzer import PathAnalyzer
 from Backend.database import DOCDB, DB_clean_str, DB_connect
-from other_programs.yearly_archiver import AutoArchiver
+from Misc.yearly_archiver import AutoArchiver
 
 def apply_dwglist_to_package(table='documents', terminal=None):
     file = filedialog.askopenfilename(title='Select a Drawing List', 

@@ -5,7 +5,7 @@ import sys
 sys.dont_write_bytecode = True
 
 from GUI.window_login import LoginWindow
-from GUI.window_home import HomeWindow
+
 
 START = 'OEC Project Catalog'
 PROGRAMS = ['Switch Programs', 'OEC Taskboard', 'OEC Project Catalog', 
@@ -74,9 +74,6 @@ class MainProgram(object):
         self.star_txt_left .configure(font=FONTBOLD)
         self.root.update()
 
-        self.switch_catalog(START)
-
-    def switch_catalog(self, program_name):
         self.load_text.configure(text = 'LOADING\nFILES')
         self.root.update()
 
@@ -84,12 +81,12 @@ class MainProgram(object):
         if self.current_program != None:
             self.current_program.frame.destroy()
             del self.current_program
-        self.load_text.configure(text = "LOADING\n{}"
-            .format(program_name.upper()))
+        self.load_text.configure(text = "LOADING\nOEC DASHBOARD")
         self.star_txt_right.configure(text='★ ★ ★ ★ ★')
         self.star_txt_left.configure(text='★ ★ ★ ★ ★')
         self.root.update()
-        
+
+        from GUI.window_home import HomeWindow
         self.current_program = HomeWindow(self.mainframe, parent=self)
         self.root.title("OEC Dashboard")
 
@@ -97,17 +94,6 @@ class MainProgram(object):
         from GUI.widgets.basics import MyOptionMenu
         self.current_program.show_full_window()
         self.l_frame.place_forget()
-
-        self.programOptions = MyOptionMenu(self.current_program.frame, PROGRAMS,
-            command=self.menu_command)
-        
-        #self.programOptions.place(x=0, y=0, anchor=NW)
-
-    def menu_command(self, event):
-        program = self.programOptions.get()
-        if program == 'Switch Programs':
-            return
-        self.switch_catalog(program)
     
     def fullscreen_command(self, event):
         if self.fullscreen == False:
@@ -116,6 +102,18 @@ class MainProgram(object):
         else: 
             self.root.attributes('-fullscreen',False)
             self.fullscreen = False
+
+    def raise_loading_screen(self, load_text:str = 'LOADING'):
+        self.l_frame.tkraise(aboveThis=None)
+        self.l_frame.place(x=0, y=0, relwidth=1, relheight=1, anchor=NW)
+        self.load_text.configure(text=load_text)
+        self.star_txt_right.configure(text='★ ★ ★ ★ ★')
+        self.star_txt_left.configure(text='★ ★ ★ ★ ★')
+        self.root.update()
+
+    def lower_loading_screen(self):
+        self.l_frame.place_forget()
+        self.root.update()
 
     
 

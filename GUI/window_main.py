@@ -51,7 +51,8 @@ class WindowAttributes(object):
             }
             main = self._find_main()
             self.mainprogram = main
-            main.load_text.configure(text='LOADING\n'+program_title.upper())
+            if program_title.upper() != 'UNTITLED':
+                main.load_text.configure(text='LOADING\n'+program_title.upper())
             main.star_txt_right.configure(
                 text=right_animation_seq[main.star_txt_right.cget('text')]
             )

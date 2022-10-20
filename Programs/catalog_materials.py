@@ -9,7 +9,7 @@
 
 from GUI.window_datatable import *
 
-PROGRAMTITLE = "OEC Material Database"
+PROGRAMTITLE = "Material Database"
 COLUMNTITLES = ['rowid', 'Item', 'Code', 'Connected Items', 'Descriptions', 
     'Type', 'References', 'Other Data']
 COLUMNWIDTHS = [5,10,10,20,50,
@@ -71,12 +71,7 @@ class MaterialDatabase(DataTableWindow):
 
     def additonalOptions(self, button_master, frame_master):
         pass
-        #insert_window = InsertMaterialGUI(frame_master, parent=self)
-        #self.update_window = UpdateMaterialGUI(frame_master, parent=self)
-        #insert_button = tk.Button(button_master, text='NEW ITEM',
-        #    relief='flat', font=FONT, command=insert_window.show_window)
-        #insert_button.pack(side='left', pady=(10,2),padx=5)
-
+    
     def show_update_window(self, data):
         self.update_window.data = data
         self.update_window.display_data()

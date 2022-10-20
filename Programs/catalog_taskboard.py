@@ -1,5 +1,5 @@
-from Backend.database import PROJECTDB, DB_connect
-from Backend.database_get import get_my_applied_tasks, get_my_taskboard, get_taskboard
+from Backend import PROJECTDB, DB_connect, get_my_applied_tasks, \
+    get_my_taskboard, get_taskboard
 
 from GUI.window_datatable import *
 
@@ -31,7 +31,6 @@ class Taskboard(DataTableWindow):
         leftoptions = self.leftoptions, 
         additional_windows = self.additonalOptions, 
         skipfields=SKIPFIELDS, format_dict=FORMATDICT,
-        destroy_stop = True,
         **kw)
         
 

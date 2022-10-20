@@ -28,7 +28,7 @@ from GUI.widgets.terminal import Terminal
 from Backend.exports import export_init
 from Backend.database import DB_connect
 from Backend.path_analyzer import PathAnalyzer
-from other_programs.yearly_archiver import AutoArchiver
+from Misc.yearly_archiver import AutoArchiver
 
 PROGRAMTITLE = 'Drawing Progress Report'
 WIDGETWIDTH = 60

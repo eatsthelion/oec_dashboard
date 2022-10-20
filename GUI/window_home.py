@@ -23,17 +23,21 @@ class HomeWindow(PopupWindow):
         self.taskboard_button = MyButton(self.button_frame, width=bwidth,
             text='Taskboard', command = lambda:
                 self.switch_windows('taskboard'))
+        self.staff_button = MyButton(self.button_frame, width=bwidth,
+            text='Staff', command = lambda:
+                self.switch_windows('staff'))
 
         self.project_catalog_button.grid(row=0, column=0, padx=5, pady=5, 
             sticky=EW)
+        self.taskboard_button.grid(row=0, column=1, padx=5, pady=5, sticky=EW)
         self.material_database_button.grid(row=1, column=0, padx=5, pady=5, 
             sticky=EW)
-        self.taskboard_button.grid(row=0, column=1, padx=5, pady=5, sticky=EW)
-        
+        self.staff_button.grid(row=1, column=1, padx=5, pady=5, sticky=EW)
         self.button_frame.pack(padx=5, pady=5, expand=1)
         return super().configure()
 
     def switch_windows(self, program_name):
+        self.mainprogram.raise_loading_screen()
         for child in self.mainprogram.children:
             if child == self:
                 continue
@@ -58,7 +62,7 @@ class HomeWindow(PopupWindow):
             from Programs.catalog_budgets import BudgetCatalog
             db_function = get_budget_catalog
             catalog = BudgetCatalog
-        elif program_name == 'OEC Staff':
+        elif program_name == 'staff':
             from Backend.database_get import get_active_employees
             from Programs.catalog_users import EmployeeDatabase
             db_function = get_active_employees
@@ -79,6 +83,7 @@ class HomeWindow(PopupWindow):
         current_program.show_full_window()
         current_program.back_direction=self.show_full_window
         self.cancel_window()
+        self.mainprogram.lower_loading_screen()
 
     def add_menubar(self, program):
         self.menubar = Menu(self.parent.root, tearoff=False)
@@ -111,3 +116,7 @@ class HomeWindow(PopupWindow):
             except:
                 pass
         self.show_full_window()
+
+if __name__ == '__main__':
+    from GUI.test_gui import TestGUI
+    test = TestGUI(HomeWindow)

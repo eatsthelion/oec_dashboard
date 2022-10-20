@@ -35,8 +35,6 @@ class EmployeeDatabase(DataTableWindow):
         self.terminal = Terminal(self.frame)
         self.hide_back_button()
         self.hide_cancel_button()
-        
-        self.user = self.get_user()
 
     def leftoptions(self, master,dataset,row):
         
@@ -67,7 +65,7 @@ class EmployeeDatabase(DataTableWindow):
         label.pack()
 
 
-    def display_data(self, data, dataset, datasetget):
+    def display_data(self, data, datasetget):
         if self.context != 'select':
             self.destroy_stop = False
             self.titlelabel.configure(font = ("montserrat extrabold",24,'bold'), 
@@ -83,7 +81,7 @@ class EmployeeDatabase(DataTableWindow):
             self.titlelabel.place(relx=.5, rely=0, anchor=N)
             self.show_back_button()
 
-        return super().display_data(data, dataset, datasetget)
+        return super().display_data(data, datasetget)
 
     def select_data(self, dataset):
         action = self.sender(dataset)

@@ -39,4 +39,3 @@ class Terminal(MyFrame):
             anchor=CENTER)
         self.terminal.grab_set()
         pass
-
