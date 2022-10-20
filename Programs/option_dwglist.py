@@ -2,8 +2,6 @@
 PROGRAMTITLE = 'Drawing List Options'
 
 from Backend.database_get import *
-
-from GUI.widgets.basics import *
 from GUI.window_option import *
 
 class DWGListWindow(OptionWindow):

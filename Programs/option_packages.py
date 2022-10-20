@@ -1,14 +1,10 @@
 
 PROGRAMTITLE = 'Package Options'
 
-import tkinter as tk
-from tkinter import *
-from tkinter import messagebox
-
-from Backend.database import  EMPTYLIST, DB_connect
-from Backend.database_get import *
+from Backend import EMPTYLIST, DB_connect, PACKAGEDB, get_schedule
 
 from GUI.window_option import *
+from Programs.info_schedule import ScheduleInfoWindow
 
 class PackageOptionsWindow(OptionWindow):
     def __init__(self, master, **kw):
@@ -122,7 +118,6 @@ class PackageOptionsWindow(OptionWindow):
         self.parent.refresh_page()
 
     def show_schedule_info(self):
-        from Programs.info_schedule import ScheduleInfoWindow
         infowindow = ScheduleInfoWindow(self.master)
         infowindow.show_back_button()
         infowindow.back_direction=self.show_window

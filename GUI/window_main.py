@@ -60,7 +60,7 @@ class WindowAttributes(object):
                 text=left_animation_seq[main.star_txt_left.cget('text')]
             )
             master.update()
-            master.after(40)
+            #master.after(100)
 
         self.bg = bg
         self.width = width

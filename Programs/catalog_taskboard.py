@@ -6,7 +6,7 @@ from GUI.window_datatable import *
 from Programs.info_schedule import ScheduleInfoWindow
 from Programs.info_project import BasicProjectInfo
 
-PROGRAMTITLE = "OEC Taskboard"
+PROGRAMTITLE = "Taskboard"
 
 SKIPFIELDS = [0, 6, 9, 11, 13]
 FORMATDICT = {
@@ -31,6 +31,7 @@ class Taskboard(DataTableWindow):
         leftoptions = self.leftoptions, 
         additional_windows = self.additonalOptions, 
         skipfields=SKIPFIELDS, format_dict=FORMATDICT,
+        program_title=PROGRAMTITLE,
         **kw)
         
 

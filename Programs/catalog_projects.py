@@ -27,7 +27,7 @@ from Programs.edit_project import EditProjectGUI
 from Programs.option_projects import ProjectOptionsWindow
 
 # region Macros
-PROGRAMTITLE = 'OEC Project Catalog'
+PROGRAMTITLE = 'Project Catalog'
 
 FORMATDICT = {
     1:{'title':'OEC Job #',             'width':10},

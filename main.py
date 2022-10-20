@@ -6,7 +6,6 @@ sys.dont_write_bytecode = True
 
 from GUI.window_login import LoginWindow
 
-
 START = 'OEC Project Catalog'
 PROGRAMS = ['Switch Programs', 'OEC Taskboard', 'OEC Project Catalog', 
     'OEC Schedule', 'OEC Budget Catalog', 'OEC Material Database', 
