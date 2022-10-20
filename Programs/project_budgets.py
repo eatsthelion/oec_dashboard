@@ -1,13 +1,11 @@
 
-from GUI.GUI_Mains import FONT
-from GUI.widgets.basics import MyLabelFrame, MyLabel, MyButton
-from GUI.data_table import DataTableWindow
-from GUI.project_catalog.project_change_orders import ProjectChangeOrders
-from GUI.project_catalog.edit_windows.edit_budget import EditBudgetGUI
-
 from Backend.exports import see_all_budgets
 from Backend.database_get import get_change_orders
-from GUI.widgets.terminal import Terminal
+
+from GUI.window_datatable import *
+
+from Programs.project_change_orders import ProjectChangeOrders
+from Programs.edit_budget import EditBudgetGUI
 
 FORMATDICT = {
     1:{'title':'Purchase Order',        'width':10},

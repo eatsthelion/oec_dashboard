@@ -6,8 +6,7 @@ from Backend.database import  DB_connect, PROJECTDB
 from Backend.database_send import project_edit_entry, project_input_entry
 from Backend.filesystem import FileSystem
 
-from GUI.widgets.basics import *
-from GUI.project_catalog.edit_windows.edit_window import EditWindow
+from GUI.window_edit import *
 
 class EditProjectGUI(EditWindow):
     def __init__(self, master, **kw) -> None:

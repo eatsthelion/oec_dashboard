@@ -7,9 +7,7 @@
 #   - Organize the database project budgets
 ###################################################################################################
 
-from datetime import datetime
-from GUI.widgets.terminal import Terminal
-from GUI.data_table import DataTableWindow
+from GUI.window_datatable import *
 
 PROGRAMTITLE = 'OEC Schedule'
 

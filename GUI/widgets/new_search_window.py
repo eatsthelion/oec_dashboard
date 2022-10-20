@@ -5,7 +5,7 @@ from GUI.GUI_Mains import FONTBOLD
 from GUI.widgets.basics import *
 from Backend.search_algorithm import search_algorithm
 from GUI.widgets.highlight import rowhighlight, rowhighlightbind
-from GUI.widgets.terminal import TerminalWindow
+from GUI.window_terminal import TerminalWindow
 
 class SearchWindow(MyFrame):
     def __init__(self, master, dataset_get=None, bg=None, searchsystem = True, 

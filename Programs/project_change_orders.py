@@ -8,10 +8,8 @@
 ###################################################################################################
 
 from Backend.database_delete import delete_change_order
-
-from GUI.widgets.basics import MyButton
-from GUI.data_table import DataTableWindow
-from GUI.project_catalog.edit_windows.edit_change_order import EditChangeOrderGUI
+from GUI.window_datatable import *
+from Programs.edit_change_order import EditChangeOrderGUI
 
 PROGRAMTITLE = "Change Order Catalog"
 COLUMNTITLES = [

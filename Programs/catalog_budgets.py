@@ -7,10 +7,7 @@
 #   - Organize the database project budgets
 ###################################################################################################
 
-import tkinter as tk
-from GUI.GUI_Mains import FONT
-from GUI.widgets.terminal import Terminal
-from GUI.data_table import DataTableWindow
+from GUI.window_datatable import *
 
 PROGRAMTITLE = "OEC Budget Catalog"
 COLUMNTITLES = [

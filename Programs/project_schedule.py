@@ -1,9 +1,7 @@
-from GUI.GUI_Mains import FONT
-from GUI.data_table import DataTableWindow
-from GUI.widgets.basics import MyButton, MyLabel, MyLabelFrame
-from GUI.project_catalog.edit_windows.edit_schedule_event \
-    import EditScheduleEventGUI
-from GUI.project_catalog.option_windows.schedule_options import ScheduleOptionsWindow
+
+from GUI.window_datatable import *
+from Programs.edit_schedule_event import EditScheduleEventGUI
+from Programs.option_schedule import ScheduleOptionsWindow
 
 SKIPFIELDS = [0,4]
 FORMATDICT = {

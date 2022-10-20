@@ -15,10 +15,7 @@ from Backend.database import PROJECTDB
 from Backend.database import  DBTIME, USERTIME
 from Backend.database_send import project_edit_entry, project_input_entry
 
-from GUI.GUI_Mains import FONT
-from GUI.widgets.basics import *
-from GUI.widgets.date_entry import DateEntry
-from GUI.project_catalog.edit_windows.edit_window import EditWindow
+from GUI.window_edit import *
 
 EVENTTYPES = ['TASK', 'MILESTONE', 'MEETING', 'SUBMITTAL', 'APROVAL']
 

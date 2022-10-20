@@ -1,4 +1,4 @@
-from GUI.main_window import PopupWindow
+from GUI.window_main import *
 from GUI.widgets.new_search_window import SearchWindow
 
 def nothing_function(*arg, **kw): 

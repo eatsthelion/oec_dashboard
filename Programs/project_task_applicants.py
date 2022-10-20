@@ -1,7 +1,6 @@
 from Backend.database import PROJECTDB, DB_connect
-from GUI.GUI_Mains import FONTBOLD
-from GUI.widgets.basics import MyButton, MyLabel
-from GUI.data_table import DataTableWindow
+
+from GUI.window_datatable import *
 
 FORMATDICT = {
     1:{'title':'Applicant', 'width':20},

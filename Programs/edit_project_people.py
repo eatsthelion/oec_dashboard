@@ -2,9 +2,7 @@ PROGRAMTITLE = 'Contact Edits'
 from Backend.database import PROJECTDB
 from Backend.database_send import project_edit_entry, project_input_entry
 
-
-from GUI.widgets.basics import *
-from GUI.project_catalog.edit_windows.edit_window import EditWindow
+from GUI.window_edit import *
 
 class EditPeopleGUI(EditWindow):
     def __init__(self, master, **kw) -> None:

@@ -2,13 +2,11 @@ PROGRAMTITLE = 'Change Order Edits'
 
 from tkinter import messagebox
 from datetime import datetime
+
 from Backend.database import  DBTIME, USERTIME, DB_connect, PROJECTDB
-
-
-from GUI.widgets.basics import *
-from GUI.widgets.date_entry import DateEntry
-from GUI.project_catalog.edit_windows.edit_window import EditWindow
 from Backend.database_send import project_input_entry, project_edit_entry
+
+from GUI.window_edit import *
 
 class EditChangeOrderGUI(EditWindow):
     def __init__(self, master, **kw) -> None:

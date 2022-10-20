@@ -1,5 +1,4 @@
-from GUI.main_window import PopupWindow
-
+from GUI.window_main import *
 class EditWindow(PopupWindow):
     def __init__(self, master, **kw) -> None:
         super().__init__(master, **kw)

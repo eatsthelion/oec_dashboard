@@ -2,10 +2,9 @@ from tkinter import messagebox, DISABLED, LEFT, N, NORMAL
 
 from Backend.database import  PROJECTDB, DB_connect
 
-from GUI.GUI_Mains import FONTBOLD
-from GUI.widgets.basics import MyFrame, MyLabelFrame, MyLabel, MyButton, MyText
-from GUI.data_table import DataTableWindow
-from GUI.project_catalog.edit_windows.edit_comment import EditProjectCommentGUI
+from GUI.window_datatable import *
+
+from Programs.edit_comment import EditProjectCommentGUI
 
 SKIPFIELDS = [0]
 FORMATDICT = {

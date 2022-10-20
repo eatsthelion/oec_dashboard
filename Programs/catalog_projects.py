@@ -22,13 +22,9 @@ from Backend.database_get import get_my_project_info, get_project_info
 
 from Backend.exports import see_all_projects
 
-from GUI.widgets.basics import *
-
-from GUI.widgets.terminal import Terminal
-from GUI.data_table import DataTableWindow
-
-from GUI.project_catalog.edit_windows.edit_project import EditProjectGUI
-from GUI.project_catalog.option_windows.project_options import ProjectOptionsWindow
+from GUI.window_datatable import *
+from Programs.edit_project import EditProjectGUI
+from Programs.option_projects import ProjectOptionsWindow
 
 # region Macros
 PROGRAMTITLE = 'OEC Project Catalog'
@@ -79,7 +75,7 @@ class ProjectCatalog(DataTableWindow):
         self.hide_back_button()
         self.hide_cancel_button()
     
-    def leftoptions(self, master,dataset,row):
+    def leftoptions(self, master, dataset, row):
         select_button = MyButton(master, text='SELECT')
         see_project_info=MyButton(master, text='INFO')
         update_project = MyButton(master, text='UPDATE',
@@ -94,7 +90,6 @@ class ProjectCatalog(DataTableWindow):
             if self.user.full_name in dataset[7]:
                 update_project.grid(row=0,column=1,padx=(5,0),sticky=NS)
         details.grid(row=0,column=2,padx=5,sticky=NS)
-        
 
     def sortfunction(self, sortby, dataset):
         if sortby == 'SORT BY FILE NAME (A-Z)': 
@@ -136,7 +131,7 @@ class ProjectCatalog(DataTableWindow):
         insert_button       .pack(side='left', pady=(10,2),padx=5)
         self.see_project_button.pack(side='left', pady=(10,2),padx=5)
 
-    def show_edit_window(self, data):
+    def show_edit_window(self, data=None):
         edit_window = EditProjectGUI(self.frame, parent=self)
         edit_window.display_data(data)
 

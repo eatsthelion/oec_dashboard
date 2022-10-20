@@ -1,6 +1,6 @@
-from GUI.widgets.basics import MyButton
-from GUI.data_table import DataTableWindow
-from GUI.project_catalog.edit_windows.edit_project_people import EditPeopleGUI
+
+from GUI.window_datatable import *
+from Programs.edit_project_people import EditPeopleGUI
 
 SKIPFIELDS = [0]
 FORMATDICT = {

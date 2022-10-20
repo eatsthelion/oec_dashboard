@@ -1,9 +1,9 @@
 from Backend.filesystem import FileSystem
 
-from GUI.widgets.basics import MyButton
-from GUI.data_table import DataTableWindow
-from GUI.project_catalog.edit_windows.edit_document import EditDocumentGUI
-from GUI.project_catalog.option_windows.dwglist_options import DWGListWindow
+from GUI.window_datatable import *
+
+from Programs.edit_document import EditDocumentGUI
+from Programs.option_dwglist import DWGListWindow
 
 from Backend.database_get import get_packages
 

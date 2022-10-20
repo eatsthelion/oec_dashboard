@@ -1,4 +1,5 @@
 PROGRAMTITLE = 'Document Edits'
+
 import os
 import shutil
 from tkinter import messagebox, filedialog
@@ -9,9 +10,7 @@ from Backend.database_send import project_edit_entry, project_input_entry
 from Backend.database import  DOCDB, EMPTYLIST, DB_connect
 from Backend.database_get import get_package_name, get_project_from_package
 
-from GUI.widgets.basics import *
-from GUI.widgets.terminal import Terminal
-from GUI.project_catalog.edit_windows.edit_window import EditWindow
+from GUI.window_edit import *
 
 class EditDocumentGUI(EditWindow):
     def __init__(self, master, **kw) -> None:
