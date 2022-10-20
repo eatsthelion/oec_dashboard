@@ -1,6 +1,9 @@
 import tkinter as tk
 from tkinter import *
 
+import sys
+sys.dont_write_bytecode = True
+
 from GUI.window_login import LoginWindow
 
 START = 'OEC Project Catalog'
