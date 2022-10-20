@@ -162,3 +162,6 @@ class ProjectCatalog(DataTableWindow):
         else: 
             self.destroy_stop = True
         return super().display_data(data, dataset_get)
+
+if __name__ == '__main__':
+    print(__name__)

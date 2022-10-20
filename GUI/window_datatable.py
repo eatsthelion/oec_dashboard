@@ -67,7 +67,16 @@ class DataTableWindow(PopupWindow):
             self.searchwindow.first_page()
         else:
             self.searchwindow.display_sequence()
+        self.reverse_format_dict()
         self.master.update()
+
+    def reverse_format_dict(self):
+        self.data_dict = {}
+        for key in self.format_dict:
+            if 'db' not in self.format_dict[key]:
+                continue
+            self.data_dict[self.format_dict[key]] = key
+        return
 
     def show_window(self):
         self.searchwindow.refresh_page()
@@ -81,7 +90,6 @@ class DataTableWindow(PopupWindow):
         self.searchwindow.dataset.clear()
         self.searchwindow.clear_display()
         super().go_back()
-        
 
     def cancel_window_sequence(self):
         super().cancel_window_sequence()
