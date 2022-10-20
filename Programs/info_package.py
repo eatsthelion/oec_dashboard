@@ -1,6 +1,8 @@
-from Backend.database_get import PACKAGEDB, get_package_info
-from GUI.project_catalog.info_windows.info_window import InfoWindow
-from GUI.project_catalog.project_schedule import FORMATDICT, SKIPFIELDS
+from Backend.database_get import get_package_info
+
+from GUI.window_info import InfoWindow
+
+from Programs.project_schedule import FORMATDICT, SKIPFIELDS
 
 class PackageInfoWindow(InfoWindow):
     def __init__(self, master, **kw) -> None:

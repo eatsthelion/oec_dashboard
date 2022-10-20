@@ -20,7 +20,7 @@ from tkinter import filedialog, messagebox
 from datetime import datetime
 
 from GUI.GUI_Mains import FONT, FONTBOLD, OECCOLOR
-from GUI.main_window import ProgramWindow
+from GUI.window_main import ProgramWindow
 from openpyxl.utils import get_column_letter
 from openpyxl.styles import PatternFill, Border, Side, Alignment, Protection, Font
 

@@ -1,6 +1,8 @@
 from Backend.database_get import get_project_data
-from GUI.project_catalog.info_windows.info_window import InfoWindow
-from GUI.catalogs.catalog_projects import FORMATDICT, SKIPFIELDS
+
+from GUI.window_info import InfoWindow
+
+from Programs.catalog_projects import FORMATDICT, SKIPFIELDS
 
 class BasicProjectInfo(InfoWindow):
     def __init__(self, master, **kw) -> None:

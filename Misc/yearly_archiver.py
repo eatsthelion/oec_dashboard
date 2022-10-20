@@ -18,7 +18,7 @@ from tkinter import CENTER, END, messagebox
 from Backend.database import DB_connect, PROJECTDB
 from Backend.path_analyzer import PathAnalyzer
 from GUI.GUI_Mains import FONT
-from GUI.main_window import ProgramWindow
+from GUI.window_main import ProgramWindow
 
 # endregion
 # region MACROS

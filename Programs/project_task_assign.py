@@ -1,8 +1,9 @@
 from Backend.database import PROJECTDB, DB_connect
 from Backend.database_get import get_active_employees
-from GUI.widgets.basics import *
-from GUI.data_table import DataTableWindow
-from GUI.catalogs.catalog_users import EmployeeDatabase
+
+from GUI.window_datatable import *
+
+from Programs.catalog_users import EmployeeDatabase
 
 PROGRAMTITLE = "Task Applicants"
 

@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import *
 
-from GUI.login_window import LoginWindow
+from GUI.window_login import LoginWindow
 
 START = 'OEC Project Catalog'
 PROGRAMS = ['Switch Programs', 'OEC Taskboard', 'OEC Project Catalog', 
@@ -35,7 +35,6 @@ class MainProgram(object):
         # Fullscreen button binding  
         self.fullscreen = False
         self.root.bind("<F11>", self.fullscreen_command)
-
 
         # Initializes main program frame
         self.mainframe = tk.Frame(self.root, bg=self.bg)
@@ -78,36 +77,36 @@ class MainProgram(object):
         self.root.update()
         if program_name == 'OEC Project Catalog':
             from Backend.database_get import get_project_info
-            from GUI.catalogs.catalog_projects import ProjectCatalog
+            from Programs.catalog_projects import ProjectCatalog
             db_function = get_project_info
             catalog = ProjectCatalog
         elif program_name == 'OEC Material Database':
             from Backend.database_get import get_material_info
-            from GUI.catalogs.catalog_materials import MaterialDatabase
+            from Programs.catalog_materials import MaterialDatabase
             db_function = get_material_info
             catalog = MaterialDatabase
         elif program_name == 'OEC Schedule':
             from Backend.database_get import get_oec_date_catalog
-            from GUI.catalogs.catalog_project_dates import ProjectDates
+            from Programs.catalog_project_dates import ProjectDates
             db_function = get_oec_date_catalog
             catalog = ProjectDates
         elif program_name == 'OEC Budget Catalog':
             from Backend.database_get import get_budget_catalog
-            from GUI.catalogs.catalog_budgets import BudgetCatalog
+            from Programs.catalog_budgets import BudgetCatalog
             db_function = get_budget_catalog
             catalog = BudgetCatalog
         elif program_name == 'OEC Staff':
             from Backend.database_get import get_active_employees
-            from GUI.catalogs.catalog_users import EmployeeDatabase
+            from Programs.catalog_users import EmployeeDatabase
             db_function = get_active_employees
             catalog = EmployeeDatabase
         elif program_name == 'OEC Taskboard':
             from Backend.database_get import get_taskboard
-            from GUI.catalogs.catalog_taskboard import Taskboard
+            from Programs.catalog_taskboard import Taskboard
             db_function = lambda: get_taskboard(self.user.user_id)
             catalog = Taskboard
         elif program_name == 'Excel Comparison':
-            from other_programs.excel_file_comparison import ExcelComparer
+            from Misc.excel_file_comparison import ExcelComparer
             db_function = None
             catalog = BudgetCatalog
         # Raises the Loading Screen

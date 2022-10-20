@@ -1,6 +1,6 @@
+
 from Backend.database import format_data
-from GUI.widgets.basics import *
-from GUI.widgets.terminal import TerminalWindow
+from GUI.window_terminal import *
 
 class InfoWindow(TerminalWindow):
     def __init__(self, master, **kw) -> None:

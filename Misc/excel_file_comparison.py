@@ -10,7 +10,7 @@ from tkinter import CENTER, DISABLED, END, EW, NSEW, W, messagebox, filedialog, 
 
 from GUI.GUI_Mains import FONT
 from GUI.widgets.terminal import Terminal
-from GUI.main_window import PopupWindow
+from GUI.window_main import PopupWindow
 
 # endregion
 # region MACROS

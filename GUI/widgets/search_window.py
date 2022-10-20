@@ -18,7 +18,7 @@ from math import ceil
 from tkinter import *
 from datetime import datetime
 
-from GUI.widgets.terminal import TerminalWindow
+from GUI.window_terminal import TerminalWindow
 from GUI.widgets.highlight import enter_leave_stylechange, rowhighlight, \
     rowhighlightbind
 from GUI.GUI_Mains import OECCOLOR, FONT, FONTBOLD

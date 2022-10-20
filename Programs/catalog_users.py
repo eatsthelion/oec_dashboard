@@ -7,10 +7,7 @@
 #   - Organize the database of coded materials
 ###################################################################################################
 
-from GUI.GUI_Mains import FONTBOLD
-from GUI.widgets.terminal import Terminal
-from GUI.data_table import DataTableWindow
-from GUI.widgets.basics import *
+from GUI.window_datatable import *
 
 PROGRAMTITLE = "OEC Staff"
 COLUMNTITLES = ['rowid', 'Employee Name', 'Position', 

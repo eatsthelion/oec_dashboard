@@ -1,11 +1,11 @@
 PROGRAMTITLE = "Comment Edits"
+
 from datetime import datetime
 
-from Backend.database import PROJECTDB, STATUSDB, DB_connect
+from Backend.database import STATUSDB, DB_connect
 
-from GUI.main_window import PopupWindow
-from GUI.widgets.basics import MyFrame, MyText, MyButton
-from GUI.project_catalog.edit_windows.edit_window import EditWindow
+from GUI.window_edit import *
+
 class EditProjectCommentGUI(EditWindow):
     def __init__(self, master,**kw) -> None:
         super().__init__(master, bg='goldenrod2', width=500, height=350, 

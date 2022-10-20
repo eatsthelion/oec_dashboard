@@ -1,11 +1,10 @@
 from Backend.database_get import get_docs_in_package, get_project_documents
 from Backend.filesystem import FileSystem
 
-from GUI.data_table import DataTableWindow
-from GUI.widgets.basics import MyButton
+from GUI.window_datatable import *
 
-from GUI.project_catalog.option_windows.package_options import PackageOptionsWindow
-from GUI.project_catalog.edit_windows.edit_packages import EditPackagesGUI
+from Programs.option_packages import PackageOptionsWindow
+from Programs.edit_packages import EditPackagesGUI
 
 SKIPFIELDS = [0, 4, 5]
 FORMATDICT = {
@@ -80,7 +79,7 @@ class ProjectPackagesGUI(DataTableWindow):
         self.cancel_window()
 
     def show_package_documents_window_full(self, dataset):      
-        from GUI.project_catalog.project_documents import ProjectDocumentsGUI  
+        from Programs.project_documents import ProjectDocumentsGUI  
         searchwindow = ProjectDocumentsGUI(self.master, parent=self)
         db_function = get_docs_in_package
 

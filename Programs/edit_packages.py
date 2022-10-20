@@ -2,13 +2,10 @@ PROGRAMTITLE = 'Package Edits'
 import os
 from datetime import datetime
 from Backend.database import  DBTIME,  PACKAGEDB, USERTIME, DB_connect
-
-from GUI.widgets.basics import *
-from GUI.widgets.date_entry import DateEntry
-from GUI.project_catalog.edit_windows.edit_window import EditWindow
-
 from Backend.filesystem import FileSystem
 from Backend.database_send import project_edit_entry, project_input_entry
+
+from GUI.window_edit import *
 
 class EditPackagesGUI(EditWindow):
     def __init__(self, master, **kw) -> None:

@@ -2,7 +2,7 @@
 import tkinter as tk
 from tkinter import END, messagebox
 from GUI.GUI_Mains import FONT
-from GUI.main_window import PopupWindow
+from GUI.window_main import PopupWindow
 from Backend.database import DB_connect, EMPLOYEEDB
 from Backend.usertoken import UserToken
 

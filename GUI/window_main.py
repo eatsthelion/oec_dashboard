@@ -12,6 +12,8 @@
 ###############################################################################
 
 from GUI.widgets.basics import *
+from GUI.widgets.terminal import *
+from GUI.widgets.date_entry import *
 from GUI.GUI_Mains import FONTBOLD, OECCOLOR
 
 class WindowAttributes(object):
@@ -24,11 +26,12 @@ class WindowAttributes(object):
         self.master = master
         self.parent = parent 
         self.children = []
+        self.data = None
         if self.parent != None:
             self.parent.children.append(self)
 
         # Each window is given the user token at any time
-        self.user = self.get_user()
+        self.user = self._get_user()
         if self.user != None:
             left_animation_seq = {
                 '☆ ★ ★ ★ ★':'★ ★ ★ ★ ★',
@@ -46,7 +49,7 @@ class WindowAttributes(object):
                 '★ ★ ★ ☆ ★':'★ ★ ★ ★ ☆',
                 '★ ★ ★ ★ ☆':'★ ★ ★ ★ ★',
             }
-            main = self.find_main()
+            main = self._find_main()
             main.load_text.configure(text='LOADING\n'+program_title.upper())
             main.star_txt_right.configure(
                 text=right_animation_seq[main.star_txt_right.cget('text')]
@@ -76,7 +79,11 @@ class WindowAttributes(object):
         # Signal to stop destroying in the window linked list
         self.destroy_stop = destroy_stop
 
-    def find_main(self):
+    def delete_children(self):
+        WindowAttributes._delete_children(self)
+        pass
+
+    def _find_main(self):
         try:
             current = self.parent
         except:
@@ -91,8 +98,8 @@ class WindowAttributes(object):
         except:
             return current
 
-    def get_user(self):
-        main = self.find_main()
+    def _get_user(self):
+        main = self._find_main()
         if main == None:
             return None
         try:
@@ -100,14 +107,13 @@ class WindowAttributes(object):
         except:
             return None
 
-    def delete_children(self):
-        WindowAttributes._delete_children(self)
-        pass
-
     def _delete_children(window_object):
         for child in window_object.children:
             WindowAttributes._delete_children(child)
             del child
+
+    def send_data(self, data):
+        self.sender(data)
     
 class PopupWindow(WindowAttributes):
     def __init__(self, master:tk, canvas:bool = False, 
@@ -236,26 +242,35 @@ class PopupWindow(WindowAttributes):
         self.frame.grab_set()
         self.frame.focus_set()
         self.l_frame.place_forget()
+
     def canvas_hide(self):
         """Hides the default canvas"""
         self.canvas_window.canvas_hide()
+
     def canvas_show(self):
         """Displays the default canvas"""
         self.canvas_window.canvas_show()
+
     def destroy_canvas(self):
         self.canvas_window.containerframe1.destroy()
         self.children.remove(self.canvas_window)
         del self.canvas_window
+        
     def hide_back_button(self):
         self.backbutton.pack_forget()
+
     def show_back_button(self):
         self.backbutton.pack(side=LEFT, anchor=NW)
+
     def hide_cancel_button(self):
         self.cancelbutton.pack_forget()
+
     def show_cancel_button(self):
         self.cancelbutton.pack(side=RIGHT, anchor=NE)
+
     def change_back_button_direction(self, new_direction):
         self.back_direction = new_direction
+
     def go_back(self):
         if self.back_direction!=None: self.back_direction()
         self.destroy_window()
