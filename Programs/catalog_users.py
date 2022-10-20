@@ -44,8 +44,6 @@ class EmployeeDatabase(DataTableWindow):
             command=lambda m=dataset: self.select_data(m))
         if self.context == 'select':
             select_button.grid(row=0, column = 1, padx =5)
-        
-        
 
     def sortfunction(self, sortby, dataset):
         if sortby == 'SORT BY ITEM (A-Z)': 
@@ -71,6 +69,7 @@ class EmployeeDatabase(DataTableWindow):
 
     def display_data(self, data, dataset, datasetget):
         if self.context != 'select':
+            self.destroy_stop = False
             self.titlelabel.configure(font = ("montserrat extrabold",24,'bold'), 
                 text="★ "+PROGRAMTITLE.upper()+" ★", bg='white',
                 height=2)
@@ -78,6 +77,7 @@ class EmployeeDatabase(DataTableWindow):
             self.titlelabel.pack(fill='x')
             self.hide_back_button()
         else:
+            self.destroy_stop = True
             self.titlelabel.configure(font=FONTBOLD, text='ASSIGN STAFF')
             self.titlelabel.pack_forget()
             self.titlelabel.place(relx=.5, rely=0, anchor=N)

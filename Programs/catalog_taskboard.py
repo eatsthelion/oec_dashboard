@@ -31,6 +31,7 @@ class Taskboard(DataTableWindow):
         leftoptions = self.leftoptions, 
         additional_windows = self.additonalOptions, 
         skipfields=SKIPFIELDS, format_dict=FORMATDICT,
+        destroy_stop = True,
         **kw)
         
 

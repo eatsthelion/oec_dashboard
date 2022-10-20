@@ -5,6 +5,7 @@ import sys
 sys.dont_write_bytecode = True
 
 from GUI.window_login import LoginWindow
+from GUI.window_home import HomeWindow
 
 START = 'OEC Project Catalog'
 PROGRAMS = ['Switch Programs', 'OEC Taskboard', 'OEC Project Catalog', 
@@ -78,43 +79,6 @@ class MainProgram(object):
     def switch_catalog(self, program_name):
         self.load_text.configure(text = 'LOADING\nFILES')
         self.root.update()
-        if program_name == 'OEC Project Catalog':
-            from Backend.database_get import get_project_info
-            from Programs.catalog_projects import ProjectCatalog
-            db_function = get_project_info
-            catalog = ProjectCatalog
-        elif program_name == 'OEC Material Database':
-            from Backend.database_get import get_material_info
-            from Programs.catalog_materials import MaterialDatabase
-            db_function = get_material_info
-            catalog = MaterialDatabase
-        elif program_name == 'OEC Schedule':
-            from Backend.database_get import get_oec_date_catalog
-            from Programs.catalog_project_dates import ProjectDates
-            db_function = get_oec_date_catalog
-            catalog = ProjectDates
-        elif program_name == 'OEC Budget Catalog':
-            from Backend.database_get import get_budget_catalog
-            from Programs.catalog_budgets import BudgetCatalog
-            db_function = get_budget_catalog
-            catalog = BudgetCatalog
-        elif program_name == 'OEC Staff':
-            from Backend.database_get import get_active_employees
-            from Programs.catalog_users import EmployeeDatabase
-            db_function = get_active_employees
-            catalog = EmployeeDatabase
-        elif program_name == 'OEC Taskboard':
-            from Backend.database_get import get_taskboard
-            from Programs.catalog_taskboard import Taskboard
-            db_function = lambda: get_taskboard(self.user.user_id)
-            catalog = Taskboard
-        elif program_name == 'Excel Comparison':
-            from Misc.excel_file_comparison import ExcelComparer
-            db_function = None
-            catalog = BudgetCatalog
-        # Raises the Loading Screen
-        self.l_frame.tkraise(aboveThis=None)
-        self.l_frame.place(x=0, y=0, relwidth=1, relheight=1, anchor=NW)
 
         # Destroys the previous loaded program
         if self.current_program != None:
@@ -126,9 +90,8 @@ class MainProgram(object):
         self.star_txt_left.configure(text='★ ★ ★ ★ ★')
         self.root.update()
         
-        self.current_program = catalog(self.mainframe, parent=self)
-        self.current_program.display_data(None, lambda: db_function())
-        self.root.title(self.current_program.program_title)
+        self.current_program = HomeWindow(self.mainframe, parent=self)
+        self.root.title("OEC Dashboard")
 
         # Changes windows to display
         from GUI.widgets.basics import MyOptionMenu
@@ -138,7 +101,7 @@ class MainProgram(object):
         self.programOptions = MyOptionMenu(self.current_program.frame, PROGRAMS,
             command=self.menu_command)
         
-        self.programOptions.place(x=0, y=0, anchor=NW)
+        #self.programOptions.place(x=0, y=0, anchor=NW)
 
     def menu_command(self, event):
         program = self.programOptions.get()

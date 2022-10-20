@@ -50,6 +50,7 @@ class WindowAttributes(object):
                 '★ ★ ★ ★ ☆':'★ ★ ★ ★ ★',
             }
             main = self._find_main()
+            self.mainprogram = main
             main.load_text.configure(text='LOADING\n'+program_title.upper())
             main.star_txt_right.configure(
                 text=right_animation_seq[main.star_txt_right.cget('text')]
@@ -274,6 +275,9 @@ class PopupWindow(WindowAttributes):
     def go_back(self):
         if self.back_direction!=None: self.back_direction()
         self.destroy_window()
+
+    def additional_menu_options(self, menu):
+        return
 
 class CanvasWindow(WindowAttributes):
     def __init__(self,master,**kw) -> None:

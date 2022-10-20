@@ -60,6 +60,7 @@ class ProjectCatalog(DataTableWindow):
         additional_windows = self.additonalOptions, 
         skipfields=SKIPFIELDS, sorttypes=SORTOPTIONS,
         format_dict=FORMATDICT, program_title = PROGRAMTITLE,
+        destroy_stop = True,
         **kw)       
     
     def configure(self):
@@ -154,3 +155,10 @@ class ProjectCatalog(DataTableWindow):
         self.titlelabel.configure(text="★ "+PROGRAMTITLE.upper()+" ★")
         self.display_data(None, dataset, 
             lambda:get_my_project_info)
+
+    def display_data(self, data, dataset_get):
+        if self.context == 'select':
+            self.destroy_stop = False
+        else: 
+            self.destroy_stop = True
+        return super().display_data(data, dataset_get)
