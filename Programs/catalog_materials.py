@@ -6,16 +6,9 @@
 # Purposes:
 #   - Organize the database of coded materials
 ###################################################################################################
+PROGRAMTITLE = "Material Database"
 
 from GUI.window_datatable import *
-
-PROGRAMTITLE = "Material Database"
-COLUMNTITLES = ['rowid', 'Item', 'Code', 'Connected Items', 'Descriptions', 
-    'Type', 'References', 'Other Data']
-COLUMNWIDTHS = [5,10,10,20,50,
-    15,40,40]
-SKIPFIELDS = [0]
-SORTOPTIONS = ['SORT BY ITEM (A-Z)', 'SORT BY ITEM (Z-A)', 'SORT BY CODE']
 
 class MaterialDatabase(DataTableWindow):
     def __init__(self, master, **kw) -> None:
@@ -23,10 +16,8 @@ class MaterialDatabase(DataTableWindow):
         sort_function=self.sortfunction,
         right_options = self.rightoptions, 
         additional_popups = self.additonalOptions, 
-        columntitles=COLUMNTITLES, columnwidths=COLUMNWIDTHS, 
-        sorttypes=SORTOPTIONS,
         program_title = PROGRAMTITLE,
-        skipfields=SKIPFIELDS,
+        format_dict='material_catalog',
         rowheight = 5, searchbar=True,
         bg='lightsteelblue3', search_col_bg='cadetblue2',
         **kw)

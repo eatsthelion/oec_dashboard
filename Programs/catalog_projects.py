@@ -26,31 +26,7 @@ from GUI.window_datatable import *
 from Programs.edit_project import EditProjectGUI
 from Programs.option_projects import ProjectOptionsWindow
 
-# region Macros
 PROGRAMTITLE = 'Project Catalog'
-
-FORMATDICT = {
-    1:{'title':'OEC Job #',             'width':10},
-    2:{'title':'Client Job #',          'width':15},
-    3:{'title':'Client',                'width':10},
-    4:{'title':'Active Status',         'width':10},
-    5:{'title':'Project Title',         'width':30},
-    6:{'title':'Location',              'width':20},
-    7:{'title':'Project Engineer(s)',   'width':20},
-    8:{'title':'Project Type',          'width':10},
-    9:{'title':'Current Phase',         'width':10},
-    10:{'title':'Current Stage',        'width':10},
-    11:{'title':'Percent Complete',     'width':10, 'format':'percent'},
-    12:{'title':'Creation Date',        'width':10, 'format':'date'},
-    13:{'title':'Modify Date',          'width':10, 'format':'date'}
-}
-
-SORTOPTIONS = [
-    'SORT BY NEWEST', 'SORT BY OLDEST', 'SORT BY OEC NUMBER', 
-    'SORT BY LAST MODIFIED'
-    ]
-SKIPFIELDS = [0]
-# endregion
 
 class ProjectCatalog(DataTableWindow):
     def __init__(self, master, **kw) -> None:
@@ -58,8 +34,7 @@ class ProjectCatalog(DataTableWindow):
         sortfunction=self.sortfunction,
         leftoptions = self.leftoptions, 
         additional_windows = self.additonalOptions, 
-        skipfields=SKIPFIELDS, sorttypes=SORTOPTIONS,
-        format_dict=FORMATDICT, program_title = PROGRAMTITLE,
+        format_dict='project_catalog', program_title = PROGRAMTITLE,
         destroy_stop = True,
         **kw)       
     

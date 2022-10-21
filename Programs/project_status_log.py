@@ -6,23 +6,13 @@ from GUI.window_datatable import *
 
 from Programs.edit_comment import EditProjectCommentGUI
 
-SKIPFIELDS = [0]
-FORMATDICT = {
-    1:{'title':'Status/Comment', 'width':40},
-    2:{'title':'Status Type',    'width':15},
-    3:{'title':'Input Date',     'width':20, 'format':'date'},
-    4:{'title':'Modify Date',    'width':15, 'format':'date'},
-    5:{'title':'Modified By',    'width':20},
-}
-
 class ProjectStatusGUI(DataTableWindow):
     def __init__(self, master, **kw) -> None:
         super().__init__(master, program_title = 'Project Status Logs',
         bg='darkorange1',col_color='orange',
         leftoptions = self.leftoptions, 
-        additional_windows = self.additionalOptions, 
-        skipfields=SKIPFIELDS,
-        format_dict=FORMATDICT,
+        additional_windows = self.additionalOptions,
+        format_dict="project_status",
         **kw)
 
     def configure(self, **kw):

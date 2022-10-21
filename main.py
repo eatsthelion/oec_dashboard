@@ -90,7 +90,6 @@ class MainProgram(object):
         self.root.title("OEC Dashboard")
 
         # Changes windows to display
-        from GUI.widgets.basics import MyOptionMenu
         self.current_program.show_full_window()
         self.l_frame.place_forget()
     

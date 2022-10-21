@@ -1,3 +1,5 @@
+PROGRAMTITLE = "Task Applicants"
+
 from Backend.database import PROJECTDB, DB_connect
 from Backend.database_get import get_active_employees
 
@@ -5,23 +7,13 @@ from GUI.window_datatable import *
 
 from Programs.catalog_users import EmployeeDatabase
 
-PROGRAMTITLE = "Task Applicants"
-
-FORMATDICT = {
-    1:{'title':'Employee Name', 'width':25},
-    2:{'title':'Position', 'width':20},
-    3:{'title':'Active Assignments', 'width':20},
-    4:{'title':'Total Active Assigned Projects', 'width':20},
-}
-SKIPFIELDS = [0]
-
 class ProjectTaskAssignments(DataTableWindow):
     def __init__(self, master, **kw) -> None:
         super().__init__(master, program_title = 'Project Task Assignments',
         bg='royalblue1', col_color='deepskyblue2', 
         leftoptions = self.leftoptions, 
-        additional_windows = self.additionalOptions, 
-        skipfields=SKIPFIELDS, format_dict=FORMATDICT,
+        additional_windows = self.additionalOptions,
+        format_dict="project_task_assignments",
         **kw)
         self.task_id = None
 

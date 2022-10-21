@@ -11,31 +11,16 @@ from GUI.window_datatable import *
 
 PROGRAMTITLE = 'OEC Schedule'
 
-COLUMNTITLES = ["Row ID", 'OEC Job #', 'Project Title', 'Project Engineer',
-                'Milestone', 'Forecast Date', 'Actual Date', 
-                'Input Date', 'Modify Date']
-
-COLUMNWIDTHS = [1 , 10, 30, 20,
-                30, 10, 10,
-                10, 10]  
-
-SORTOPTIONS = ['SORT BY NEWEST', 'SORT BY OLDEST','SORT BY FORECAST DATE', 
-    'SORT BY ACTUAL DATE', 'SORT BY OEC NUMBER', 'SORT BY LAST MODIFIED']
-
-SKIPFIELDS = [0]
-
 class ProjectDates(DataTableWindow):
     def __init__(self, master, **kw) -> None:
         super().__init__(master,
         sort_function=self.sortfunction,
         left_options = self.leftoptions, 
         additional_popups = self.additonalOptions, 
-        columntitles=COLUMNTITLES, columnwidths=COLUMNWIDTHS, 
-        sorttypes=SORTOPTIONS,
         program_title = PROGRAMTITLE,
-        skipfields=SKIPFIELDS,
         rowheight = 5, searchbar=True,
         bg='coral1', search_col_bg='cadetblue2',
+        format_dict=''
         **kw)
         
     def configure(self):

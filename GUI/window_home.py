@@ -15,7 +15,7 @@ class HomeWindow(PopupWindow):
         self.titlelabel.pack(fill='x')
 
     def configure(self):
-        self.text_scroller = TextScroller(self.frame, height = 50, 
+        self.text_scroller = TextScroller(self.frame, height = 50, speed=2,
             user = self.user.first_name)
         self.button_frame = MyFrame(self.frame)
         bwidth = 20
@@ -137,8 +137,8 @@ class HomeWindow(PopupWindow):
         """Removes the menubar and returns to home window"""
         if self.menubar != None:
             self.menubar.destroy()
+        super().show_full_window()
         self.mainprogram.lower_loading_screen()
-        return super().show_full_window()
 
     def go_back_home(self) -> None:
         """Removes all open programs and returns to the home menu"""

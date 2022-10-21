@@ -7,32 +7,13 @@ from Programs.option_dwglist import DWGListWindow
 
 from Backend.database_get import get_packages
 
-FORMATDICT = {
-    1:{'title':'Item No', 'width':10},
-    2:{'title':'Filename', 'width':10},
-    3:{'title':'EXT', 'width':8},
-    4:{'title':'Title', 'width':8},
-    5:{'title':'Drawing No', 'width':10},
-    6:{'title':'REV', 'width':10},
-    7:{'title':'SH', 'width':10},
-    8:{'title':'Description', 'width':30},
-    9:{'title':'Purpose', 'width':20},
-    10:{'title':'Progress', 'width':15},
-    11:{'title':'Author', 'width':20},
-    12:{'title':'Checked Out By', 'width':20},
-    13:{'title':'Input Date', 'width':15},
-    14:{'title':'Modified Date', 'width':15},
-    15:{'title':'Last Modified By', 'width':20},
-}
-SKIPFIELDS = [0]
 class ProjectDocumentsGUI(DataTableWindow):
     def __init__(self, master, **kw) -> None:
         super().__init__(master, program_title = 'Project Documents',
         bg='royalblue1', col_color='deepskyblue2', 
         leftoptions = self.leftoptions, 
         additional_windows = self.additionalOptions, 
-        skipfields=SKIPFIELDS,
-        format_dict=FORMATDICT,
+        format_dict='project_documents',
         **kw)
         self.package_id = None
 

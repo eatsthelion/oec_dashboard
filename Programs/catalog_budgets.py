@@ -10,23 +10,6 @@
 from GUI.window_datatable import *
 
 PROGRAMTITLE = "OEC Budget Catalog"
-COLUMNTITLES = [
-    'rowid','Purchase Order', 'OEC Job #', 'Client Job #', 'Location',
-    'Description', 'CWA #', 'CWA Type', 'Status', 'Proposal Amount',
-    'Proposal Date', 'Contract Amount', 'Contract Date', 'Contngency',
-    'Invoiced','Current Balance', 'Completion Date', 'Continued From'
-    ]
-
-COLUMNWIDTHS = [
-    1, 15, 10, 15, 20,
-    30, 10, 10, 12, 15,
-    10, 15, 15, 15,
-    15, 15, 10, 15
-    ]  
-
-SORTOPTIONS = ['SORT BY NEWEST', 'SORT BY OLDEST']
-
-SKIPFIELDS = [0]
 
 class BudgetCatalog(DataTableWindow):
     def __init__(self, master, **kw) -> None:
@@ -34,10 +17,8 @@ class BudgetCatalog(DataTableWindow):
         sort_function=self.sortfunction,
         left_options = self.leftoptions, 
         additional_popups = self.additonalOptions, 
-        columntitles=COLUMNTITLES, columnwidths=COLUMNWIDTHS, 
-        sorttypes=SORTOPTIONS,
         program_title = PROGRAMTITLE,
-        skipfields=SKIPFIELDS,
+        format_dict = 'budget_catalog',
         rowheight = 3, searchbar=True,
         bg='#19D719', search_col_bg='#F02D7D',
         **kw)

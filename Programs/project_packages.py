@@ -6,30 +6,13 @@ from GUI.window_datatable import *
 from Programs.option_packages import PackageOptionsWindow
 from Programs.edit_packages import EditPackagesGUI
 
-SKIPFIELDS = [0, 4, 5]
-FORMATDICT = {
-    1:{'title':'Package',               'width':30},
-    2:{'title':'Description',           'width':15},
-    3:{'title':'Package Type',          'width':15},
-    4:{'deletable'},
-    5:{'event_id'},
-    6:{'Access':'Event',                'width':25},
-    7:{'title':'Access',                'width':25},
-    8:{'title':'Forecast Date',         'width':15, 'format':'date'},
-    9:{'title':'Submittal Date',        'width':15, 'format':'date'},
-    10:{'title':'Creation Date',        'width':15, 'format':'date'},
-    11:{'title':'Modify Date',          'width':15, 'format':'date'},
-    12:{'title':'Last Modified By',     'width':15, 'format':'date'},
-}
-
 class ProjectPackagesGUI(DataTableWindow):
     def __init__(self, master, **kw) -> None:
         super().__init__(master, program_title = 'Project Packages',
         bg='cyan3', col_color='cyan2', 
         leftoptions = self.leftoptions, 
         additional_windows = self.additionalOptions, 
-        skipfields=SKIPFIELDS,
-        format_dict=FORMATDICT,
+        format_dict='project_packages',
         **kw)
         self.event_id = ''
 

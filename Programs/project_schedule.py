@@ -3,33 +3,13 @@ from GUI.window_datatable import *
 from Programs.edit_schedule_event import EditScheduleEventGUI
 from Programs.option_schedule import ScheduleOptionsWindow
 
-SKIPFIELDS = [0,4]
-FORMATDICT = {
-    1 :{'title':'Event',          'width':30},
-    2 :{'title':'Description',    'width':30},
-    3 :{'title':'Event Type',     'width':15},
-    4 :{'title':'Status',         'width':20},
-    5 :{'title':'Progress',       'width':10},
-    6 :{'title':'Priority',       'width':10, 'format':'hml'},
-    7 :{'title':'Difficulty',     'width':10, 'format':'hml'},
-    8 :{'assigned_ids'},
-    9 :{'title':'Assigned Employee(s)',  'width':25},
-    10:{'title':'Forecast',              'width':15, 'format':'date'},
-    11:{'title':'Actual',                'width':15, 'format':'date'},
-    12:{'title':'Taskboard',             'width':15, 'format':'taskboard'},
-    13:{'title':'Input Date',           'width':15, 'format':'date'},
-    14:{'title':'Modify Date',          'width':15, 'format':'date'},
-    15:{'title':'Last Modified By',     'width':20, 'format':'date'},
-}
-
 class ProjectScheduleGUI(DataTableWindow):
     def __init__(self, master, **kw) -> None:
         super().__init__(master, program_title = 'Project Schedules',
         bg='coral1', col_color='orangered',
         leftoptions=self.leftoptions,  
         additional_windows = self.additionalOptions, 
-        skipfields=SKIPFIELDS,
-        format_dict=FORMATDICT,
+        format_dict='project_schedule',
         **kw)
 
     def configure(self, **kw):

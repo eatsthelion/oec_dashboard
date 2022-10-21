@@ -1,3 +1,4 @@
+import json
 from GUI.window_main import *
 from GUI.widgets.new_search_window import SearchWindow
 
@@ -15,7 +16,7 @@ class DataTableWindow(PopupWindow):
             entrylimit = 20, rowheight = 2, columnwidth = 15,
             skipfields = [], col_color = 'mediumorchid3', 
             leftoptions=None, rightoptions=None, additional_windows = None, 
-            format_dict = {}, 
+            format_dict:str = '', 
             **kw) -> None:
         """Initializes all the keyword arguments for the SearchWindow widget"""
         self.dataset_get = dataset_get
@@ -41,6 +42,9 @@ class DataTableWindow(PopupWindow):
         self.columnwidth = columnwidth
         self.format_dict = format_dict
         self.col_color = col_color
+
+        with open(r".\Assets\data_format.json") as j:
+            self.format_dict = json.load(j)[format_dict]
         super().__init__(master, **kw)
 
     def configure(self):

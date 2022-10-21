@@ -7,31 +7,13 @@ from GUI.window_datatable import *
 from Programs.project_change_orders import ProjectChangeOrders
 from Programs.edit_budget import EditBudgetGUI
 
-FORMATDICT = {
-    1:{'title':'Purchase Order',        'width':10},
-    2:{'title':'Client Job #',          'width':10},
-    3:{'title':'Status',                'width':10},
-    4:{'title':'Description',           'width':20},
-    5:{'title':'CWA No',                'width':10},
-    6:{'title':'CWA Type',              'width':10},
-    7:{'title':'Items',                 'width':10},
-    8:{'title':'Proposal Amount',       'width':15, 'format':'dollar'},
-    9:{'title':'Contracted Amount',    'width':15, 'format':'dollar'},
-    10:{'title':'Invoiced',             'width':15, 'format':'dollar'},
-    11:{'title':'Current Balance',      'width':15, 'format':'dollar'},
-    12:{'title':'Contingency',          'width':15, 'format':'percent'},
-    13:{'title':'Continued From',       'width':10, 'format':'date'}
-}
-SKIPFIELDS = [0]
-
 class ProjectBudgetsGUI(DataTableWindow):
     def __init__(self, master, **kw) -> None:
         super().__init__(master, program_title = 'Project Budgets',
         bg='#118C4F', col_color='palegreen3', 
         leftoptions = self.leftoptions, 
-        additional_windows = self.additonalOptions, 
-        skipfields=SKIPFIELDS,
-        format_dict=FORMATDICT,
+        additional_windows = self.additonalOptions,
+        format_dict="project_budget",
         **kw)
 
     def configure(self,**kw):

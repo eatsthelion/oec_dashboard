@@ -10,11 +10,6 @@
 from GUI.window_datatable import *
 
 PROGRAMTITLE = "OEC Staff"
-COLUMNTITLES = ['rowid', 'Employee Name', 'Position', 
-    'Active Assignments', 'Total Active Assigned Projects']
-COLUMNWIDTHS = [5 , 35, 20, 10, 20]
-SKIPFIELDS = [0]
-SORTOPTIONS = ['SORT BY ITEM (A-Z)', 'SORT BY ITEM (Z-A)', 'SORT BY CODE']
 
 class EmployeeDatabase(DataTableWindow):
     def __init__(self, master, **kw) -> None:
@@ -22,10 +17,8 @@ class EmployeeDatabase(DataTableWindow):
         sort_function=self.sortfunction,
         left_options = self.leftoptions, 
         additional_popups = self.additonalOptions, 
-        columntitles=COLUMNTITLES, columnwidths=COLUMNWIDTHS, 
-        sorttypes=SORTOPTIONS,
         program_title = PROGRAMTITLE,
-        skipfields=SKIPFIELDS,
+        format_dict = 'staff',
         rowheight = 2, searchbar=True,
         bg='#7f007f', search_col_bg='mediumorchid2',
         **kw)

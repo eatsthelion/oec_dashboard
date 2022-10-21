@@ -226,23 +226,26 @@ class SearchWindow(MyFrame):
             l_frame.grid(row=row, column=1, sticky=E)
 
             for column, data in enumerate(datarow):
+                columnstr = str(column)
                 if column in self.skipfields: continue
+                if columnstr not in self.format_dict:
+                    continue
+                if "title" not in self.format_dict[columnstr]:
+                    continue
                 # Initializes the textbox that displays the data
                 textbox = MyText(self.result_frame, height=self.rowheight, 
                     relief='solid')
 
                 # Configures the textbox's width
-                if column in self.format_dict:
-                    if "width" in self.format_dict[column]:
-                        textbox.configure(width=self.format_dict[column]['width'])
+                if "width" in self.format_dict[columnstr]:
+                        textbox.configure(width=self.format_dict[columnstr]['width'])
                 else:
                     if type(self.columnwidth) is list: 
                         textbox.configure(width = self.columnwidth[column])
                     else: textbox.configure(width = self.columnwidth)
 
-                if column in self.format_dict:
-                    if 'format' in self.format_dict[column]:
-                        data = format_data(data, self.format_dict[column]['format'])
+                if 'format' in self.format_dict[columnstr]:
+                    data = format_data(data, self.format_dict[columnstr]['format'])
 
                 textbox.insert(data)
                 textbox.configure(state=DISABLED)
@@ -270,21 +273,20 @@ class SearchWindow(MyFrame):
         self.master.update()
 
         for column in range(len(datarow)):
-            if column in self.skipfields: continue
+            columnstr = str(column)
+            if column in self.skipfields: 
+                continue
+            if columnstr not in self.format_dict:
+                continue
+            if 'title' not in self.format_dict[columnstr]:
+                continue
             titlebox = MyText(self.column_frame, bg=self.col_color, height=2,
                 relief='solid')
             titlebox.grid(row=0, column = column+1)
-            if column in self.format_dict: 
-                if 'title' in self.format_dict[column]:
-                    titlebox.insert(self.format_dict[column]['title'])
-                else:
-                    titlebox.insert('Untitled Column ' + str(column))
-            else:
-                titlebox.insert('Untitled Column ' + str(column))
-
-            if column in self.format_dict:
-                if "width" in self.format_dict[column]:
-                    titlebox.configure(width=self.format_dict[column]['width'])
+            
+            titlebox.insert(self.format_dict[columnstr]['title'])
+            if "width" in self.format_dict[columnstr]:
+                titlebox.configure(width=self.format_dict[columnstr]['width'])
             else:
                 if type(self.columnwidth) is list: 
                     titlebox.configure(width = self.columnwidth[column])

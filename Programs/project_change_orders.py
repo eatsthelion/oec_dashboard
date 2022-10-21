@@ -6,39 +6,19 @@
 # Purposes:
 #   - Organize the database project budgets
 ###################################################################################################
+PROGRAMTITLE = "Change Order Catalog"
 
 from Backend.database_delete import delete_change_order
 from GUI.window_datatable import *
 from Programs.edit_change_order import EditChangeOrderGUI
-
-PROGRAMTITLE = "Change Order Catalog"
-COLUMNTITLES = [
-    'rowid', 'Change Order No', 'Description', 
-    'Proposed Amount', 'Contract Amount', 'Proposed Date', 'Contracted Date'
-    ]
-COLUMNWIDTHS = [
-    1 , 8 , 20, 
-    10, 10, 15, 15    
-    ]
-SORTOPTIONS = ['SORT BY NEWEST', 'SORT BY OLDEST']
-SKIPFIELDS = [0]
-FORMATDICT = {
-    1:{'title':'Change Order No',       'width':8},
-    2:{'title':'Description',           'width':20},
-    3:{'title':'Proposed Amount',       'width':10, 'format':'dollar'},
-    4:{'title':'Contract Amount',       'width':10, 'format':'dollar'},
-    5:{'title':'Proposed Date',         'width':15, 'format':'date'},
-    6:{'title':'Contracted Date',       'width':15, 'format':'date'},
-}
 
 class ProjectChangeOrders(DataTableWindow):
     def __init__(self, master, **kw) -> None:
         super().__init__(master, program_title = 'Project Change Orders',
         bg='royalblue1', col_color='deepskyblue2', 
         left_options = self.leftoptions, 
-        additional_popups = self.additonalOptions, 
-        columntitles=COLUMNTITLES, columnwidths=COLUMNWIDTHS, 
-        skipfields=SKIPFIELDS,
+        additional_popups = self.additionalOptions,
+        format_dict='change_orders',
         **kw)
         self.project_id = None
         self.po_id = None

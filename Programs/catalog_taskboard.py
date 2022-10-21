@@ -8,29 +8,13 @@ from Programs.info_project import BasicProjectInfo
 
 PROGRAMTITLE = "Taskboard"
 
-SKIPFIELDS = [0, 6, 9, 11, 13]
-FORMATDICT = {
-    1:{'title':'Task', 'width':20},
-    2:{'title':'Details', 'width':30},
-    3:{'title':'Task Type', 'width':10},
-    4:{'title':'Priority', 'width':15, 'format':'hml'},
-    5:{'title':'Difficulty', 'width':15, 'format':'hml'},
-    6:{'project_id'},
-    7:{'title':'OEC No', 'width':20},
-    8:{'title':'Project Title', 'width':25},
-    9:{'pe_ids'},
-    10:{'title':'Project Engineer(s)', 'width':20},
-    11:{'assigned_ids'},
-    12:{'title':'Assigned Staff', 'width':25},
-    13:{'applied_ids'},
-}
 class Taskboard(DataTableWindow):
     def __init__(self, master, **kw) -> None:
         super().__init__(master, entrylimit = 15, rowheight=4,
         sortfunction=self.sortfunction,
         leftoptions = self.leftoptions, 
         additional_windows = self.additonalOptions, 
-        skipfields=SKIPFIELDS, format_dict=FORMATDICT,
+        format_dict='taskboard',
         program_title=PROGRAMTITLE,
         **kw)
         

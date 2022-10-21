@@ -1,5 +1,5 @@
 {
-    "catalog_projects":{
+    "project_catalog":{
         "1":{"title":"OEC Job #",             "width":10},
         "2":{"title":"Client Job #",          "width":15},
         "3":{"title":"Client",                "width":10},
@@ -13,5 +13,143 @@
         "11":{"title":"Percent Complete",     "width":10, "format":"percent"},
         "12":{"title":"Creation Date",        "width":10, "format":"date"},
         "13":{"title":"Modify Date",          "width":10, "format":"date"}
+    },
+    "budget_catalog":{
+        "1":{"title":"Purchase Order",          "width":15},
+        "2":{"title":"OEC Job #",               "width":10},
+        "3":{"title":"Client Job #",            "width":15},
+        "4":{"title":"Location",                "width":20},
+        "5":{"title":"Description",             "width":30},
+        "6":{"title":"CWA #",                   "width":20},
+        "7":{"title":"CWA Type",                "width":20},
+        "8":{"title":"Status",                  "width":15},
+        "9":{"title":"Proposal Amount",         "width":20, "format":"dollar"},
+        "10":{"title":"Proposal Date",          "width":15, "format":"date"},
+        "11":{"title":"Contract Amount",        "width":20, "format":"dollar"},
+        "12":{"title":"Contract Date",          "width":15, "format":"date"},
+        "13":{"title":"Contingency",            "width":20, "format":"dollar"},
+        "14":{"title":"Invoiced",               "width":20, "format":"dollar"},
+        "15":{"title":"Current Balance",        "width":20, "format":"dollar"},
+        "16":{"title":"Completion Date",        "width":15, "format":"date"},
+        "17":{"title":"Continued From",         "width":20, "format":"date"}
+    },
+    "material_catalog":{
+        "1":{"title":"Item",                    "width":10},
+        "2":{"title":"Code",                    "width":10},
+        "3":{"title":"Connected Items",         "width":20},
+        "4":{"title":"Description",             "width":50},
+        "5":{"title":"Type",                    "width":15},
+        "6":{"title":"References",              "width":40},
+        "7":{"title":"Other Data",              "width":40}
+    },
+    "taskboard":{
+        "1":{"title":"Task",                "width":20},
+        "2":{"title":"Details",             "width":30},
+        "3":{"title":"Task Type",           "width":10},
+        "4":{"title":"Priority",            "width":15, "format":"hml"},
+        "5":{"title":"Difficulty",          "width":15, "format":"hml"},
+        "6":{"name":"project_id"},
+        "7":{"title":"OEC No",              "width":20},
+        "8":{"title":"Project Title",       "width":25},
+        "9":{"name":"pe_ids"},
+        "10":{"title":"Project Engineer(s)","width":20},
+        "11":{"name":"assigned_ids"},
+        "12":{"title":"Assigned Staff",     "width":25},
+        "13":{"name":"applied_ids"}
+    },
+    "staff":{
+        "1":{"title":"Employee Name",                   "width":30},
+        "2":{"title":"Position",                        "width":20},
+        "3":{"title":"Active Assignments",              "width":15},
+        "4":{"title":"Total Active Assigned Projects",  "width":15}
+    },
+    "project_budget":{
+        "1":{"title":"Purchase Order",        "width":10},
+        "2":{"title":"Client Job #",          "width":10},
+        "3":{"title":"Status",                "width":10},
+        "4":{"title":"Description",           "width":20},
+        "5":{"title":"CWA No",                "width":10},
+        "6":{"title":"CWA Type",              "width":10},
+        "7":{"title":"Items",                 "width":10},
+        "8":{"title":"Proposal Amount",       "width":15, "format":"dollar"},
+        "9":{"title":"Contracted Amount",    "width":15, "format":"dollar"},
+        "10":{"title":"Invoiced",             "width":15, "format":"dollar"},
+        "11":{"title":"Current Balance",      "width":15, "format":"dollar"},
+        "12":{"title":"Contingency",          "width":15, "format":"percent"},
+        "13":{"title":"Continued From",       "width":10, "format":"date"}
+    },
+    "change_orders":{
+        "1":{"title":"Change Order No",       "width":8},
+        "2":{"title":"Description",           "width":20},
+        "3":{"title":"Proposed Amount",       "width":10, "format":"dollar"},
+        "4":{"title":"Contract Amount",       "width":10, "format":"dollar"},
+        "5":{"title":"Proposed Date",         "width":15, "format":"date"},
+        "6":{"title":"Contracted Date",       "width":15, "format":"date"}
+    },
+    "project_documents":{
+        "1":{"title":"Item No", "width":10},
+        "2":{"title":"Filename", "width":10},
+        "3":{"title":"EXT", "width":8},
+        "4":{"title":"Title", "width":8},
+        "5":{"title":"Drawing No", "width":10},
+        "6":{"title":"REV", "width":10},
+        "7":{"title":"SH", "width":10},
+        "8":{"title":"Description", "width":30},
+        "9":{"title":"Purpose", "width":20},
+        "10":{"title":"Progress", "width":15},
+        "11":{"title":"Author", "width":20},
+        "12":{"title":"Checked Out By", "width":20},
+        "13":{"title":"Input Date", "width":15},
+        "14":{"title":"Modified Date", "width":15},
+        "15":{"title":"Last Modified By", "width":20}
+    },
+    "project_packages":{
+        "1":{"title":"Package",               "width":30},
+        "2":{"title":"Description",           "width":15},
+        "3":{"title":"Package Type",          "width":15},
+        "4":{"name":"deletable"},
+        "5":{"name":"event_id"},
+        "6":{"Access":"Event",                "width":25},
+        "7":{"title":"Access",                "width":25},
+        "8":{"title":"Forecast Date",         "width":15, "format":"date"},
+        "9":{"title":"Submittal Date",        "width":15, "format":"date"},
+        "10":{"title":"Creation Date",        "width":15, "format":"date"},
+        "11":{"title":"Modify Date",          "width":15, "format":"date"},
+        "12":{"title":"Last Modified By",     "width":15, "format":"date"}
+    },
+    "project_schedule":{
+        "1":{"title":"Event",          "width":30},
+        "2":{"title":"Description",    "width":30},
+        "3":{"title":"Event Type",     "width":15},
+        "4":{"title":"Status",         "width":20},
+        "5":{"title":"Progress",       "width":10},
+        "6":{"title":"Priority",       "width":10, "format":"hml"},
+        "7":{"title":"Difficulty",     "width":10, "format":"hml"},
+        "8":{"name":"assigned_ids"},
+        "9":{"title":"Assigned Employee(s)",    "width":25},
+        "10":{"title":"Forecast",               "width":15, "format":"date"},
+        "11":{"title":"Actual",                 "width":15, "format":"date"},
+        "12":{"title":"Taskboard",              "width":15, "format":"taskboard"},
+        "13":{"title":"Input Date",             "width":15, "format":"date"},
+        "14":{"title":"Modify Date",            "width":15, "format":"date"},
+        "15":{"title":"Last Modified By",       "width":20, "format":"date"}
+    },
+    "project_status":{
+        "1":{"title":"Status/Comment", "width":40},
+        "2":{"title":"Status Type",    "width":15},
+        "3":{"title":"Input Date",     "width":20, "format":"date"},
+        "4":{"title":"Modify Date",    "width":15, "format":"date"},
+        "5":{"title":"Modified By",    "width":20}
+    },
+    "project_task_applicants":{
+        "1":{"title":"Applicant",               "width":20},
+        "2":{"title":"Total Active Tasks",      "width":20},
+        "3":{"title":"Total Active Projects",   "width":20}
+    },
+    "project_task_assignments":{
+        "1":{"title":"Employee Name", "width":25},
+        "2":{"title":"Position", "width":20},
+        "3":{"title":"Active Assignments", "width":20},
+        "4":{"title":"Total Active Assigned Projects", "width":20}
     }
 }

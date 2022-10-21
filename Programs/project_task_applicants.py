@@ -2,22 +2,13 @@ from Backend.database import PROJECTDB, DB_connect
 
 from GUI.window_datatable import *
 
-FORMATDICT = {
-    1:{'title':'Applicant', 'width':20},
-    2:{'title':'Total Active Tasks', 'width':20},
-    3:{'title':'Total Active Projects', 'width':20},
-}
-SORTOPTIONS = ['SORT BY NEWEST', 'SORT BY OLDEST']
-SKIPFIELDS = [0]
-
 class ProjectTaskApplicants(DataTableWindow):
     def __init__(self, master, **kw) -> None:
         super().__init__(master, program_title = 'Project Task Applicants',
         bg='royalblue1', search_col_bg='deepskyblue2', 
         left_options = self.leftoptions, 
         additional_windows = self.additionalOptions, 
-        skipfields=SKIPFIELDS,
-        format_dict=FORMATDICT,
+        format_dict="project_task_applicants",
         **kw)
         self.task_id = None
 
