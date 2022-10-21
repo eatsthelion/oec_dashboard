@@ -81,10 +81,6 @@ class WindowAttributes(object):
         # Signal to stop destroying in the window linked list
         self.destroy_stop = destroy_stop
 
-    def delete_children(self):
-        WindowAttributes._delete_children(self)
-        pass
-
     def _find_main(self):
         try:
             current = self.parent
@@ -109,9 +105,14 @@ class WindowAttributes(object):
         except:
             return None
 
+    def delete_children(self):
+        WindowAttributes._delete_children(self)
+        pass
+
     def _delete_children(window_object):
         for child in window_object.children:
             WindowAttributes._delete_children(child)
+            child.frame.destroy()
             del child
 
     def send_data(self, data):
@@ -279,6 +280,26 @@ class PopupWindow(WindowAttributes):
 
     def additional_menu_options(self, menu):
         return
+
+    def clearance_check(self, clearance_lvl, data:str or list = None):
+        if self.user == None:
+            return False
+        
+        if data == None:
+            if self.user.data_clearance >= clearance_lvl:
+                return True
+            else:
+                return False
+
+        if type(data) == str:
+            data = [int(x.strip('\n').strip()) for x in data.split(',')]
+        
+        if (self.user.data_clearance >= clearance_lvl) or (
+            self.user.user_id in data):
+            return True
+        else:
+            return False
+
 
 class CanvasWindow(WindowAttributes):
     def __init__(self,master,**kw) -> None:

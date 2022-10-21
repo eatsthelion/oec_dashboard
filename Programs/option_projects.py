@@ -76,8 +76,6 @@ class ProjectOptionsWindow(OptionWindow):
         self.status_log_button  .grid(row=0, column=1, sticky=EW, padx=5,pady=5)
         self.documents_button   .grid(row=1, column=0, sticky=EW, padx=5,pady=5)
         self.packages_button    .grid(row=1, column=1, sticky=EW, padx=5,pady=5)
-        self.budget_button      .grid(row=2, column=0, sticky=EW, padx=5,pady=5)
-        self.contacts_button    .grid(row=2, column=1, sticky=EW, padx=5,pady=5)
         
         return super().configure()
 
@@ -140,12 +138,19 @@ class ProjectOptionsWindow(OptionWindow):
         """Displays project OEC number on pop-up header"""
         self.data = data
         self.titlelabel.configure(text='PROJECT {}'.format(self.data[1]))
-        if type(self.data[7]) == str:
-            if self.user.full_name in self.data[7]:
-                self.delete_button.grid(row=3, column=0, sticky=EW, padx=5,pady=5, 
-                    columnspan=2)
+        if self.clearance_check(7, self.data[7]):
+            self.budget_button.grid(row=2, column=0, sticky=EW,
+            padx=5,pady=5)
+
+            self.contacts_button.grid(row=2, column=1, sticky=EW, 
+            padx=5,pady=5)
+
+            self.delete_button.grid(row=3, column=0, sticky=EW, 
+            padx=5,pady=5,columnspan=2)
         else:
             self.delete_button.grid_forget()
+            self.contacts_button.grid(row=2, column=0, 
+            columnspan=2, sticky=EW, padx=5,pady=5)
         self.show_window()
 
     def delete_project_command(self):

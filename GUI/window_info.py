@@ -1,4 +1,4 @@
-
+import json
 from Backend.database import format_data
 from GUI.window_terminal import *
 
@@ -9,24 +9,27 @@ class InfoWindow(TerminalWindow):
         self.hide_back_button()
         self.cancelbutton.configure(command=self.go_back)
 
-    def display_data(self, dataset: list or tuple, format_dict: dict = {}, 
+    def display_data(self, dataset: list or tuple, format_dict: str = '', 
         skiprows:list = [], fg='black'):
         """datapairs: (Entry Name, Entry Data)"""
         self.dataset = dataset
-        self.format_dict = format_dict
+        with open(r".\Assets\data_format.json") as j:
+            self.format_dict = json.load(j)[format_dict]
+
         text = ''
         for row, data in enumerate(dataset):
+            rowstr = str(row)
             if row in skiprows:
                 continue
-            if row not in format_dict:
+            if rowstr not in self.format_dict:
                 continue
-            if 'title' not in format_dict[row]:
+            if 'title' not in self.format_dict[rowstr]:
                 continue
-            if 'format' in format_dict[row]:
-                data = format_data(data,format_dict[row]['format'])
+            if 'format' in self.format_dict[rowstr]:
+                data = format_data(data,self.format_dict[rowstr]['format'])
             else:
                 data = str(data)
-            text += f"{format_dict[row]['title']}: {data}\n\n"
+            text += f"{self.format_dict[rowstr]['title']}: {data}\n\n"
         self.terminal.print_terminal(text)
         self.show_window()
         return

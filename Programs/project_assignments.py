@@ -2,26 +2,13 @@
 from GUI.window_datatable import *
 from Programs.edit_project_people import EditPeopleGUI
 
-SKIPFIELDS = [0]
-FORMATDICT = {
-    1:{'title':'Name', 'width':20},
-    2:{'title':'Role', 'width':20},
-    3:{'title':'Clearance', 'width':15},
-    4:{'title':'Orginization', 'width':15},
-    5:{'title':'Email', 'width':15},
-    6:{'title':'Phone', 'width':15},
-    7:{'title':'Input Date', 'width':15 , 'format':'date'},
-    8:{'title':'Modify Date', 'width':15, 'format':'date'},
-}
-
 class ProjectAssignmentsGUI(DataTableWindow):
     def __init__(self, master, **kw) -> None:
         super().__init__(master, program_title = 'Project Contacts',
         bg='purple2',col_color='magenta2',
         leftoptions = self.leftoptions, 
         additional_windows = self.additionalOptions, 
-        skipfields=SKIPFIELDS,
-        format_dict=FORMATDICT,
+        format_dict='project_people',
         **kw)
 
     def configure(self, **kw):

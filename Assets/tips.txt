@@ -58,7 +58,7 @@ It does not matter how slowly you go, so long as you do not stop.
 It takes less time to do a thing right, than it does to explain why you did it wrong.
 The only thing that ever sat its way to success was a hen. (cluck-cluck)
 01101100 01101111 01110110 01100101
-There's no secret about success. Did you ever know a successful man who didn't tell you about it.
+There's no secret about success. Did you ever know a successful man who didn't tell you about it?
 The best thing since sliced bread.
 Make sure you know what your tasks are.
 There's no I in Teamwork!
@@ -87,7 +87,8 @@ Training is important not just as an employee, but as an engineering professiona
 Engineers should be learning new things all the time. An engineer cannot remain stagnant!
 Don't be afraid to speak your opinions.
 Don't invalidate the feelings or views of others.
-Hard work comes in all shapes and sizes. Don't belittle other's work.
+Hard work comes in all shapes and sizes.
+A simple "Thank you." can go a long way.
 Management is important for keeping our work organized and efficient. Don't overlook it.
 Employee satisfaction surveys are given at the end of each quarter (every 4 months). They help our leaders understand and hear the voices of our employees.
 Are we in the Fortune 500 yet?
@@ -95,6 +96,22 @@ Engineering is an art. We sell artworks!
 In need of work? Apply for tasks on the taskboard!
 Computers are the way of the future!
 What's your favorite food? Mine's chicken.
-...zzz...zzz...zzz...
+zzz...zzz...zzz...           ...ngh         ...huh?  Oh.           Sorry
 Drawings must be completed and sent to QA at least 2 days before their submittal date.
 The past is history, the future is a mystery, but right now is a gift, that's why it's called "present"
+"You've got to get up every morening with determination if you're going to go to bed with satisfaction" - George Lorimer
+"Go as far as you can see; when you get there, you'll be able to see further." - Thomas Carlyle
+"Your talent determines what you can do. Your motivation determines how much you're willing to do. Your attitude determines how well you do it." - Lou Holtz
+"The individual who says it is not possible should move out of the way of those doing it." - Tricia Cunningham
+"Light tomorrow with today." - Elizabeth Barrett Browning
+"Someday is not a day of the week." - Janet Dailey
+"Don't count the days, make the days count." - Muhammad Ali
+"The more I want to get something done the less I call it work." - Richard Bach
+"Success is the sum of small efforts repeated day in and day out." - Robert Collier
+"Try not. Do, or do not. There is no try." - Yoda
+"Develop success from failures. Discouragement and failure are two of the surest stepping stones to success." - Dale Carnegie
+"Failure is the condiment that gives success its flavor." - Truman Capote
+"Fall 7 times, stand up 8." - Japanese Proverb
+"Success only comes to those who dare to attempt." - Mallika Tripathi
+"People rarely succeed unless they have fun in what they are doing." - Dale Carnegie
+"Coming together is a beginning, keeping together is progress, working together is success." - Henry Ford

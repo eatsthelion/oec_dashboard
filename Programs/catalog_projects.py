@@ -24,6 +24,7 @@ from Backend.exports import see_all_projects
 
 from GUI.window_datatable import *
 from Programs.edit_project import EditProjectGUI
+from Programs.info_project import BasicProjectInfo
 from Programs.option_projects import ProjectOptionsWindow
 
 PROGRAMTITLE = 'Project Catalog'
@@ -53,7 +54,8 @@ class ProjectCatalog(DataTableWindow):
     
     def leftoptions(self, master, dataset, row):
         select_button = MyButton(master, text='SELECT')
-        see_project_info=MyButton(master, text='INFO')
+        see_project_info=MyButton(master, text='INFO', 
+            command = lambda m=dataset: self.show_info_window(m))
         update_project = MyButton(master, text='UPDATE',
             command=lambda m=dataset: self.show_edit_window(m))
         details  = MyButton(master, text='  +  ', 
@@ -62,9 +64,8 @@ class ProjectCatalog(DataTableWindow):
         see_project_info.grid(row=0,column=0,padx=(5,0),sticky=NS)
         if self.context == 'select':
             select_button.grid(row=0,column=1,padx=(5,0),sticky=NS)
-        if type(dataset[7]) == str:
-            if self.user.full_name in dataset[7]:
-                update_project.grid(row=0,column=1,padx=(5,0),sticky=NS)
+        if self.clearance_check(7,dataset[7]):
+            update_project.grid(row=0,column=1,padx=(5,0),sticky=NS)
         details.grid(row=0,column=2,padx=5,sticky=NS)
 
     def sortfunction(self, sortby, dataset):
@@ -103,9 +104,14 @@ class ProjectCatalog(DataTableWindow):
         all_projects_button = MyButton(button_master, text='EXPORT ALL PROJECTS',
             command=lambda:see_all_projects(self.terminal))
 
-        all_projects_button .pack(side='left', pady=(10,2),padx=5)
-        insert_button       .pack(side='left', pady=(10,2),padx=5)
+        if self.clearance_check(6):
+            all_projects_button .pack(side='left', pady=(10,2),padx=5)
+            insert_button       .pack(side='left', pady=(10,2),padx=5)
         self.see_project_button.pack(side='left', pady=(10,2),padx=5)
+
+    def show_info_window(self, data):
+        info_window = BasicProjectInfo(self.frame, parent=self)
+        info_window.display_data(data[0])
 
     def show_edit_window(self, data=None):
         edit_window = EditProjectGUI(self.frame, parent=self)
@@ -118,18 +124,14 @@ class ProjectCatalog(DataTableWindow):
     def see_my_projects(self):
         self.see_project_button.configure(text='ALL PROJECTS',
             command = self.see_projects)
-        dataset = get_my_project_info(self.get_user())
         self.titlelabel.configure(text=f"★ MY PROJECTS ({self.user.full_name.upper()}) ★")
-        self.display_data(None, dataset, 
-            lambda:get_my_project_info(self.get_user()))
+        self.display_data(None, lambda:get_my_project_info(self.user))
         
     def see_projects(self):
         self.see_project_button.configure(text='MY PROJECTS',
             command = self.see_my_projects)
-        dataset = get_project_info()
         self.titlelabel.configure(text="★ "+PROGRAMTITLE.upper()+" ★")
-        self.display_data(None, dataset, 
-            lambda:get_my_project_info)
+        self.display_data(None, get_project_info)
 
     def display_data(self, data, dataset_get):
         if self.context == 'select':

@@ -8,7 +8,6 @@ class ScheduleInfoWindow(InfoWindow):
         super().__init__(master, bg='coral2', **kw)
     
     def display_data(self, task_id):
-        from Programs.project_schedule import FORMATDICT, SKIPFIELDS
         dataset = get_event_info(task_id)
-        self.titlelabel.configure(text="PROJECT INFO")
-        return super().display_data(dataset, FORMATDICT, SKIPFIELDS)
+        self.titlelabel.configure(text="EVENT INFO")
+        return super().display_data(dataset,'project_schedule')

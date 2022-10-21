@@ -10,6 +10,14 @@ ALLPROJECTS = """
     SELECT 
     rowid, oec_job, client_job, client,
     active_status, project_name, location, 
+    (
+		SELECT group_concat(staff.users.rowid, ',
+')
+		FROM project_engineers
+		LEFT JOIN staff.users
+		ON project_engineers.employee_id = staff.users.rowid
+		WHERE project_info.rowid = project_engineers.project_id
+	)as project_engineers_ids, 
 	(
 		SELECT group_concat(staff.users.full_name, ',
 ')

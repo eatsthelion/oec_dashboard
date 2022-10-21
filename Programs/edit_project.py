@@ -146,10 +146,10 @@ class EditProjectGUI(EditWindow):
                 (self.data[2], client_job, 'client job number', 'client_job'),
                 (self.data[4], active_status,  'active status', 'active_status'),
                 (self.data[6], location,  'location', 'location'),
-                (self.data[8], project_type, 'project type', 'project_type'),
-                (self.data[9], phase, 'phase', 'current_phase'),
-                (self.data[10], stage, 'stage', 'current_stage'),
-                (self.data[11], progress, 'progress percent', 'current_percent_complete'),
+                (self.data[9], project_type, 'project type', 'project_type'),
+                (self.data[10], phase, 'phase', 'current_phase'),
+                (self.data[11], stage, 'stage', 'current_stage'),
+                (self.data[12], progress, 'progress percent', 'current_percent_complete'),
             ]
             past_path = FileSystem.get_project_folder(self.data[0])
             project_edit_entry(self.data[0], self.data[0], 'project_info',
@@ -197,10 +197,10 @@ class EditProjectGUI(EditWindow):
             self.client_entry            .insert(self.data[3])
             self.title_entry             .insert(self.data[5])
             self.location_entry          .insert(self.data[6])
-            self.project_type_entry      .insert(self.data[8])
-            self.phase_entry             .insert(self.data[9])
-            self.stage_entry             .insert(self.data[10])
-            self.progress_entry          .insert(f'{(100*self.data[11]):.1f}') 
+            self.project_type_entry      .insert(self.data[9])
+            self.phase_entry             .insert(self.data[10])
+            self.stage_entry             .insert(self.data[11])
+            self.progress_entry          .insert(f'{(100*self.data[12]):.1f}') 
 
             self.height = 500
             self.canvas_window.v_scroll_pack()

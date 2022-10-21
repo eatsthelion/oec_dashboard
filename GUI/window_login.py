@@ -1,6 +1,7 @@
 
 import tkinter as tk
 from tkinter import END, messagebox
+from Backend.assets import ICON
 from GUI.GUI_Mains import FONT
 from GUI.window_main import PopupWindow
 from Backend.database import DB_connect, EMPLOYEEDB
@@ -38,13 +39,7 @@ class LoginWindow(PopupWindow):
         self.entryframe.pack(expand=1)
 
         # Sets up program icon
-        try:
-            self.master.iconbitmap(
-                r"D:\My Drive\code\Mikayla's Workspace\assets\OEC Projects.ico")
-        except:
-            self.master.iconbitmap(
-                r"G:\My Drive\code\Mikayla's Workspace\assets\OEC Projects.ico")
-            pass
+        self.master.iconbitmap(ICON)
 
         self.master.geometry('+{}+{}'.format(
             int((self.master.winfo_screenwidth()-self.width)/2),

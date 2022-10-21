@@ -38,37 +38,16 @@ class Taskboard(DataTableWindow):
             command=lambda m=dataset: self.show_schedule_info(dataset))
         project_info_button = MyButton(master, text='PROJECT INFO',
             command=lambda m=dataset: self.show_project_info(dataset))
-        engineerlist = []
-        assignedlist = []
-        appliedlist = []
-        if type(dataset[6])==str:
-            dset = dataset[6].split(',')
-            for d in dset:
-                try: 
-                    engineerlist.append(int(d))
-                except:
-                    pass
-        if type(dataset[8])==str:
-            dset = dataset[8].split(',')
-            for d in dset:
-                try: 
-                    assignedlist.append(int(d))
-                except:
-                    pass
-        if type(dataset[10])==str:
-            dset = dataset[10].split(',')
-            for d in dset:
-                try: 
-                    appliedlist.append(int(d))
-                except:
-                    pass
-
-        if self.user.user_id in assignedlist:
+        
+        # If task is assigned
+        if self.clearance_check(100, dataset[11]):
             apply_button.configure(state=DISABLED, text='ASSIGNED', command=None)
-        elif self.user.user_id in appliedlist:
+        # If task is applied for
+        elif self.clearance_check(100,dataset[13]):
             apply_button.configure(text='RESCIND APP', 
             command=lambda m=dataset: self.delete_application(m))
-        elif self.user.user_id in engineerlist:
+        # If you are the PE of the task
+        elif self.clearance_check(100,dataset[9]):
             apply_button.configure(state=DISABLED, text='ASSIGNED AS PE', command=None)
         apply_button.grid(row=0, column=0, padx=5, columnspan=2, sticky=EW)
         task_info_button.grid(row=1, column=0, padx=(5,0), pady=5)

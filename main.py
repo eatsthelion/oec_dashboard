@@ -6,11 +6,6 @@ sys.dont_write_bytecode = True
 
 from GUI.window_login import LoginWindow
 
-START = 'OEC Project Catalog'
-PROGRAMS = ['Switch Programs', 'OEC Taskboard', 'OEC Project Catalog', 
-    'OEC Schedule', 'OEC Budget Catalog', 'OEC Material Database', 
-    'OEC Staff', ]
-
 class MainProgram(object):
     def __init__(self):
         # Initializes program settings
@@ -113,7 +108,8 @@ class MainProgram(object):
         self.l_frame.place_forget()
         self.root.update()
 
-    
+def main() -> None:
+    MainProgram()
 
 if __name__=='__main__':
-    MainProgram()
+    main()

@@ -1,3 +1,8 @@
+import PIL.Image
+from PIL import ImageTk
+
+from Backend.assets import LOGO
+
 from GUI.window_main import *
 from GUI.widgets.textscroller import TextScroller
 from Backend.database_get import *
@@ -17,6 +22,10 @@ class HomeWindow(PopupWindow):
     def configure(self):
         self.text_scroller = TextScroller(self.frame, height = 50, speed=2,
             user = self.user.first_name)
+        logo = PIL.Image.open(LOGO)
+        logo = logo.resize((403,270))
+        self.logo = ImageTk.PhotoImage(logo)
+        self.logolabel = MyLabel(self.frame, image=self.logo, bd=2, relief='raised')
         self.button_frame = MyFrame(self.frame)
         bwidth = 20
         self.project_catalog_button = MyButton(self.button_frame, width=bwidth,
@@ -31,14 +40,25 @@ class HomeWindow(PopupWindow):
         self.staff_button = MyButton(self.button_frame, width=bwidth,
             font=(FONT[0],18), text='Staff', command = lambda:
                 self.switch_windows('staff'))
+        self.budget_button = MyButton(self.button_frame, width=bwidth,
+            font=(FONT[0],18), text='Budgets', command = lambda:
+                self.switch_windows('budget_catalog'))
 
         self.project_catalog_button.grid(row=0, column=0, padx=5, pady=5, 
             sticky=EW)
         self.taskboard_button.grid(row=0, column=1, padx=5, pady=5, sticky=EW)
-        self.material_database_button.grid(row=1, column=0, padx=5, pady=5, 
+        self.material_database_button.grid(row=1, column=1, padx=5, pady=5, 
             sticky=EW)
-        self.staff_button.grid(row=1, column=1, padx=5, pady=5, sticky=EW)
+        if self.clearance_check(7):
+            self.budget_button.grid(row=1, column=0, padx=5, pady=5, sticky=EW)
+            self.staff_button.grid(row=2, column=0, columnspan=2,
+            padx=5, pady=5, sticky=EW)
+        else:
+            self.staff_button.grid(row=1, column=0, padx=5, pady=5, sticky=EW)
+
+
         self.text_scroller.pack(fill='x')
+        self.logolabel.pack(expand=1, pady=(5,0))
         self.button_frame.pack(padx=5, pady=5, expand=1)
         
         super().configure()
@@ -62,6 +82,8 @@ class HomeWindow(PopupWindow):
         from Misc.excel_file_comparison import ExcelComparer
 
         self.mainprogram.raise_loading_screen()
+        if self.menubar != None:
+            self.menubar.destroy()
         self.text_scroller.stop()
         self.mainprogram.root.unbind("<space>")
         self.mainprogram.root.unbind("<KeyPress-Right>")
@@ -87,7 +109,7 @@ class HomeWindow(PopupWindow):
             from Backend.database_get import get_oec_date_catalog
             db_function = get_oec_date_catalog
             catalog = ProjectDates
-        elif program_name == 'OEC Budget Catalog':
+        elif program_name == 'budget_catalog':
             from Backend.database_get import get_budget_catalog
             db_function = get_budget_catalog
             catalog = BudgetCatalog
@@ -106,21 +128,21 @@ class HomeWindow(PopupWindow):
         # Creates the next program
         current_program = catalog(self.master, parent=self.mainprogram)
         current_program.display_data(None, lambda: db_function())
-        self.add_menubar(current_program)
+        
         current_program.show_full_window()
-        current_program.back_direction=self.show_full_window
         self.cancel_window()
-
+        self.add_menubar(current_program)
         self.mainprogram.lower_loading_screen()
+        
 
     def add_menubar(self, program:object) -> None:
         """Adds a menubar to the window
         program: The window that is displayed. Additional menu options can be added
         with the program object's "self.additional_menu_options" function
         """
-        self.menubar = Menu(self.parent.root, tearoff=False)
+        self.menubar = Menu(self.parent.root, tearoff=False, font=FONT)
         self.parent.root.config(menu=self.menubar)
-        catalog_menu = Menu(self.menubar, tearoff=False)
+        catalog_menu = Menu(self.menubar, tearoff=False, font=FONT)
         catalog_menu.add_command(label = 'Home',
             command = self.go_back_home)
         catalog_menu.add_command(label='Project Catalog',
@@ -135,13 +157,13 @@ class HomeWindow(PopupWindow):
 
     def show_full_window(self) -> None:
         """Removes the menubar and returns to home window"""
-        if self.menubar != None:
-            self.menubar.destroy()
         super().show_full_window()
         self.mainprogram.lower_loading_screen()
 
     def go_back_home(self) -> None:
         """Removes all open programs and returns to the home menu"""
+        if self.menubar != None:
+            self.menubar.destroy()
         self.mainprogram.raise_loading_screen()
         for child in self.mainprogram.children:
             if child == self:

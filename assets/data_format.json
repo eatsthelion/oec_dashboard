@@ -6,13 +6,14 @@
         "4":{"title":"Active Status",         "width":10},
         "5":{"title":"Project Title",         "width":30},
         "6":{"title":"Location",              "width":20},
-        "7":{"title":"Project Engineer(s)",   "width":20},
-        "8":{"title":"Project Type",          "width":10},
-        "9":{"title":"Current Phase",         "width":10},
-        "10":{"title":"Current Stage",        "width":10},
-        "11":{"title":"Percent Complete",     "width":10, "format":"percent"},
-        "12":{"title":"Creation Date",        "width":10, "format":"date"},
-        "13":{"title":"Modify Date",          "width":10, "format":"date"}
+        "7":{"name":"project_engineers_ids",  "width":20},
+        "8":{"title":"Project Engineer(s)",   "width":20},
+        "9":{"title":"Project Type",          "width":10},
+        "10":{"title":"Current Phase",         "width":10},
+        "11":{"title":"Current Stage",        "width":10},
+        "12":{"title":"Percent Complete",     "width":10, "format":"percent"},
+        "13":{"title":"Creation Date",        "width":10, "format":"date"},
+        "14":{"title":"Modify Date",          "width":10, "format":"date"}
     },
     "budget_catalog":{
         "1":{"title":"Purchase Order",          "width":15},
@@ -151,5 +152,15 @@
         "2":{"title":"Position", "width":20},
         "3":{"title":"Active Assignments", "width":20},
         "4":{"title":"Total Active Assigned Projects", "width":20}
+    }, 
+    "project_people":{
+        "1":{"title":"Name", "width":20},
+        "2":{"title":"Role", "width":20},
+        "3":{"title":"Clearance", "width":15},
+        "4":{"title":"Orginization", "width":15},
+        "5":{"title":"Email", "width":15},
+        "6":{"title":"Phone", "width":15},
+        "7":{"title":"Input Date", "width":15 , "format":"date"},
+        "8":{"title":"Modify Date", "width":15, "format":"date"}
     }
 }
