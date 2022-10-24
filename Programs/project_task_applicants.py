@@ -6,7 +6,7 @@ class ProjectTaskApplicants(DataTableWindow):
     def __init__(self, master, **kw) -> None:
         super().__init__(master, program_title = 'Project Task Applicants',
         bg='royalblue1', search_col_bg='deepskyblue2', 
-        left_options = self.leftoptions, 
+        leftoptions = self.leftoptions, 
         additional_windows = self.additionalOptions, 
         format_dict="project_task_applicants",
         **kw)
@@ -19,7 +19,7 @@ class ProjectTaskApplicants(DataTableWindow):
     def leftoptions(self, master,dataset,row):
         accept_button = MyButton(master, text= 'ASSIGN',
             command = lambda m=dataset: self.assign_staff(m))
-        accept_button.grid(padx=5)
+        accept_button.grid(row=0, column=0, padx=5)
 
     def additionalOptions(self, button_master, frame_master):
         tasklabel = MyLabel(frame_master, font=FONTBOLD, text="SELECT AN APPLICANT")

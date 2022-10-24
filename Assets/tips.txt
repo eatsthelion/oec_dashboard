@@ -22,11 +22,11 @@ Think outside the box.
 Do the hard jobs first. The easy jobs will take care of themselves.
 Synergy is key.
 Empower others.
-Stay hydrated.
+Remember to stay hydrated.
 Having a tough time? Don't be afraid to ask for help.
 Please be aware of social distancing guidelines, stay 6 feet apart from other coworkers, and wear a mask at all times. Thank you.
-Good luck.
-Reminder to keep you passwords safe and secure. Got it memorized.
+Good luck out there.
+Reminder to keep you passwords safe and secure. Got it memorized?
 Got an email from someone you don't know? Report any suspicous emails you recieve. Do not open them. Our systems may be comprimised to hackers and ransomware.
 Prevent the printing of excess paper. Go digital!
 Show them what you're made of.
@@ -89,14 +89,14 @@ Don't be afraid to speak your opinions.
 Don't invalidate the feelings or views of others.
 Hard work comes in all shapes and sizes.
 A simple "Thank you." can go a long way.
-Management is important for keeping our work organized and efficient. Don't overlook it.
+Good management is important for keeping our work organized and efficient.
 Employee satisfaction surveys are given at the end of each quarter (every 4 months). They help our leaders understand and hear the voices of our employees.
 Are we in the Fortune 500 yet?
 Engineering is an art. We sell artworks!
 In need of work? Apply for tasks on the taskboard!
 Computers are the way of the future!
 What's your favorite food? Mine's chicken.
-zzz...zzz...zzz...           ...ngh         ...huh?  Oh.           Sorry
+zzz...zzz...zzz...           ...ngh         ...huh?           Oh.           Sorry
 Drawings must be completed and sent to QA at least 2 days before their submittal date.
 The past is history, the future is a mystery, but right now is a gift, that's why it's called "present"
 "You've got to get up every morening with determination if you're going to go to bed with satisfaction" - George Lorimer
@@ -115,3 +115,14 @@ The past is history, the future is a mystery, but right now is a gift, that's wh
 "Success only comes to those who dare to attempt." - Mallika Tripathi
 "People rarely succeed unless they have fun in what they are doing." - Dale Carnegie
 "Coming together is a beginning, keeping together is progress, working together is success." - Henry Ford
+"Nothing is impossible. The word itself says 'I'm possible!'" - Audrey Hepburn
+"There is nothing impossible to they who will try." - Alexander the Great
+"The bad news is time flies. The good news is you're the pilot." - Michael Altshuler
+"Life has got all those twists and turns. You've got to hold on tight and off you go." - Nicole Kidman
+"I just want you to know that if you are out there and you are being really hard on yourself right now for something that has happened ... it's normal. That is what is going to happen to you in life. No one gets through unscathed. We are all going to have a few scratches on us. Please be kind to yourselves and stand up for yourself, please." - Taylor Swift
+"Success is not final, failure is not fatal: it is the courage to continue that counts." -  Winston Churchill
+"You are never too old to set another goal or to dream a new dream." - Malala Yousafzai
+No matter what people tell you, words and ideas can change the world.
+"Weaknesses are just strengths in the wrong environment." - Marianne Cantwell
+Wake up determined, go to bed satisfied.
+Try to avoid Groupthink. Groupthink is a phenomenon that occurs when the desire for group consensus overrides people's common sense desire to present alternatives, critique a position, or express an unpopular opinion. It can drive out good decision making and leave systematic problems unattended. 

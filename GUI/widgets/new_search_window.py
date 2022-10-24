@@ -491,9 +491,6 @@ class SearchWindow(MyFrame):
             self.display_sequence(self.dataset)
         return
 
-
-
-
     # endregion 
     # region Scrolling Functions
     def _h_scroll(self, *args):
@@ -538,8 +535,7 @@ class SearchWindow(MyFrame):
         zoom_window.titlelabel.configure(
             text=headertext, font=FONT)
         zoom_window.origin_widget = event.widget
-        zoom_window.show_window()
-        rowhighlight(None, event.widget, 'gold3', 'gold1')
+        zoom_window.show_window(event.widget)
 
     def get_data_from_widget(self, widget):
         row_select = widget.grid_info()['row']

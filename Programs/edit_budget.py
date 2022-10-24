@@ -78,8 +78,8 @@ class EditBudgetGUI(EditWindow):
                 return
 
         if self.context == 'insert':
-            insert_str = f"""'
-                {purchase_order}', '{self.project_id}', '{client_job}', 
+            insert_str = f"""
+                '{purchase_order}', '{self.project_id}', '{client_job}', 
                 '{description}', '{CWA_No}', '{CWA_Type}', '{items}', 
                 '', '','', '', 
                 '{contingency}', '{invoiced}', '', '', '{status}', ''"""
@@ -133,15 +133,15 @@ class EditBudgetGUI(EditWindow):
             return
         
         self.context = 'modify'
-        self.purchase_order_entry.insert(self.data[1])
-        self.client_job_entry.insert(self.data[2])
-        self.status_entry.insert(self.data[3])
-        self.description_entry.insert(self.data[4])
-        self.cwa_num_entry.insert(self.data[5])
-        self.cwa_type_entry.insert(self.data[6])
-        self.items_entry.insert(self.data[7])
-        self.billed_to_date_entry.insert(self.data[10])
-        self.contingency_entry.insert(self.data[12])
+        self.purchase_order_entry.insert(self.data[self.data_dict['purchase_order']])
+        self.client_job_entry.insert(self.data[self.data_dict['client_job']])
+        self.status_entry.insert(self.data[self.data_dict['status']])
+        self.description_entry.insert(self.data[self.data_dict['description']])
+        self.cwa_num_entry.insert(self.data[self.data_dict['cwa_num']])
+        self.cwa_type_entry.insert(self.data[self.data_dict['cwa_type']])
+        self.items_entry.insert(self.data[self.data_dict['items']])
+        self.billed_to_date_entry.insert(self.data[self.data_dict['billed_to_date']])
+        self.contingency_entry.insert(self.data[self.data_dict['contingency']])
 
         headertext = f"EDIT {self.data[1].upper()}"
         if len(headertext)>40:

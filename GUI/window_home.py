@@ -147,6 +147,9 @@ class HomeWindow(PopupWindow):
             command = self.go_back_home)
         catalog_menu.add_command(label='Project Catalog',
             command = lambda: self.switch_windows('project catalog'))
+        if self.clearance_check(7):
+            catalog_menu.add_command(label='Budget Catalog',
+                command = lambda: self.switch_windows('budget_catalog'))
         catalog_menu.add_command(label='Taskboard',
             command = lambda: self.switch_windows('taskboard'))
         catalog_menu.add_command(label='Material Database',

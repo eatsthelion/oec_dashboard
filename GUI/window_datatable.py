@@ -43,9 +43,21 @@ class DataTableWindow(PopupWindow):
         self.format_dict = format_dict
         self.col_color = col_color
 
+        # imports Display Formats and Data Dictionaries
         with open(r".\Assets\data_format.json") as j:
             self.format_dict = json.load(j)[format_dict]
+
+        self.data_dict =  dict(
+            [(self.format_dict[key]['name'], int(key)) 
+            for key in self.format_dict])
+
         super().__init__(master, **kw)
+
+        self.project_data_dict = None
+        try:
+            self.project_data_dict = self.parent.project_data_dict
+        except AttributeError:
+            pass
 
     def configure(self):
         super().configure()
@@ -71,16 +83,7 @@ class DataTableWindow(PopupWindow):
             self.searchwindow.first_page()
         else:
             self.searchwindow.display_sequence()
-        self.reverse_format_dict()
         self.master.update()
-
-    def reverse_format_dict(self):
-        self.data_dict = {}
-        for key in self.format_dict:
-            if 'db' not in self.format_dict[key]:
-                continue
-            self.data_dict[self.format_dict[key]] = key
-        return
 
     def show_window(self):
         self.searchwindow.refresh_page()

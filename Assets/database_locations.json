@@ -1,0 +1,10 @@
+{
+    ":DOCDB:":"project_documents.db",
+    ":PROJECTDB:":"oec_projects.db",
+    ":DATABASE:" : "oec.db",
+    ":ITEMCATALOG:" : "itemcatalog.db",
+    ":DOCCATALOG:" : "oec_documents.db",
+    ":PACKAGEDB:" : "project_packages.db",
+    ":STATUSDB:" : "project_statuses.db",
+    ":EMPLOYEEDB:" : "oec_staff.db"
+}

@@ -1,4 +1,5 @@
 import os
+import json
 import sqlite3
 from datetime import datetime
 from tkinter import messagebox
@@ -23,6 +24,41 @@ USERTIME = REGTIME+" "+TIME12HR
 DISPLAYTIME = REGTIME + ' at ' + TIME12HR
 
 EMPTYLIST = ['', None, 'None','none', 'nan', 'Nan', 'NaN']
+
+with open(r".\Assets\database_locations.json", 'r') as f:
+    DBDICT = json.load(f)
+
+for database in DBDICT:
+    DBDICT[database] = os.path.join(LOCATION, DBDICT[database])
+
+def DB_attach(sql_str:str) -> str:
+    for key in DBDICT:
+        sql_str = sql_str.replace(key, DBDICT[key])
+    return sql_str
+
+def DB_connect2(database, sql_statement, sql_params:dict or tuple = None):
+    sql_txt = sql_statement
+    sql_statement = DB_attach(sql_statement)
+    sql_statement = sql_statement.strip(';').split(';')
+    if not sql_statement:
+        return False
+    conn = sqlite3.connect(database)
+    try:
+        c = conn.cursor()
+        for s in sql_statement:
+            c.execute(s,sql_params)
+        if "SELECT" == s.upper().split()[0]:
+            records = c.fetchall()
+            return records
+        return True
+    except Exception:
+        messagebox.showerror('Database Locked!',
+            'The database is currently locked. Please try again later.' + \
+            f'\n\n{database}\n\n{sql_txt}')
+        return False
+    finally:
+        conn.commit()
+        conn.close()
 
 def DB_connect(sql_str:str or list, sql_dict:dict = {}, 
     database:str = DATABASE,  debug:bool=False, 

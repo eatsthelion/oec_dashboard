@@ -15,3 +15,8 @@ class TerminalWindow(PopupWindow):
     def cancel_window(self):
         rowhighlight(None, self.origin_widget, 'white', 'white')
         return super().cancel_window()
+
+    def show_window(self, widget=None):
+        super().show_window()
+        if widget != None:
+            rowhighlight(None, widget, 'gold3', 'gold1')

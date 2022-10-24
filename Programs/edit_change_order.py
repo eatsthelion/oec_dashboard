@@ -39,7 +39,7 @@ class EditChangeOrderGUI(EditWindow):
             label.grid(row=row, column = 0, padx=5, pady=(5,0), sticky=W)
             pair[1].grid(row=row, column = 1, padx=5, pady=(5,0), sticky=EW)
 
-        self.enterbutton = MyButton(self.frame)
+        self.enterbutton = MyButton(self.frame, command=self.enter_command)
         self.entryframe.pack(expand=1, padx=5)
         self.enterbutton.pack(fill='x', padx=5, pady=5)
         
@@ -72,11 +72,11 @@ class EditChangeOrderGUI(EditWindow):
         if self.context == 'insert':
             new_co = DB_connect(f"""SELECT MAX(change_order_number) 
                 FROM change_order_log WHERE purchase_order = {self.po_id}""",
-                database=PROJECTDB)
-            if new_co == []: 
+                database=PROJECTDB)[0][0]
+            if  not new_co: 
                 new_co = 1
             else:
-                new_co = int(new_co[0][0]) + 1
+                new_co = int(new_co) + 1
 
             insert_str = f"""'{self.po_id}', '{new_co}', '{description}', 
                 '{proposed}', '{contracted}', '{proposed_date}', 
@@ -90,34 +90,35 @@ class EditChangeOrderGUI(EditWindow):
                 ad = contracted_date.strftime(USERTIME)   
                 status_updates+=f"Change Order {new_co}'s contract was recieved on {ad}\n"
 
-            project_input_entry(self.project_id, 'change_order_number', PROJECTDB,
+            project_input_entry(self.project_id, 'change_order_log', PROJECTDB,
                 insert_str, status_updates, 'NEW CHANGE ORDER', user=self.user)
             self.parent.searchwindow.refresh_results()
             
         elif self.context == 'modify':
             datapairs = [
-                (self.data[3], description, 'description', 'description'), 
-                (self.data[4], proposed, 'proposed amount', 'proposed_amount'),
-                (self.data[6], contracted, 'contracted amount', 'contract_amount'),
+                (description, 'description', 'description'), 
+                (proposed, 'proposed amount', 'change_order_submitted'),
+                (contracted, 'contracted amount', 'change_order_acceptance'),
             ]
 
             datepairs = [
-                (self.data[3], self.proposed_date_entry, 'proposal submittal', 
-                    'proposed_date'),
-                (self.data[4], self.contract_date_entry, 'contract submittal', 
-                    'contract_date')
+                (self.proposed_date_entry, 'proposal submittal', 
+                    'submitted_date'),
+                (self.contract_date_entry, 'contract submittal', 
+                    'accepted_date')
             ]
             po_name = DB_connect("SELECT purchase_order FROM project_budget " + \
-                f"WHERE rowid={self.po_id}", database=PROJECTDB)
+                f"WHERE rowid={self.po_id}", database=PROJECTDB)[0][0]
             name = f'PO.ID {po_name} CO {self.data[1]}'
 
-            project_edit_entry(self.project_id, self.data[0], 'change_order_number',
-                PROJECTDB, name, 'CHANGE ORDER EDIT', datapairs, datepairs, user=self.user)
+            project_edit_entry(self.project_id, self.data[0], 'change_order_log',
+                PROJECTDB, name, 'CHANGE ORDER EDIT', self.data, self.data_dict, 
+                datapairs, user=self.user, datelist=datepairs)
             self.parent.searchwindow.refresh_page()
         self.cancel_window()
         
 
-    def display_data(self, project_id, data=None):
+    def display_data(self, project_id, po_id, data=None):
         self.description_entry.delete()
         self.contracted_entry.delete()
         self.proposed_entry.delete()
@@ -125,6 +126,7 @@ class EditChangeOrderGUI(EditWindow):
         self.contract_date_entry.delete()
 
         self.project_id = project_id
+        self.po_id = po_id
 
         if data == None:
             self.context= 'insert'
@@ -136,15 +138,15 @@ class EditChangeOrderGUI(EditWindow):
         self.data = data
         self.context = 'modify'
         
-        self.description_entry.insert(self.data[2])
-        self.proposed_entry.insert(self.data[3])
-        self.contracted_entry.insert(self.data[4])
+        self.description_entry.insert(self.data[self.data_dict['description']])
+        self.proposed_entry.insert(self.data[self.data_dict['change_order_submitted']])
+        self.contracted_entry.insert(self.data[self.data_dict['change_order_acceptance']])
         try:            
-            self.proposed_date_entry.insert(datetime.strptime(self.data[5], DBTIME))
+            self.proposed_date_entry.insert(datetime.strptime(self.data[self.data_dict['submitted_date']], DBTIME))
         except:
             pass
         try:
-            self.contract_date_entry.insert(datetime.strptime(self.data[6], DBTIME))
+            self.contract_date_entry.insert(datetime.strptime(self.data[self.data_dict['accepted_date']], DBTIME))
         except:
             pass
         

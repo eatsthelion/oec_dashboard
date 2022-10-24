@@ -1,6 +1,9 @@
 
 from Backend.database_queries import *
 
+def get_sql_dataset(sqlfile, filter='', sort=''):
+    return 
+
 # region Project Catalog
 def get_project_info(filter: str = '', sort: str = 'ORDER BY rowid DESC') -> list:
     attach = f"ATTACH '{EMPLOYEEDB}' AS staff"
@@ -24,23 +27,11 @@ def get_project_data(project_id):
         return project_data[0]
     
 def get_people_info(project_id) -> list:
-    sql_query = """SELECT rowid, name, role, clearance, org, email, phone,
-        creation_date, modify_date 
-        FROM project_people
-        WHERE project_id = '{}'
-        ORDER BY rowid DESC
-        """.format(project_id)
+    sql_query = PROJECTCONTACTS.format(project_id)
     return DB_connect(sql_query, database=PROJECTDB)
 
 def get_budget_info(project_id) -> list:
-    sql_query = """SELECT rowid, purchase_order, client_job, status, 
-            description, cwa_num, cwa_type, items, cwa_proposal_amount, 
-            cwa_recieved_amount, billed_to_date,  current_balance, 
-            contingency, continued_from 
-            FROM project_budget 
-            WHERE project_id = '{}' 
-            ORDER BY rowid DESC
-            """.format(project_id)
+    sql_query = PROJECTBUDGET.format(project_id)
     return DB_connect(sql_query, database=PROJECTDB)
 
 def get_schedule_info(filter:str = '', sort:str = '') -> list:
@@ -76,32 +67,19 @@ def get_status_log(project_id:int, table:str='project_status_log') -> list:
         """
     return DB_connect(sql_query, database=STATUSDB)
 
-def get_project_documents(project_id) -> list:
-    sql_query = f"""SELECT rowid, title 
-        WHERE project_id = '{project_id}'
-        ORDER BY rowid DESC
-        """
-    return []
+def get_project_documents(project_id, filter:str = '', sort:str = '') -> list:
+    attach = [f"ATTACH '{EMPLOYEEDB}' AS staff",
+        f"ATTACH '{PACKAGEDB}' AS packages"]
+    sql_query = f"""
+    {PROJECTDOCUMENTS.format(project_id)}
+    {filter}
+    {sort}
+    """
+    return DB_connect(sql_query, database=DOCDB, attach=attach)
 
 def get_docs_in_package(package_id:int) -> list:
     attach = f"ATTACH '{EMPLOYEEDB}' AS staff"
-    sql_query = f"""
-        SELECT documents.rowid, package_index, filename, file_type, title, 
-        drawing_num, revision, sheet, description, doc_purpose, 
-        progress, (SELECT staff.users.full_name
-        FROM documents
-        WHERE author = staff.users.rowid
-        ) AS author,
-        (SELECT staff.users.full_name
-        FROM documents
-        WHERE checked_out_by = staff.users.rowid
-        ) AS checked_out_name,
-        input_date, modify_date, staff.users.full_name
-        FROM documents
-        LEFT JOIN staff.users
-        ON last_modified_by = staff.users.rowid
-        WHERE package_id = {package_id}
-        ORDER BY package_index ASC"""
+    sql_query = PACKAGEDOCS.format(package_id)
 
     return DB_connect(sql_query, database=DOCDB, attach=attach)
 
@@ -127,13 +105,7 @@ def get_package_info(package_id:int) -> tuple:
         return package_data[0]
 
 def get_change_orders(purchase_order_id:int) -> list:
-    sql_query = f"""SELECT rowid, change_order_number,
-    description, proposed_amount, contract_amount, proposed_date,
-    contract_date 
-    FROM change_order_log
-    WHERE purchase_order_id = '{purchase_order_id}'
-    ORDER BY rowid DESC
-    """
+    sql_query = CHANGEORDERS.format(purchase_order_id)
     return DB_connect(sql_query, database=PROJECTDB)
 
 # endregion
@@ -148,15 +120,7 @@ def get_material_info() -> list:
 
 # Budget Catalog
 def get_budget_catalog() -> list:
-    sql_query = """SELECT 
-    project_budget.rowid, project_budget.purchase_order, project_info.oec_job, project_info.client_job, project_info.location,
-    project_budget.description, project_budget.cwa_num, project_budget.cwa_type, project_budget.status, project_budget.cwa_proposal_amount,
-    project_budget.cwa_proposal_date, project_budget.cwa_recieved_amount, project_budget.cwa_recieved_date, project_budget.contingency, 
-    project_budget.billed_to_date, project_budget.current_balance, project_budget.cwa_completion_date, project_budget.continued_from
-    FROM project_budget
-    LEFT JOIN project_info
-    ON project_budget.project_id = project_info.rowid
-    ORDER BY project_info.oec_job DESC"""
+    sql_query = ALLBUDGETS
     return DB_connect(sql_query, database = PROJECTDB)
 
 # OEC Date Schedule
@@ -207,33 +171,7 @@ def get_event_packages(event_id) -> list:
 
 def get_active_employees() -> list:
     attach = f"ATTACH '{PROJECTDB}' as projects"
-    sql_query = f"""
-    SELECT users.rowid, 
-    (users.first_name || ' ' ||users.last_name) AS full_name, 
-    users.position,
-    (SELECT COUNT(*) 
-        FROM projects.project_task_assignments
-        WHERE projects.project_task_assignments.project_person_id = users.rowid
-        AND projects.project_task_assignments.assigned = 1
-    ) AS assigned_tasks,
-    (
-        (SELECT COUNT(*) 
-            FROM projects.project_people
-            LEFT JOIN projects.project_info 
-            ON projects.project_people.project_id = projects.project_info.ROWID
-            WHERE projects.project_people.employee_id = users.rowid 
-			AND projects.project_info.active_status = 'ACTIVE'
-        )+
-        (SELECT COUNT(*) 
-            FROM projects.project_engineers
-			LEFT JOIN projects.project_info ON projects.project_info.rowid = projects.project_engineers.project_id
-            WHERE projects.project_engineers.employee_id = users.rowid AND projects.project_info.active_status = 'ACTIVE'
-        )
-    ) AS assigned_projects
-    FROM users
-    WHERE active_status = 'Full' OR active_status = 'Part-Time'
-    ORDER BY full_name
-    """
+    sql_query = ACTIVEEMPLOYEES
     return DB_connect(sql_query, database=EMPLOYEEDB, attach=attach)
 
 def get_task_applicants(project_task_id:int) -> list:

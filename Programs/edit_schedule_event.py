@@ -22,7 +22,7 @@ EVENTTYPES = ['TASK', 'MILESTONE', 'MEETING', 'SUBMITTAL', 'APROVAL']
 class EditScheduleEventGUI(EditWindow):
     def __init__(self, master, **kw) -> None:
         super().__init__(master, bg='coral2', width = 500,
-        height=470, program_title = PROGRAMTITLE, **kw)
+        height=550, program_title = PROGRAMTITLE, **kw)
         
     def configure(self):
         self.titlelabel.configure(text='UPDATE EVENT')
@@ -109,21 +109,22 @@ class EditScheduleEventGUI(EditWindow):
 
         elif self.context == 'modify':
             datapairs = [
-                (self.data[1], new_event, 'event', 'event'),
-                (self.data[2], desc, 'description', 'description'),
-                (self.data[3], event_type, 'event type', 'event_type'),
-                (self.data[6], priority, 'priority', 'priority'),
-                (self.data[7], difficulty, 'difficulty', 'difficulty'),
-                (self.data[5], progress, 'progress', 'progress_percent'),
-                (self.data[4], status, 'status', 'status'),
+                (new_event, 'event', 'event'),
+                (desc, 'description', 'description'),
+                (event_type, 'event type', 'event_type'),
+                (priority, 'priority', 'priority'),
+                (difficulty, 'difficulty', 'difficulty'),
+                (progress, 'progress', 'progress_percent'),
+                (status, 'status', 'status'),
             ]
             datelist=[
-                (self.data[10], self.forecast_entry, 'forecast', 'forecast_date'),
-                (self.data[11], self.actual_entry, 'actual', 'actual_date')
+                (self.forecast_entry, 'forecast', 'forecast_date'),
+                (self.actual_entry, 'actual', 'actual_date')
             ]
 
             project_edit_entry(self.project_id, self.data[0], 'project_dates',
-            PROJECTDB, new_event, 'EVENT INFO EDIT', datapairs, datelist,
+            PROJECTDB, new_event, 'EVENT INFO EDIT', self.data, self.data_dict,
+            datapairs, datelist,
             user=self.user, date_status_type='SCHEDULE CHANGE')
 
         self.cancel_window()
@@ -159,21 +160,26 @@ class EditScheduleEventGUI(EditWindow):
             return super().show_window()
 
         self.enterbutton.configure(text='UPDATE EVENT')
-        self.event.insert(self.data[1])
-        self.desc_text.insert(self.data[2])
-        self.typeOptions.set(self.data[3])
-        self.status_options.set(self.data[4])
-        self.progress_entry.insert(f"{(self.data[5]*100):.2f}")
-        self.priority_options.set(self.data[6])
-        self.difficulty_options.set(self.data[7])
+        self.event.insert(self.data[self.data_dict['event']])
+        self.desc_text.insert(self.data[self.data_dict['description ']])
+        self.typeOptions.set(self.data[self.data_dict['event_type']])
+        self.status_options.set(self.data[self.data_dict['status']])
+        
+        self.priority_options.set(self.data[self.data_dict['priority']])
+        self.difficulty_options.set(self.data[self.data_dict['difficulty']])
+
+        try:
+            self.progress_entry.insert(f"{(self.data[self.data_dict['progress_percent']]*100):.2f}")
+        except TypeError:
+            pass
         
         try:
-            date_obj = datetime.strptime(self.data[9], DBTIME)
+            date_obj = datetime.strptime(self.data[self.data_dict['forecast_date']], DBTIME)
             self.forecast_entry.insert(date_obj)
         except:
             pass
         try:
-            date_obj = datetime.strptime(self.data[10], DBTIME) 
+            date_obj = datetime.strptime(self.data[self.data_dict['actual_date']], DBTIME) 
             self.actual_entry.insert(date_obj)
         except:
             pass

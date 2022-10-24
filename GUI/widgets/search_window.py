@@ -310,15 +310,6 @@ class ResultWindow(SearchWindow):
     
         self.parent.terminal_window.titlelabel.configure(
             text=headertext, font=FONT)
-        row_select = event.widget.grid_info()['row']
-        col_select = event.widget.grid_info()['column']
-        #for child in event.widget.master.winfo_children():
-        #    if type(child) == tk.Text:
-        #        if child.grid_info()['row'] == row_select:
-        #            continue
-        #        if child.grid_info()['column'] == col_select:
-        #            continue
-        #        child.configure(bg='grey80')
         self.parent.terminal_window.origin_widget = event.widget
         self.parent.terminal_window.show_window()
         rowhighlight(None, event.widget, 'gold3', 'gold1')

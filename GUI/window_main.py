@@ -281,7 +281,7 @@ class PopupWindow(WindowAttributes):
     def additional_menu_options(self, menu):
         return
 
-    def clearance_check(self, clearance_lvl, data:str or list = None):
+    def clearance_check(self, clearance_lvl, data:int or str or list = None):
         if self.user == None:
             return False
         
@@ -291,7 +291,14 @@ class PopupWindow(WindowAttributes):
             else:
                 return False
 
-        if type(data) == str:
+        if isinstance(data, int):
+            if  (self.user.data_clearance >= clearance_lvl) or (
+                self.user.user_id == data):
+                return True
+            else:
+                return False
+
+        if isinstance(data, str):
             data = [int(x.strip('\n').strip()) for x in data.split(',')]
         
         if (self.user.data_clearance >= clearance_lvl) or (

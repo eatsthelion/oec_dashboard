@@ -102,9 +102,9 @@ class EditPackagesGUI(EditWindow):
                         "A package of the same name already exists for this project.")
                     return False
             datapairs = [
-                (self.data[1], name, 'name', 'name'),
-                (self.data[2], desc, 'description', 'description'),
-                (self.data[3], p_type, 'package type', 'type')
+                (name, 'name', 'name'),
+                (desc, 'description', 'description'),
+                (p_type, 'package type', 'type')
             ]
 
             datelist = [
@@ -116,7 +116,8 @@ class EditPackagesGUI(EditWindow):
 
             past_path = FileSystem.get_package_folder(self.data[0])
             project_edit_entry(self.project_id, self.data[0], 'packages', 
-                PACKAGEDB, name, 'PACKAGE EDIT', datapairs, datelist, 
+                PACKAGEDB, name, 'PACKAGE EDIT', self.data, self.data_dict,
+                datapairs, datelist, 
                 user=self.user)
             os.rename(past_path, FileSystem.get_package_folder(self.data[0]))
             self.parent.searchwindow.refresh_page()
@@ -150,16 +151,16 @@ class EditPackagesGUI(EditWindow):
         self.titlelabel.configure(text='EDIT PACKAGE')
         self.enterbutton.configure(text='SAVE CHANGES')
         
-        self.name_entry.insert(self.data[1])
-        self.desc_entry.insert(self.data[2])
-        self.type_entry.insert(self.data[3])
+        self.name_entry.insert(self.data[self.data_dict['name']])
+        self.desc_entry.insert(self.data[self.data_dict['description']])
+        self.type_entry.insert(self.data[self.data_dict['type']])
 
         try:            
-            self.forecast_entry.insert(datetime.strptime(self.data[8], DBTIME))
+            self.forecast_entry.insert(datetime.strptime(self.data[self.data_dict['forecast_date']], DBTIME))
         except:
             pass
         try:
-            self.actual_entry.insert(datetime.strptime(self.data[9], DBTIME))
+            self.actual_entry.insert(datetime.strptime(self.data['submittal_date'], DBTIME))
         except:
             pass
         

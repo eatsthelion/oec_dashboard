@@ -135,26 +135,31 @@ class EditProjectGUI(EditWindow):
 
             project_input_entry(rowid, 'project_info', PROJECTDB,sql_str,
             status_log, 'PROJECT CREATION', user = self.user)
+
             os.mkdir(FileSystem.get_project_folder(rowid))   
+
             self.parent.searchwindow.refresh_results()         
 
         elif self.context == 'modify':
             datasets = [
-                (self.data[1], oec_number, 'OEC No', 'oec_job'),
-                (self.data[5], title, 'title', 'project_name'),
-                (self.data[3], client,  'client', 'client'),
-                (self.data[2], client_job, 'client job number', 'client_job'),
-                (self.data[4], active_status,  'active status', 'active_status'),
-                (self.data[6], location,  'location', 'location'),
-                (self.data[9], project_type, 'project type', 'project_type'),
-                (self.data[10], phase, 'phase', 'current_phase'),
-                (self.data[11], stage, 'stage', 'current_stage'),
-                (self.data[12], progress, 'progress percent', 'current_percent_complete'),
+                (oec_number, 'OEC No', 'oec_job'),
+                (title, 'title', 'project_name'),
+                (client,  'client', 'client'),
+                (client_job, 'client job number', 'client_job'),
+                (active_status,  'active status', 'active_status'),
+                (location,  'location', 'location'),
+                (project_type, 'project type', 'project_type'),
+                (phase, 'phase', 'current_phase'),
+                (stage, 'stage', 'current_stage'),
+                (progress, 'progress percent', 'current_percent_complete'),
             ]
+
             past_path = FileSystem.get_project_folder(self.data[0])
+
             project_edit_entry(self.data[0], self.data[0], 'project_info',
-            PROJECTDB, f"Project {oec_number}", 'PROJECT INFO EDIT', datasets,
-            user=self.user)
+            PROJECTDB, f"Project {oec_number}", 'PROJECT INFO EDIT',
+            self.data, self.data_dict, datasets, user=self.user)
+
             os.rename(past_path, FileSystem.get_project_folder(self.data[0]))
             self.parent.searchwindow.refresh_page()
         self.cancel_window()
@@ -192,16 +197,18 @@ class EditProjectGUI(EditWindow):
             self.titlelabel.configure(text=titletext)
             self.active_status_options.set(self.data[4])
 
-            self.oec_entry               .insert(self.data[1])
-            self.client_job_entry        .insert(self.data[2])
-            self.client_entry            .insert(self.data[3])
-            self.title_entry             .insert(self.data[5])
-            self.location_entry          .insert(self.data[6])
-            self.project_type_entry      .insert(self.data[9])
-            self.phase_entry             .insert(self.data[10])
-            self.stage_entry             .insert(self.data[11])
-            self.progress_entry          .insert(f'{(100*self.data[12]):.1f}') 
-
+            self.oec_entry               .insert(self.data[self.data_dict['oec_job']])
+            self.client_job_entry        .insert(self.data[self.data_dict['client_job']])
+            self.client_entry            .insert(self.data[self.data_dict['client']])
+            self.title_entry             .insert(self.data[self.data_dict['project_name']])
+            self.location_entry          .insert(self.data[self.data_dict['location']])
+            self.project_type_entry      .insert(self.data[self.data_dict['project_type']])
+            self.phase_entry             .insert(self.data[self.data_dict['current_phase']])
+            self.stage_entry             .insert(self.data[self.data_dict['current_stage']])
+            try:
+                self.progress_entry.insert(f'{(100*self.data[self.data_dict["current_percent_complete"]]):.1f}') 
+            except ValueError:
+                pass
             self.height = 500
             self.canvas_window.v_scroll_pack()
 

@@ -122,6 +122,9 @@ class ProjectOptionsWindow(OptionWindow):
         titletext = f'PROJECT {self.data[1]}, {self.data[6]}, {self.data[5]}'
         if len(titletext)>40:
             titletext = titletext[:40]+"..."
+
+        next_window.project_data = self.data
+        next_window.project_data_dict = self.data_dict
         next_window.titlelabel.configure(text = f'{title} {titletext.upper()}')
         next_window.context = 'display'
         

@@ -16,8 +16,8 @@ class ProjectChangeOrders(DataTableWindow):
     def __init__(self, master, **kw) -> None:
         super().__init__(master, program_title = 'Project Change Orders',
         bg='royalblue1', col_color='deepskyblue2', 
-        left_options = self.leftoptions, 
-        additional_popups = self.additionalOptions,
+        leftoptions = self.leftoptions, 
+        additional_windows = self.additionalOptions,
         format_dict='change_orders',
         **kw)
         self.project_id = None
@@ -30,7 +30,7 @@ class ProjectChangeOrders(DataTableWindow):
     def additionalOptions(self, button_master, frame_master):
         insert_button = MyButton(button_master, text='NEW CHANGE ORDER',
             command = self.show_edit_window)
-        insert_button .pack(side='left', pady=(10,2),padx=5)
+        insert_button.pack(side='left', pady=(10,2),padx=5)
 
     def leftoptions(self, master,dataset,row):
         editbutton = MyButton(master, text='EDIT', 

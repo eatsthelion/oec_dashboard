@@ -37,14 +37,15 @@ def project_input_entry(project_id:int, table:str, database:str,
 
     tt = datetime.today().strftime(DBTIME)
     sql_insert = f"""INSERT INTO {table} VALUES 
-    ({DB_clean_str(insert_vals)}, '{tt}', '{tt}', '{user_id}')"""
+    ({insert_vals}, '{tt}', '{tt}', '{user_id}')"""
 
     DB_connect(sql_insert, database=database)
     send_project_status(project_id, status_str, status_tag, user=user)
     return
 
 def project_edit_entry(project_id:int, entry_id:int, table:str, database:str,   
-    name:str, status_tag:str, datapairs:list, datelist:list=None,
+    name:str, status_tag:str, origin_data:list or tuple, datadict:dict, 
+    datapairs:list, datelist:list=None,
     skipupdates:list=[], date_status_type:str='', user:object=None) -> None:
     """ Updates entries in our project database.
         
@@ -67,47 +68,47 @@ def project_edit_entry(project_id:int, entry_id:int, table:str, database:str,
     updates = ''
     statuses = ''
     for dp in datapairs:
-        if dp[0]==dp[1]:
+        if origin_data[datadict[dp[2]]]==dp[0]:
             continue
-        updates += f"{dp[3]} = '{dp[1]}', "
+        updates += f"{dp[2]} = '{dp[0]}', "
         # Data is changed
-        if dp[0]!='':
-            statuses += f"\n\n{name}'s {dp[2]} updated from {dp[0]} to {dp[1]}."
+        if origin_data[datadict[dp[2]]]!='':
+            statuses += f"\n\n{name}'s {dp[1]} updated from {origin_data[datadict[dp[2]]]} to {dp[0]}."
         # Data is removed
-        elif dp[1] == "":
-            statuses += f"\n\n{name}'s {dp[2]} was removed.\nRemoved Info:\n{dp[0]}"
+        elif dp[0] == "":
+            statuses += f"\n\n{name}'s {dp[1]} was removed.\nRemoved Info:\n{origin_data[datadict[dp[2]]]}"
         # Data is set
         else:
-            statuses += f"\n\n{name}'s {dp[2]} was set to {dp[1]}."
+            statuses += f"\n\n{name}'s {dp[1]} was set to {dp[0]}."
 
     date_statuses = ''
     if datelist != None:
         for dp in datelist:
             try:
-                comp_date = datetime.strptime(dp[0], DBTIME)
+                comp_date = datetime.strptime(origin_data[datadict[dp[2]]], DBTIME)
             except:
                 comp_date = None
             
-            outcome = dp[1].compare_dates(comp_date)
+            outcome = dp[0].compare_dates(comp_date)
             if outcome != None:
                 try:
-                    date_entry = dp[1].get()
+                    date_entry = dp[0].get()
                     podate = date_entry.strftime(DBTIME)
                 except:
                     podate = ''
-                updates+=f"{dp[3]} = '{podate}', "
+                updates+=f"{dp[2]} = '{podate}', "
             
             if outcome == 'updated':
-                date_statuses += f"\n\n{name} updated its {dp[2]} date from " + \
+                date_statuses += f"\n\n{name} updated its {dp[1]} date from " + \
                     comp_date.strftime(DISPLAYTIME) + \
                     date_entry.strftime(" to " + DISPLAYTIME)
 
             elif outcome == 'set':
-                date_statuses += f"\n\n{name} set its {dp[2]} date on " + \
+                date_statuses += f"\n\n{name} set its {dp[1]} date on " + \
                     date_entry.strftime(DISPLAYTIME)
 
             elif outcome == 'removed':
-                date_statuses += f"\n\n{name} removed its {dp[2]} date on " + \
+                date_statuses += f"\n\n{name} removed its {dp[1]} date on " + \
                     comp_date.strftime(DISPLAYTIME)
 
     if updates == '':

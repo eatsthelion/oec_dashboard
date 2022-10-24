@@ -11,7 +11,6 @@ class EditPeopleGUI(EditWindow):
         self.data = None
 
     def configure(self):
-        self.clearances = ["VIEWER","DESIGNER","ALL"]
         self.entryframe = MyFrame(self.frame,bg=self.bg)
         
         self.name_entry  = MyEntry(self.entryframe)
@@ -19,13 +18,10 @@ class EditPeopleGUI(EditWindow):
         self.org_entry   = MyEntry(self.entryframe)
         self.email_entry = MyEntry(self.entryframe)
         self.phone_entry = MyEntry(self.entryframe)
-        
-        self.clearance_entry = MyOptionMenu(self.entryframe, self.clearances)
 
         self.datapairs = [
             ('Name*:', self.name_entry),
             ("Role*:", self.role_entry),
-            ("Clearance*:", self.clearance_entry),
             ("Organization:", self.org_entry),
             ("Email:", self.email_entry),
             ("Phone:", self.phone_entry),
@@ -47,9 +43,8 @@ class EditPeopleGUI(EditWindow):
         org         = self.org_entry  .get()
         email       = self.email_entry.get()
         phone       = self.phone_entry.get()
-        clearences  = self.clearance_entry.get()
 
-        for req in [name, role, clearences]:
+        for req in [name, role]:
             if req == '': 
                 messagebox.showerror("Required Field Empty",
                 "Please fill out all required fields before submitting. " + \
@@ -58,9 +53,8 @@ class EditPeopleGUI(EditWindow):
 
         if self.context == 'input':
             status_updates = f"{name} was added to the project." + \
-                f"\n{name} has the role of {role}." + \
-                f"\n{name} has {clearences} level clearance."
-            sql_query = f"""'{self.project_id}', '', '{name}', '{clearences}', 
+                f"\n{name} has the role of {role}."
+            sql_query = f"""'{self.project_id}', '{name}',  
                 '{role}', '{org}', '{email}', '{phone}'"""
 
             project_input_entry(self.project_id, 'project_people', PROJECTDB,
@@ -70,16 +64,17 @@ class EditPeopleGUI(EditWindow):
         elif self.context == 'modify':
 
             datapairs = [
-                (self.data[1], name, 'name', 'name'),
-                (self.data[3], clearences, 'clearance', 'clearance'),
-                (self.data[2], role, 'role', 'role'),
-                (self.data[4], org, 'org', 'org'), 
-                (self.data[5], email, 'email', 'email'),
-                (self.data[6], phone, 'phone', 'phone'),
+                (name, 'name', 'name'),
+                (role, 'role', 'role'),
+                (org, 'org', 'org'), 
+                (email, 'email', 'email'),
+                (phone, 'phone', 'phone'),
             ]
 
             project_edit_entry(self.project_id, self.data[0], 'project_people',
-            PROJECTDB, name, 'CONTACT INFO EDIT', datapairs, user=self.user)
+            PROJECTDB, name, 'CONTACT INFO EDIT', self.data, self.data_dict, 
+            datapairs, user=self.user)
+
             self.parent.searchwindow.refresh_page()
 
         self.cancel_window()
@@ -93,7 +88,6 @@ class EditPeopleGUI(EditWindow):
         self.org_entry.delete()
         self.email_entry.delete()
         self.phone_entry.delete()
-        self.clearance_entry.set(value=self.clearances[0])
         
         if data == None:
             self.context = 'insert'
@@ -104,12 +98,11 @@ class EditPeopleGUI(EditWindow):
             self.data = data
             self.titlelabel.configure(text="EDIT PROJECT MEMBER")
             self.enterbutton.configure(text='UPDATE PERSON')
-            self.name_entry.insert(self.data[1])
-            self.role_entry.insert(self.data[2])
-            self.org_entry.insert(self.data[4])
-            self.email_entry.insert(self.data[5])
-            self.phone_entry.insert(self.data[6])
-            self.clearance_entry.set(value=self.data[3])
+            self.name_entry.insert(self.data[self.data_dict['fullname']])
+            self.role_entry.insert(self.data[self.data_dict['role']])
+            self.org_entry.insert(self.data['org'])
+            self.email_entry.insert(self.data['email'])
+            self.phone_entry.insert(self.data['phone'])
         
         self.show_window()
         return

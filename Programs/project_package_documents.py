@@ -9,12 +9,13 @@ from Programs.option_dwglist import DWGListWindow
 from Backend.database_get import get_packages
 from Backend.database_send import project_edit_entry
 
-class ProjectDocumentsGUI(DataTableWindow):
+class PackageDocumentsGUI(DataTableWindow):
     def __init__(self, master, **kw) -> None:
         super().__init__(master, program_title = 'Project Documents',
         bg='royalblue1', col_color='deepskyblue2', 
         leftoptions = self.leftoptions, 
-        format_dict='project_documents',
+        additional_windows = self.additionalOptions, 
+        format_dict='package_documents',
         **kw)
         self.package_id = None
         self.project_data = None
@@ -55,7 +56,7 @@ class ProjectDocumentsGUI(DataTableWindow):
                     command = lambda:
                     messagebox.showerror('Document is Checked Out', 
                     f'The document is currently checked out by {dataset[self.data_dict["checked_out_name"]]}'))
-        return    
+        return      
 
     def toggle_checkout(self, dataset):
         if dataset[self.data_dict['checked_out_by']] == 0:
@@ -75,6 +76,19 @@ class ProjectDocumentsGUI(DataTableWindow):
         "documents", DOCDB, 'check out','CHECKOUT', dataset, self.data_dict, datapair)
 
         self.searchwindow.refresh_page()
+
+    def additionalOptions(self, button_master, frame_master):
+        insert_button = MyButton(button_master, text='UPLOAD',
+            command = self.show_edit_doc_window)
+        #packages_button = MyButton(button_master, text='SEE PACKAGES',
+        #    command=self.show_package_window_full)   
+        drawinglist_button = MyButton(button_master, text='DWG LIST',
+            command = self.show_dwglist_options)
+
+        #all_documents_button .pack(side='left', pady=(10,2),padx=5)
+        insert_button.pack(side='left', pady=(10,2),padx=5)
+        drawinglist_button.pack(side='left', pady=(10,2),padx=5)
+        #packages_button .pack(side='left', pady=(10,2),padx=5)
 
     def show_edit_doc_window(self, data = None):
         edit_doc_window = EditDocumentGUI(self.frame, parent=self)

@@ -62,8 +62,8 @@ class ProjectPackagesGUI(DataTableWindow):
         self.cancel_window()
 
     def show_package_documents_window_full(self, dataset):      
-        from Programs.project_documents import ProjectDocumentsGUI  
-        searchwindow = ProjectDocumentsGUI(self.master, parent=self)
+        from Programs.project_package_documents import PackageDocumentsGUI  
+        searchwindow = PackageDocumentsGUI(self.master, parent=self)
         db_function = get_docs_in_package
 
         # Changes the title of the new window

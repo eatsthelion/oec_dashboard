@@ -28,7 +28,11 @@ class ProjectScheduleGUI(DataTableWindow):
                 command=lambda m=dataset:self.show_edit_window(data=m))
             details  = MyButton(master, text='  +  ', 
                 command=lambda m=dataset: self.show_options_window(m))
-            update_event.grid(row=0,column=1,padx=(5,0))
+
+            if self.clearance_check(7, 
+                self.data[self.project_data_dict['project_engineers_ids']]):
+                update_event.grid(row=0,column=1,padx=(5,0))
+                
             details.grid(row=0,column=3,padx=5)
 
         elif self.context == 'select':

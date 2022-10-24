@@ -47,14 +47,14 @@ class ScheduleOptionsWindow(OptionWindow):
         self.data = data
         self.project_data = project_data
         self.titlelabel.configure(text=self.data[1])
-        if self.data[9] == 0:
+        if self.data[12] == 0:
             self.taskpost_button.configure(text='POST TO TASKBOARD',
             command=self.post_to_taskboard)
             self.see_app_button.grid_remove()
         else:
             self.taskpost_button.configure(text='REMOVE FROM TASKBOARD',
             command=self.remove_from_taskboard)
-            self.see_app_button.configure(text=f'VIEW TASK APPLICANTS ({self.data[4]})')
+            self.see_app_button.configure(text=f'VIEW TASK APPLICANTS ({self.data[8]})')
             self.see_app_button.grid()
         self.show_window()
 

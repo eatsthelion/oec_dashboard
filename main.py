@@ -57,7 +57,6 @@ class MainProgram(object):
         self.root.update()
 
         # Loads Program Assets
-        import GUI.fonts
         from GUI.GUI_Mains import FONT, FONTBOLD
         
         self.font = FONT

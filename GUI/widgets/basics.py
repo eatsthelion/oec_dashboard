@@ -82,7 +82,7 @@ class MyOptionMenu(tk.OptionMenu):
         return
 
     def get(self) -> str:
-        return self.strvar.get()
+        return DB_clean_str(self.strvar.get())
 
     def set(self, value:str) -> None:
         self.strvar.set(value)

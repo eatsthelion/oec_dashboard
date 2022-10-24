@@ -78,7 +78,7 @@ class EditDocumentGUI(EditWindow):
             self.multifileframe.pack(pady=(0,5), expand=1, padx=5, fill='x')
         self.singlefileframe.pack(pady=(0,5), expand=1, padx=5, fill='x')
         
-        self.fileframe.pack(pady=(0,5))
+        self.fileframe.pack(pady=(0,5), padx=5)
         self.entryframe.pack(expand=1, pady=(0,5), padx=5)
         self.enterbutton.pack(fill='x', padx=5, pady=5)
 
@@ -132,8 +132,8 @@ class EditDocumentGUI(EditWindow):
             name = f"Package {get_package_name(self.package_id)}'s {self.data[2]}"
             
             # region Re-files document depending on edits made
-            if (filename != self.data[2]) or (self.file != None):
-                if filename != self.data[2]:
+            if (filename != self.data[self.data_dict['filename']]) or (self.file != None):
+                if filename != self.data[self.data_dict['filename']]:
                     # Error Handling
                     same_filename = DB_connect(f"""
                         SELECT rowid
@@ -168,20 +168,21 @@ class EditDocumentGUI(EditWindow):
             # endregion
 
             datapairs = [
-                (self.data[2], filename, 'filename', 'filename'), 
-                (self.data[3], filetype, 'proposed amount', 'file_type'),
-                (self.data[4], title, 'title', 'title'),
-                (self.data[5], drawingno, 'drawing no', 'drawing_num'),
-                (self.data[6], rev, 'REV', 'revision'),
-                (self.data[7], sheet, 'SH', 'sheet'),
-                (self.data[8], desc, 'description', 'description'),
-                (self.data[9], purpose, 'purpose', 'doc_purpose'),
-                (self.data[10], progress, 'progress', 'progress'),
+                (filename, 'filename', 'filename'), 
+                (filetype, 'proposed amount', 'file_type'),
+                (title, 'title', 'title'),
+                (drawingno, 'drawing no', 'drawing_num'),
+                (rev, 'REV', 'revision'),
+                (sheet, 'SH', 'sheet'),
+                (desc, 'description', 'description'),
+                (purpose, 'purpose', 'doc_purpose'),
+                (progress, 'progress', 'progress'),
             ]
 
-            project_edit_entry(get_project_from_package(self.package_id), 
-                self.data[0], 'documents', datapairs, name, "DOCUMENT EDIT",
-                datapairs, user=self.user)
+            project_edit_entry(get_project_from_package(self.package_id),
+            self.data[0], 'documents', DOCDB, name, "DOCUMENT EDIT", self.data,
+            self.data_dict, datapairs, user = self.user)
+
             self.parent.searchwindow.refresh_page()
 
         self.cancel_window()
@@ -202,18 +203,6 @@ class EditDocumentGUI(EditWindow):
 
     def insert_document(self, filename,filetype, title, desc, drawingno, rev,
         sheet, purpose, progress, copies = False):
-        #same_title = DB_connect(f"""
-        #    SELECT rowid
-        #    FROM documents
-        #    WHERE package_id = {self.package_id} and title = '{title}'""",
-        #    database = DOCDB)
-        #if len(same_title)>0:
-        #    messagebox.showerror("Same Titled Document",
-        #        "A document of the same title already exists in this package.")
-        #    return False
-
-        # Error if there is a document with the same filename in the package
-        
 
         try: 
             index = int(DB_connect(f"""
@@ -238,7 +227,7 @@ class EditDocumentGUI(EditWindow):
 
         sql_str = f"""'{self.package_id}', '{index}', '{filename}', 
             '{filetype}', '{title}', '{drawingno}', '{rev}', '{sheet}', 
-            '{desc}', '{purpose}', '{progress}', '{self.user.user_id}', ''"""
+            '{desc}', '{purpose}', '{progress}', '{self.user.user_id}', 0"""
         status_updates = f"Document {title} was created in Package {self.package_id}."
 
         project_input_entry(get_project_from_package(self.package_id), 
@@ -259,9 +248,6 @@ class EditDocumentGUI(EditWindow):
             self.sheet_entry.insert(sheet)
         
         return (drawingno, rev, sheet)
-    
-    def apply_document_list():
-        pass
 
     def select_file(self):
         file = filedialog.askopenfilename(title = 'Select a file')
@@ -293,7 +279,7 @@ class EditDocumentGUI(EditWindow):
 
             self.insert_document(filename=filename,filetype=filetype,title='',
             drawingno=docdata[0], rev=docdata[1], sheet=docdata[2], purpose='',
-            progress=0)
+            progress='')
 
         self.parent.searchwindow.refresh_results()
 
@@ -322,19 +308,24 @@ class EditDocumentGUI(EditWindow):
             self.enterbutton.configure(text="SAVE CHANGES")
 
             self.filename_entry.configure(state=NORMAL)
-            self.filename_entry.insert(self.data[2])
+            self.filename_entry.insert(self.data[self.data_dict['filename']])
             if self.data[2] in EMPTYLIST:
                 self.filename_entry.configure(state=DISABLED)
                 self.file_button.configure(text='SELECT')
             self.files_button.grid_remove()
 
-            self.title_entry.insert(self.data[4])
-            self.desc_entry.insert(self.data[8])
-            self.drawingno_entry.insert(self.data[5])
-            self.rev_entry.insert(self.data[6])
-            self.sheet_entry.insert(self.data[7])
-            self.purpose_entry.insert(self.data[8])
-            self.progress_entry.insert(self.data[9])
+            self.title_entry.insert(self.data[self.data_dict['title']])
+            self.desc_entry.insert(self.data[self.data_dict['description']])
+            self.drawingno_entry.insert(self.data[self.data_dict['drawing_num']])
+            self.rev_entry.insert(self.data[self.data_dict['revision']])
+            self.sheet_entry.insert(self.data[self.data_dict['sheet']])
+            self.purpose_entry.insert(self.data[self.data_dict['doc_purpose']])
+            try:
+                self.progress_entry.insert(
+                    f"{self.data[self.data_dict['progress']]*100:.2f}")
+            except Exception:
+                pass
+
         else: 
             self.context = 'insert'
             self.singlefileframe.configure(text="UPLOAD 1 FILE")
