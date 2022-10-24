@@ -151,16 +151,16 @@ class EditPackagesGUI(EditWindow):
         self.titlelabel.configure(text='EDIT PACKAGE')
         self.enterbutton.configure(text='SAVE CHANGES')
         
-        self.name_entry.insert(self.data[self.data_dict['name']])
-        self.desc_entry.insert(self.data[self.data_dict['description']])
-        self.type_entry.insert(self.data[self.data_dict['type']])
+        self.name_entry.insert(self.get_data('name'))
+        self.desc_entry.insert(self.get_data('description'))
+        self.type_entry.insert(self.get_data('type'))
 
         try:            
-            self.forecast_entry.insert(datetime.strptime(self.data[self.data_dict['forecast_date']], DBTIME))
+            self.forecast_entry.insert(datetime.strptime(self.get_data('forecast_date'), DBTIME))
         except:
             pass
         try:
-            self.actual_entry.insert(datetime.strptime(self.data['submittal_date'], DBTIME))
+            self.actual_entry.insert(datetime.strptime(self.get_data('submittal_date'), DBTIME))
         except:
             pass
         

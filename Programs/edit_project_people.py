@@ -98,11 +98,11 @@ class EditPeopleGUI(EditWindow):
             self.data = data
             self.titlelabel.configure(text="EDIT PROJECT MEMBER")
             self.enterbutton.configure(text='UPDATE PERSON')
-            self.name_entry.insert(self.data[self.data_dict['fullname']])
-            self.role_entry.insert(self.data[self.data_dict['role']])
-            self.org_entry.insert(self.data['org'])
-            self.email_entry.insert(self.data['email'])
-            self.phone_entry.insert(self.data['phone'])
+            self.name_entry.insert(self.get_data('fullname'))
+            self.role_entry.insert(self.get_data('role'))
+            self.org_entry.insert(self.get_data('org'))
+            self.email_entry.insert(self.get_data('email'))
+            self.phone_entry.insert(self.get_data('phone'))
         
         self.show_window()
         return

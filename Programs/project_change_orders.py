@@ -56,8 +56,6 @@ class ProjectChangeOrders(DataTableWindow):
         
         return dataset 
 
-    
-
     def show_edit_window(self, data=None):
         self.edit_co_window = EditChangeOrderGUI(self.frame, parent=self)
         self.edit_co_window.display_data(self.project_id, self.po_id, data)

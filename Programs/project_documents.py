@@ -42,11 +42,11 @@ class ProjectDocumentsGUI(DataTableWindow):
         download_document.grid(row=0,column=2,padx=(5,0))
         details          .grid(row=0,column=3,padx=5) 
 
-        if dataset[self.data_dict['checked_out_by']] != 0:
-            if self.clearance_check(100,dataset[self.data_dict["checked_out_by"]]):
+        if self.get_data("checked_out_by", dataset) != 0:
+            if self.clearance_check(100,self.get_data("checked_out_by", dataset)):
                 check_out.configure(text = 'CHECK IN')
             elif self.clearance_check(7, 
-                self.data[self.project_data_dict['project_engineers_ids']]):
+                self.get_data('project_engineers_ids', self.data, self.project_data_dict)):
                 check_out.configure(text = 'CHECKED OUT',
                     command = lambda m=dataset: self.toggle_checkout(m))
             else:

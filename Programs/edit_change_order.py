@@ -138,15 +138,15 @@ class EditChangeOrderGUI(EditWindow):
         self.data = data
         self.context = 'modify'
         
-        self.description_entry.insert(self.data[self.data_dict['description']])
-        self.proposed_entry.insert(self.data[self.data_dict['change_order_submitted']])
-        self.contracted_entry.insert(self.data[self.data_dict['change_order_acceptance']])
+        self.description_entry.insert(self.get_data('description'))
+        self.proposed_entry.insert(self.get_data('change_order_submitted'))
+        self.contracted_entry.insert(self.get_data('change_order_acceptance'))
         try:            
-            self.proposed_date_entry.insert(datetime.strptime(self.data[self.data_dict['submitted_date']], DBTIME))
+            self.proposed_date_entry.insert(datetime.strptime(self.get_data('submitted_date'), DBTIME))
         except:
             pass
         try:
-            self.contract_date_entry.insert(datetime.strptime(self.data[self.data_dict['accepted_date']], DBTIME))
+            self.contract_date_entry.insert(datetime.strptime(self.get_data('accepted_date'), DBTIME))
         except:
             pass
         

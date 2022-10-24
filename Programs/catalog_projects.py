@@ -64,7 +64,7 @@ class ProjectCatalog(DataTableWindow):
         see_project_info.grid(row=0,column=0,padx=(5,0),sticky=NS)
         if self.context == 'select':
             select_button.grid(row=0,column=1,padx=(5,0),sticky=NS)
-        if self.clearance_check(7,dataset[self.data_dict['project_engineers_ids']]):
+        if self.clearance_check(7, self.get_data('project_engineers_ids', dataset)):
             update_project.grid(row=0,column=1,padx=(5,0),sticky=NS)
         details.grid(row=0,column=2,padx=5,sticky=NS)
 

@@ -27,6 +27,7 @@ class WindowAttributes(object):
         self.parent = parent 
         self.children = []
         self.data = None
+        self.data_dict = {}
         if self.parent != None:
             self.parent.children.append(self)
 
@@ -117,6 +118,19 @@ class WindowAttributes(object):
 
     def send_data(self, data):
         self.sender(data)
+
+    def get_data(self, key, data:tuple or list = None, data_dict:dict = None):
+        if data_dict != None:
+            index = data_dict.get(key, None)
+        else:
+            index = self.data_dict.get(key, None)
+
+        if (index != None) and (data != None):
+            return data[index]
+        elif (index != None):
+            return self.data[index]
+        else:
+            return None
     
 class PopupWindow(WindowAttributes):
     def __init__(self, master:tk, canvas:bool = False, 

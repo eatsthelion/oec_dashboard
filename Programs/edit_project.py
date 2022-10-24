@@ -197,16 +197,16 @@ class EditProjectGUI(EditWindow):
             self.titlelabel.configure(text=titletext)
             self.active_status_options.set(self.data[4])
 
-            self.oec_entry               .insert(self.data[self.data_dict['oec_job']])
-            self.client_job_entry        .insert(self.data[self.data_dict['client_job']])
-            self.client_entry            .insert(self.data[self.data_dict['client']])
-            self.title_entry             .insert(self.data[self.data_dict['project_name']])
-            self.location_entry          .insert(self.data[self.data_dict['location']])
-            self.project_type_entry      .insert(self.data[self.data_dict['project_type']])
-            self.phase_entry             .insert(self.data[self.data_dict['current_phase']])
-            self.stage_entry             .insert(self.data[self.data_dict['current_stage']])
+            self.oec_entry               .insert(self.get_data('oec_job'))
+            self.client_job_entry        .insert(self.get_data('client_job'))
+            self.client_entry            .insert(self.get_data('client'))
+            self.title_entry             .insert(self.get_data('project_name'))
+            self.location_entry          .insert(self.get_data('location'))
+            self.project_type_entry      .insert(self.get_data('project_type'))
+            self.phase_entry             .insert(self.get_data('current_phase'))
+            self.stage_entry             .insert(self.get_data('current_stage'))
             try:
-                self.progress_entry.insert(f'{(100*self.data[self.data_dict["current_percent_complete"]]):.1f}') 
+                self.progress_entry.insert(f'{(100*self.get_data("current_percent_complete")):.1f}') 
             except ValueError:
                 pass
             self.height = 500

@@ -132,8 +132,8 @@ class EditDocumentGUI(EditWindow):
             name = f"Package {get_package_name(self.package_id)}'s {self.data[2]}"
             
             # region Re-files document depending on edits made
-            if (filename != self.data[self.data_dict['filename']]) or (self.file != None):
-                if filename != self.data[self.data_dict['filename']]:
+            if (filename != self.get_data('filename')) or (self.file != None):
+                if filename != self.get_data('filename'):
                     # Error Handling
                     same_filename = DB_connect(f"""
                         SELECT rowid
@@ -308,21 +308,21 @@ class EditDocumentGUI(EditWindow):
             self.enterbutton.configure(text="SAVE CHANGES")
 
             self.filename_entry.configure(state=NORMAL)
-            self.filename_entry.insert(self.data[self.data_dict['filename']])
+            self.filename_entry.insert(self.get_data('filename'))
             if self.data[2] in EMPTYLIST:
                 self.filename_entry.configure(state=DISABLED)
                 self.file_button.configure(text='SELECT')
             self.files_button.grid_remove()
 
-            self.title_entry.insert(self.data[self.data_dict['title']])
-            self.desc_entry.insert(self.data[self.data_dict['description']])
-            self.drawingno_entry.insert(self.data[self.data_dict['drawing_num']])
-            self.rev_entry.insert(self.data[self.data_dict['revision']])
-            self.sheet_entry.insert(self.data[self.data_dict['sheet']])
-            self.purpose_entry.insert(self.data[self.data_dict['doc_purpose']])
+            self.title_entry.insert(self.get_data('title'))
+            self.desc_entry.insert(self.get_data('description'))
+            self.drawingno_entry.insert(self.get_data('drawing_num'))
+            self.rev_entry.insert(self.get_data('revision'))
+            self.sheet_entry.insert(self.get_data('sheet'))
+            self.purpose_entry.insert(self.get_data('doc_purpose'))
             try:
                 self.progress_entry.insert(
-                    f"{self.data[self.data_dict['progress']]*100:.2f}")
+                    f"{self.get_data('progress')*100:.2f}")
             except Exception:
                 pass
 

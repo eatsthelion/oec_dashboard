@@ -160,26 +160,26 @@ class EditScheduleEventGUI(EditWindow):
             return super().show_window()
 
         self.enterbutton.configure(text='UPDATE EVENT')
-        self.event.insert(self.data[self.data_dict['event']])
-        self.desc_text.insert(self.data[self.data_dict['description ']])
-        self.typeOptions.set(self.data[self.data_dict['event_type']])
-        self.status_options.set(self.data[self.data_dict['status']])
+        self.event.insert(self.get_data('event'))
+        self.desc_text.insert(self.get_data('description '))
+        self.typeOptions.set(self.get_data('event_type'))
+        self.status_options.set(self.get_data('status'))
         
-        self.priority_options.set(self.data[self.data_dict['priority']])
-        self.difficulty_options.set(self.data[self.data_dict['difficulty']])
+        self.priority_options.set(self.get_data('priority'))
+        self.difficulty_options.set(self.get_data('difficulty'))
 
         try:
-            self.progress_entry.insert(f"{(self.data[self.data_dict['progress_percent']]*100):.2f}")
+            self.progress_entry.insert(f"{(self.get_data('progress_percent')*100):.2f}")
         except TypeError:
             pass
         
         try:
-            date_obj = datetime.strptime(self.data[self.data_dict['forecast_date']], DBTIME)
+            date_obj = datetime.strptime(self.get_data('forecast_date'), DBTIME)
             self.forecast_entry.insert(date_obj)
         except:
             pass
         try:
-            date_obj = datetime.strptime(self.data[self.data_dict['actual_date']], DBTIME) 
+            date_obj = datetime.strptime(self.get_data('actual_date'), DBTIME) 
             self.actual_entry.insert(date_obj)
         except:
             pass

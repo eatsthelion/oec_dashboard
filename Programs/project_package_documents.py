@@ -47,7 +47,7 @@ class PackageDocumentsGUI(DataTableWindow):
             if self.clearance_check(100,dataset[self.data_dict["checked_out_by"]]):
                 check_out.configure(text = 'CHECK IN')
             elif self.clearance_check(7, 
-                self.data[self.project_data_dict['project_engineers_ids']]):
+                self.get_data('project_engineers_ids', data_dict = self.project_data_dict)):
                 check_out.configure(text = 'CHECKED OUT',
                     command = lambda m=dataset: self.toggle_checkout(m))
             else:

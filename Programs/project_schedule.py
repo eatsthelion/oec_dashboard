@@ -30,7 +30,7 @@ class ProjectScheduleGUI(DataTableWindow):
                 command=lambda m=dataset: self.show_options_window(m))
 
             if self.clearance_check(7, 
-                self.data[self.project_data_dict['project_engineers_ids']]):
+                self.get_data('project_engineers_ids', data_dict = self.project_data_dict)):
                 update_event.grid(row=0,column=1,padx=(5,0))
                 
             details.grid(row=0,column=3,padx=5)

@@ -2,7 +2,7 @@ import os
 import string
 
 HOME    = r'G:\My Drive\Databases'
-WORK    = r'O:\pythonprograms\Databases'
+WORK    = r'.\Databases'
 
 for letter in list(string.ascii_uppercase):
     home = '{}:\My Drive\Databases'.format(letter)
