@@ -16,8 +16,15 @@ def get_project_info(filter: str = '', sort: str = 'ORDER BY rowid DESC') -> lis
 
 def get_my_project_info(user) -> list:
     return get_project_info(
-        filter = f"AND project_engineers_all LIKE '%{user.full_name}%'"
-        )
+        filter = f"""
+    AND {user.user_id} IN 
+    (
+    SELECT staff.users.rowid
+    FROM project_engineers
+    LEFT JOIN staff.users
+    ON project_engineers.employee_id = staff.users.rowid
+    WHERE project_info.rowid = project_engineers.project_id
+    )""")
 
 def get_project_data(project_id):
     project_data = get_project_info(filter=f'AND rowid = {project_id}')

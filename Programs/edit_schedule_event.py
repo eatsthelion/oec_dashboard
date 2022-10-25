@@ -11,7 +11,7 @@ PROGRAMTITLE = 'Schedule Edits'
 
 from datetime import datetime
 
-from Backend.database import PROJECTDB
+from Backend.database import PROJECTDB, format_data
 from Backend.database import  DBTIME, USERTIME
 from Backend.database_send import project_edit_entry, project_input_entry
 
@@ -161,16 +161,18 @@ class EditScheduleEventGUI(EditWindow):
 
         self.enterbutton.configure(text='UPDATE EVENT')
         self.event.insert(self.get_data('event'))
-        self.desc_text.insert(self.get_data('description '))
+        self.desc_text.insert(self.get_data('description'))
         self.typeOptions.set(self.get_data('event_type'))
         self.status_options.set(self.get_data('status'))
         
-        self.priority_options.set(self.get_data('priority'))
-        self.difficulty_options.set(self.get_data('difficulty'))
+        self.priority_options.set(format_data(self.get_data('priority'),'hml'))
+        self.difficulty_options.set(format_data(self.get_data('difficulty'),'hml'))
 
         try:
             self.progress_entry.insert(f"{(self.get_data('progress_percent')*100):.2f}")
         except TypeError:
+            pass
+        except ValueError:
             pass
         
         try:

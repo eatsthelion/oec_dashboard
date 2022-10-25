@@ -6,4 +6,5 @@ change_order_acceptance,
 submitted_date,
 accepted_date  
 FROM change_order_log
+WHERE purchase_order = {}
 ORDER BY rowid DESC

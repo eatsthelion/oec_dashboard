@@ -63,9 +63,11 @@ class EditProjectGUI(EditWindow):
         
         self.enterbutton = MyButton(self.frame, command=self.enter_command)
         self.enterbutton.pack(pady=10, fill='x', padx=10)
+        self.canvas_window.v_scroll_pack()
         
         super().configure()
-        
+    
+    def widget_placement(self):
         widget_pairings = [
             (self.oec_entry_label, self.oec_entry),
             (self.title_entry_label, self.title_entry),
@@ -85,7 +87,7 @@ class EditProjectGUI(EditWindow):
             (self.phase_label, self.phase_entry),]
 
         for row, pair in enumerate(widget_pairings):
-            if (self.context =='insert') and pair in skipwidgets:
+            if (self.context =='insert') and (pair in skipwidgets):
                 continue
             pair[0].grid(row = row + 1, column = 0, padx =(35, 5), sticky = W)
             pair[1].grid(row = row + 1, column = 1, padx =(5, 10), pady=5, 
@@ -166,7 +168,6 @@ class EditProjectGUI(EditWindow):
         
     def display_data(self, data = None):
         self.data = data
-
         self.oec_entry          .delete()
         self.title_entry        .delete()
         self.client_entry       .delete()
@@ -182,7 +183,6 @@ class EditProjectGUI(EditWindow):
             self.oec_entry.insert(datetime.today().strftime('%y-XXXX'))
             self.enterbutton.configure(text="START PROJECT")
             self.titlelabel.configure(text='START A NEW PROJECT')
-            self.canvas_window.v_scroll_hide()
             self.height=360
             self.folder_frame.grid_remove()
 
@@ -207,9 +207,10 @@ class EditProjectGUI(EditWindow):
             self.stage_entry             .insert(self.get_data('current_stage'))
             try:
                 self.progress_entry.insert(f'{(100*self.get_data("current_percent_complete")):.1f}') 
-            except ValueError:
+            except TypeError:
                 pass
             self.height = 500
             self.canvas_window.v_scroll_pack()
-
+        
+        self.widget_placement()
         self.show_window()

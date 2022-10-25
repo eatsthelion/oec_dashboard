@@ -20,7 +20,7 @@ class MainProgram(object):
 
     def full_program(self):
         self.width = 1280
-        self.height = 720
+        self.height = 700
         self.bg = "#7f007f"
         self.font = ('helvetica', 20, 'bold')
         self.root.title('OEC Dashboard')

@@ -23,10 +23,6 @@ class ProjectChangeOrders(DataTableWindow):
         self.project_id = None
         self.po_id = None
 
-    def configure(self):
-        super().configure()
-        self.hide_cancel_button()
-
     def additionalOptions(self, button_master, frame_master):
         insert_button = MyButton(button_master, text='NEW CHANGE ORDER',
             command = self.show_edit_window)

@@ -47,6 +47,8 @@ class MyText(tk.Text):
         return super().delete(stindx, endindx)
 
     def insert(self, chars: str, index='1.0') -> None:
+        if chars == None:
+            return False
         return super().insert(index, str(chars))
 
 class MyEntry(tk.Entry):
@@ -64,7 +66,9 @@ class MyEntry(tk.Entry):
         return super().delete(stindx,endindx)
 
     def insert(self, string: str, index=0) -> None:
-        return super().insert(index, string)
+        if string == None:
+            return False
+        return super().insert(index, str(string))
 
     def set(self, value:str) -> None:
         self.strvar.set(value)

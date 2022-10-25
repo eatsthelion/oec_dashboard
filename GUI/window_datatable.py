@@ -19,6 +19,7 @@ class DataTableWindow(PopupWindow):
             format_dict:str = '', 
             **kw) -> None:
         """Initializes all the keyword arguments for the SearchWindow widget"""
+
         self.dataset_get = dataset_get
         self.searchsystem = searchsystem
         self.pagesystem = pagesystem 
@@ -43,6 +44,8 @@ class DataTableWindow(PopupWindow):
         self.format_dict = format_dict
         self.col_color = col_color
 
+        super().__init__(master, **kw)
+
         # imports Display Formats and Data Dictionaries
         with open(r".\Assets\data_format.json") as j:
             self.format_dict = json.load(j)[format_dict]
@@ -51,16 +54,14 @@ class DataTableWindow(PopupWindow):
             [(self.format_dict[key]['name'], int(key)) 
             for key in self.format_dict])
 
-        super().__init__(master, **kw)
-
         self.project_data_dict = None
         try:
             self.project_data_dict = self.parent.project_data_dict
         except AttributeError:
             pass
 
-    def configure(self):
-        super().configure()
+        print("Data_dict:", self.data_dict)
+
         self.searchwindow = SearchWindow(self.frame, self.dataset_get,
             pagesystem=self.pagesystem, searchsystem=self.searchsystem,  
             search_alg=self.search_algorithm, sortfunction=self.sortfunction,
