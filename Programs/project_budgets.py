@@ -40,7 +40,7 @@ class ProjectBudgetsGUI(DataTableWindow):
             self.current_budget_label.configure(text='$0')
         
     def leftoptions(self, master,dataset,row):
-        see_co_info=MyButton(master, text='CHANGE ORDERS', 
+        see_co_info=MyButton(master, text='ORDERS', 
             command = lambda m=dataset: self.show_co_window(m))
         update_budget = MyButton(master, text='EDIT', command=lambda m=dataset: 
             self.show_edit_window(m))

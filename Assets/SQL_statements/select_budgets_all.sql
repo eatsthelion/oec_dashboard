@@ -8,9 +8,9 @@ project_budget.description,
 project_budget.cwa_num, 
 project_budget.cwa_type, 
 project_budget.status, 
-project_budget.cwa_proposal_amount,
+
 project_budget.cwa_proposal_date, 
-project_budget.cwa_recieved_amount, 
+
 project_budget.cwa_recieved_date, 
 project_budget.contingency, 
 project_budget.billed_to_date, 

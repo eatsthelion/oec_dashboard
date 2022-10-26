@@ -15,6 +15,7 @@ PACKAGEDB = os.path.join(LOCATION, 'project_packages.db')
 STATUSDB = os.path.join(LOCATION, 'project_statuses.db')
 DOCDB = os.path.join(LOCATION, 'project_documents.db')
 EMPLOYEEDB = os.path.join(LOCATION, 'oec_staff.db')
+SCHEDULEDB = os.path.join(LOCATION, 'project_schedule.db')
 
 TIME12HR = '%I:%M %p'
 TIME24HR = '%H:%M:%S'
@@ -36,17 +37,24 @@ def DB_attach(sql_str:str) -> str:
         sql_str = sql_str.replace(key, DBDICT[key])
     return sql_str
 
-def DB_connect2(database, sql_statement, sql_params:dict or tuple = {}):
+def DB_connect2(database:str, sql_statement:str, sql_params:dict or tuple = {}, 
+    noconfirm:bool=False, printing:bool = False):
     sql_txt = sql_statement
     sql_statement = DB_attach(sql_statement)
     sql_statement = sql_statement.strip(';').split(';')
     if not sql_statement:
         return False
-    conn = sqlite3.connect(database)
+    conn = sqlite3.connect(database)        
     try:
         c = conn.cursor()
         for s in sql_statement:
-            c.execute(s,sql_params)
+            if noconfirm:
+                try:
+                    c.execute(s, sql_params)
+                except Exception as e:
+                    if printing: print(f"\n{e}\n\nERROR ON: {s}")
+            else:
+                c.execute(s,sql_params)
         if "SELECT" == s.upper().split()[0]:
             records = c.fetchall()
             return records

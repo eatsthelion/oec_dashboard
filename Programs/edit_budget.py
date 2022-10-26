@@ -81,8 +81,7 @@ class EditBudgetGUI(EditWindow):
             insert_str = f"""
                 '{purchase_order}', '{self.project_id}', '{client_job}', 
                 '{description}', '{CWA_No}', '{CWA_Type}', '{items}', 
-                '', '','', '', 
-                '{contingency}', '{invoiced}', '', '', '{status}', ''"""
+                '', '','{contingency}', '{invoiced}', '', '{status}', ''"""
 
             project_input_entry(self.project_id, 'project_budget', PROJECTDB,
                 insert_str, f"New Purchase Order {purchase_order} was created.", 
@@ -92,20 +91,21 @@ class EditBudgetGUI(EditWindow):
             
         elif self.context == 'modify':
             datapairs = [
-                (self.data[1], purchase_order, 'purchase order', 'purchase_order'),
-                (self.data[2], client_job, 'client job #', 'client_job'),
-                (self.data[3], status, 'status', 'status'),
-                (self.data[4], description, 'description', 'description'), 
-                (self.data[5], CWA_No, 'CWA No', 'cwa_num'),
-                (self.data[6], CWA_Type, 'CWA Type', 'cwa_type'),
-                (self.data[7], items, 'items', 'items'),
-                (self.data[10], invoiced, 'invoiced', 'billed_to_date'),
-                (self.data[12], contingency, 'contingency', 'contingency'),
+                (purchase_order, 'purchase order', 'purchase_order'),
+                (client_job, 'client job #', 'client_job'),
+                (status, 'status', 'status'),
+                (description, 'description', 'description'), 
+                (CWA_No, 'CWA No', 'cwa_num'),
+                (CWA_Type, 'CWA Type', 'cwa_type'),
+                (items, 'items', 'items'),
+                ( invoiced, 'invoiced', 'billed_to_date'),
+                ( contingency, 'contingency', 'contingency'),
             ]
             name = f'PO {purchase_order}'
 
             project_edit_entry(self.project_id, self.data[0], 'project_budget',
-                PROJECTDB, name, 'PURCHASE ORDER EDIT', datapairs, user=self.user)
+                PROJECTDB, name, 'PURCHASE ORDER EDIT', self.data, self.data_dict, 
+                datapairs, user=self.user)
             
             self.parent.searchwindow.refresh_page()
         self.cancel_window()

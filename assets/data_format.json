@@ -12,8 +12,9 @@
         "10":{"name":"current_phase",               "title":"Current Phase",         "width":10},
         "11":{"name":"current_stage",               "title":"Current Stage",         "width":10},
         "12":{"name":"current_percent_complete",    "title":"Percent Complete",      "width":10, "format":"percent"},
-        "13":{"name":"creation_date",               "title":"Creation Date",         "width":10, "format":"date"},
-        "14":{"name":"modify_date",                 "title":"Modify Date",           "width":10, "format":"date"}
+        "13":{"name":"budget_percent",              "title":"Budget (%)",            "width":15, "format":"percent"},
+        "14":{"name":"creation_date",               "title":"Creation Date",         "width":10, "format":"date"},
+        "15":{"name":"modify_date",                 "title":"Modify Date",           "width":10, "format":"date"}
     },
     "budget_catalog":{
         "1":{"name":"purchase_order", "title":"Purchase Order",          "width":15},
@@ -72,8 +73,8 @@
         "5":{"name":"cwa_num", "title":"CWA No",                "width":10},
         "6":{"name":"cwa_type", "title":"CWA Type",              "width":10},
         "7":{"name":"items", "title":"Items",                 "width":10},
-        "8":{"name":"cwa_proposal_amount", "title":"Proposal Amount",       "width":15, "format":"dollar"},
-        "9":{"name":"cwa_recieved_amount", "title":"Contracted Amount",    "width":15, "format":"dollar"},
+        "8":{"name":"proposed_ammount", "title":"Proposal Amount",       "width":15, "format":"dollar"},
+        "9":{"name":"accpeted_amount", "title":"Contracted Amount",    "width":15, "format":"dollar"},
         "10":{"name":"billed_to_date", "title":"Invoiced",             "width":15, "format":"dollar"},
         "11":{"name":"current_balance", "title":"Current Balance",      "width":15, "format":"dollar"},
         "12":{"name":"contingency", "title":"Contingency",          "width":15, "format":"percent"},
