@@ -6,13 +6,12 @@ def get_sql_dataset(sqlfile, filter='', sort=''):
 
 # region Project Catalog
 def get_project_info(filter: str = '', sort: str = 'ORDER BY rowid DESC') -> list:
-    attach = f"ATTACH '{EMPLOYEEDB}' AS staff"
     sql_query = f"""
     {ALLPROJECTS}
     {filter}
     {sort}
     """
-    return DB_connect(sql_query, database=PROJECTDB,attach=attach)
+    return DB_connect2(PROJECTDB, sql_query)
 
 def get_my_project_info(user) -> list:
     return get_project_info(
@@ -42,13 +41,12 @@ def get_budget_info(project_id) -> list:
     return DB_connect(sql_query, database=PROJECTDB)
 
 def get_schedule_info(filter:str = '', sort:str = '') -> list:
-    attach = f"ATTACH '{EMPLOYEEDB}' AS staff"
     sql_query = f"""
     {SCHEDULEINFO}
     {filter}
     {sort}
     """
-    return DB_connect(sql_query, database=PROJECTDB, attach=attach)
+    return DB_connect2(PROJECTDB, sql_query)
 
 def get_schedule(project_id:int, sort:str = '') -> list:
     return get_schedule_info(
@@ -65,39 +63,27 @@ def get_event_info(task_id) -> tuple:
         return task_data[0]
 
 def get_status_log(project_id:int, table:str='project_status_log') -> list:
-    sql_query = f"""
-        SELECT rowid, status_change, status_type, date, 
-        modify_date, last_modified_by 
-        FROM {table} 
-        WHERE project_id = {project_id}
-        ORDER BY rowid DESC
-        """
-    return DB_connect(sql_query, database=STATUSDB)
+    return DB_connect2(STATUSDB, PROJECTSTATUS.format(table, project_id))
 
 def get_project_documents(project_id, filter:str = '', sort:str = '') -> list:
-    attach = [f"ATTACH '{EMPLOYEEDB}' AS staff",
-        f"ATTACH '{PACKAGEDB}' AS packages"]
     sql_query = f"""
     {PROJECTDOCUMENTS.format(project_id)}
     {filter}
     {sort}
     """
-    return DB_connect(sql_query, database=DOCDB, attach=attach)
+    return DB_connect2(DOCDB, sql_query)
 
 def get_docs_in_package(package_id:int) -> list:
-    attach = f"ATTACH '{EMPLOYEEDB}' AS staff"
     sql_query = PACKAGEDOCS.format(package_id)
-
-    return DB_connect(sql_query, database=DOCDB, attach=attach)
+    return DB_connect2(DOCDB, sql_query)
 
 def get_all_packages(table='packages',filter:str = '', sort:str = ''):
-    attached = f"ATTACH '{PROJECTDB}' AS project;"
     sql_query = f"""
         {PACKAGES.format(table)}
         {filter}
         {sort}
         """
-    return DB_connect(sql_query, database=PACKAGEDB, attach=attached)
+    return DB_connect2(PACKAGEDB, sql_query)
 
 def get_packages(project_id:int) -> list:
     return get_all_packages(
@@ -177,48 +163,15 @@ def get_event_packages(event_id) -> list:
     return DB_connect(sql_query, database=PACKAGEDB)
 
 def get_active_employees() -> list:
-    attach = f"ATTACH '{PROJECTDB}' as projects"
-    sql_query = ACTIVEEMPLOYEES
-    return DB_connect(sql_query, database=EMPLOYEEDB, attach=attach)
+    return DB_connect2(EMPLOYEEDB, ACTIVEEMPLOYEES)
 
 def get_task_applicants(project_task_id:int) -> list:
-    attach = f"ATTACH '{EMPLOYEEDB}' AS staff"
-    sql_query = f"""
-    SELECT
-    app.rowid, staff.users.full_name, 
-    (   
-        SELECT COUNT(*)
-		FROM project_task_assignments AS app
-        WHERE app.project_person_id = staff.users.rowid
-        AND app.assigned = 1
-    ) AS assigned_tasks, 
-    (   
-        (SELECT COUNT(*) 
-            FROM project_people
-            LEFT JOIN project_info 
-            ON project_people.project_id = project_info.rowid
-            WHERE project_people.employee_id = staff.users.rowid 
-			AND project_info.active_status = 'ACTIVE'
-        )+
-        (SELECT COUNT(*) 
-            FROM project_engineers
-			LEFT JOIN project_info ON project_info.rowid = project_engineers.project_id
-            WHERE project_engineers.employee_id = staff.users.rowid 
-            AND project_info.active_status = 'ACTIVE'
-        )
-    ) AS assigned_projects
-    FROM project_task_assignments AS app
-    LEFT JOIN staff.users 
-    ON app.project_person_id = staff.users.rowid
-    WHERE app.project_task_id = {project_task_id}
-    AND app.assigned = 0
-    """
-    return DB_connect(sql_query, database=PROJECTDB, attach=attach)
+    sql_query = TASKAPPLICANTS.format(project_task_id)
+    return DB_connect2(PROJECTDB, sql_query)
 
 def get_taskboard_tasks(filter:str = '', sort:str = ''):
-    attach = f"ATTACH '{EMPLOYEEDB}' AS staff"
     sql_query = f"{TASKBOARD}\n{filter}\n{sort}"
-    return DB_connect(sql_query, database=PROJECTDB, attach=attach, debug=True)
+    return DB_connect2(PROJECTDB, sql_query)
 
 def get_taskboard(user_id):
     return get_taskboard_tasks(
@@ -251,35 +204,7 @@ AND (
 ) > 0""" )
 
 def get_assigned_staff(task_id):
-    attach = f"ATTACH '{PROJECTDB}' as projects"
-    sql_query = f"""
-    SELECT users.rowid, users.full_name, 
-    users.position,
-    (SELECT COUNT(*) 
-        FROM projects.project_task_assignments
-        WHERE projects.project_task_assignments.project_person_id = users.rowid
-        AND projects.project_task_assignments.assigned = 1
-    ) AS assigned_tasks,
-    (
-        (SELECT COUNT(*) 
-            FROM projects.project_people
-            LEFT JOIN projects.project_info 
-            ON projects.project_people.project_id = projects.project_info.ROWID
-            WHERE projects.project_people.employee_id = users.rowid 
-			AND projects.project_info.active_status = 'ACTIVE'
-        )+
-        (SELECT COUNT(*) 
-            FROM projects.project_engineers
-			LEFT JOIN projects.project_info ON projects.project_info.rowid = projects.project_engineers.project_id
-            WHERE projects.project_engineers.employee_id = users.rowid AND projects.project_info.active_status = 'ACTIVE'
-        )
-    ) AS assigned_projects
-    FROM users
-    LEFT JOIN projects.project_task_assignments AS pa
-    ON pa.project_person_id = users.rowid
-    WHERE (active_status = 'Full' OR active_status = 'Part-Time')
-    AND pa.project_task_id = {task_id}"""
-    return DB_connect(sql_query, database=EMPLOYEEDB, attach=attach)
+    return DB_connect2(EMPLOYEEDB, TASKASSIGNMENTS.format(task_id))
 
 if __name__ == '__main__':
-    print(get_taskboard(7))
+    print(get_project_info())

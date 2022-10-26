@@ -1,3 +1,4 @@
+ATTACH ':EMPLOYEEDB:' AS staff;
 SELECT 
 documents.rowid, 
 package_index, 

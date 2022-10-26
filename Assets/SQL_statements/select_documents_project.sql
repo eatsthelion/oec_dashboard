@@ -1,3 +1,5 @@
+ATTACH ':EMPLOYEEDB:' AS staff;
+ATTACH ':PACKAGEDB:' AS packages;
 SELECT 
 documents.rowid, 
 package_id,

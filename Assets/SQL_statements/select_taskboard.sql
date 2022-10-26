@@ -1,3 +1,4 @@
+ATTACH ':EMPLOYEEDB:' AS staff;
 SELECT
 pd.rowid, 
 pd.event, 

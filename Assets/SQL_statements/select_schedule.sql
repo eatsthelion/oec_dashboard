@@ -1,3 +1,4 @@
+ATTACH ':EMPLOYEEDB:' AS staff;
 SELECT 
 project_dates.rowid, 
 event, 

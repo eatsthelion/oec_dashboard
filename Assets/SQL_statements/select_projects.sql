@@ -1,3 +1,4 @@
+ATTACH ':EMPLOYEEDB:' AS staff;
 SELECT 
 rowid, oec_job, client_job, client,
 active_status, project_name, location, 

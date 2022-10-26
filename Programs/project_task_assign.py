@@ -57,8 +57,7 @@ class ProjectTaskAssignments(DataTableWindow):
         searchwindow.sender = self.assign_staff
         dataset = db_function()
         searchwindow.context = 'select'
-        searchwindow.display_data(None, dataset, 
-            lambda: db_function())
+        searchwindow.display_data(dataset,  lambda: db_function())
         
         # Changes windows to display
         searchwindow.show_full_window()

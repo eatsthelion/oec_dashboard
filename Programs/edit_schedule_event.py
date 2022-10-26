@@ -77,8 +77,8 @@ class EditScheduleEventGUI(EditWindow):
         new_event = self.event.get()
         desc = self.desc_text.get()
         event_type = self.typeOptions.get()
-        priority = lmh_dict[self.priority_options.get()]
-        difficulty = lmh_dict[self.difficulty_options.get()]
+        priority = lmh_dict.get(self.priority_options.get(), 'None')
+        difficulty = lmh_dict.get(self.difficulty_options.get(),'None')
         progress = self.progress_entry.get()
         forecast = self.forecast_entry.get()
         actual = self.actual_entry.get()

@@ -11,7 +11,7 @@ class LoginWindow(PopupWindow):
     def __init__(self, master, **kw) -> None:
         super().__init__(master, width=400, height=300, bg="#7f007f", **kw)
 
-        master.title('Log into OEC')
+        master.title('Login to OEC')
         self.hide_back_button()
         self.hide_cancel_button()
 

@@ -1,5 +1,5 @@
 SELECT 
-rowid, name, role, clearance, org, email, phone,
+rowid, name, role, org, email, phone,
 creation_date, modify_date 
 FROM project_people
 WHERE project_id = '{}'

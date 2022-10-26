@@ -36,7 +36,7 @@ def DB_attach(sql_str:str) -> str:
         sql_str = sql_str.replace(key, DBDICT[key])
     return sql_str
 
-def DB_connect2(database, sql_statement, sql_params:dict or tuple = None):
+def DB_connect2(database, sql_statement, sql_params:dict or tuple = {}):
     sql_txt = sql_statement
     sql_statement = DB_attach(sql_statement)
     sql_statement = sql_statement.strip(';').split(';')
@@ -96,10 +96,10 @@ def DB_connect(sql_str:str or list, sql_dict:dict = {},
                     try: c.execute(stritem)
                     except: print('ERROR ON QUERY:', stritem)
             else: c.execute(sql_str)
-        except:
+        except Exception as e:
             messagebox.showerror('Database Locked!',
             'The database is currently locked. Please try again later.' + \
-            f'\n\n{database}\n\n{sql_str}'
+            f'\n\n{e}\n\n{database}\n\n{sql_str}'
             )
             conn.commit()
             conn.close()
@@ -151,32 +151,23 @@ def DB_clean_str(string):
 
 def format_data(data, format_type):
     new_data = str(data)
-    if format_type == 'date':
-        try:
+    try:
+        if format_type == 'date':
             new_data = datetime.strptime(data,DBTIME).strftime(USERTIME)
-        except:
-            pass
-    elif format_type == 'hml':
-        hml = {1:"LOW", 2:"MEDIUM", 3:'HIGH'}
-        try:
+        elif format_type == 'hml':
+            hml = {1:"LOW", 2:"MEDIUM", 3:'HIGH'}
             new_data = hml[data]
-        except:
-            pass 
-    elif format_type == 'taskboard':
-        if data:
-            new_data = 'Posted'
-        else:
-            new_data = 'Not Posted'
-    elif format_type == 'percent':
-        try:
+        elif format_type == 'taskboard':
+            if data:
+                new_data = 'Posted'
+            else:
+                new_data = 'Not Posted'
+        elif format_type == 'percent':
             new_data = f"{(100*data):.1f}%"
-        except:
-            pass
-    elif format_type == 'dollar':
-        try:
+        elif format_type == 'dollar':
             new_data = f"${data:,.2f}"
-        except:
-            pass
+    except:
+        pass
     return new_data
 
 if __name__ == '__main__':

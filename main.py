@@ -4,20 +4,16 @@ from tkinter import *
 import sys
 sys.dont_write_bytecode = True
 
-from GUI.window_login import LoginWindow
-
 class MainProgram(object):
-    def __init__(self):
+    def __init__(self, root):
         # Initializes program settings
-        self.root = tk.Tk()
-        self.root.resizable(0,0)
+        from GUI.window_login import LoginWindow
+        self.root = root
         self.user = None
         self.parent=None
         self.children = []
         self.current_program = LoginWindow(self.root, parent=self)
         
-        tk.mainloop()
-
     def full_program(self):
         self.width = 1280
         self.height = 700
@@ -108,7 +104,21 @@ class MainProgram(object):
         self.root.update()
 
 def main() -> None:
-    MainProgram()
+    root = tk.Tk()
+    root.resizable(0,0)
+    root.configure(bg="#7f007f")
+    root.title("OEC Dashboard")
+    load_label = tk.Label(root, font=('montserrat', 16,'bold'), 
+        text="LOADING",bg="#7f007f", fg='white')
+
+    root.geometry('360x130+{}+{}'.format(
+            int((root.winfo_screenwidth()-400)/2),
+            int((root.winfo_screenheight()-300)/2)))
+    load_label.place(relx=.5, rely=.5, anchor=CENTER)
+    root.update()
+    MainProgram(root)
+    load_label.place_forget()
+    tk.mainloop()
 
 if __name__=='__main__':
     main()

@@ -29,7 +29,7 @@ def rowhighlight(event,widget,color,selectcolor,labelstyle=None,column=True):
     selectrow = widget.grid_info()['row']
     selectcolumn = widget.grid_info()['column']
     for child in widget.master.winfo_children():
-        if not (('MyLabel' in str(type(child))) or ('MyText' in str(type(child)))): 
+        if not (isinstance(child, Label) or isinstance(child,Text)): 
             continue
 
         childinfo = child.grid_info()
@@ -40,14 +40,14 @@ def rowhighlight(event,widget,color,selectcolor,labelstyle=None,column=True):
         except: pass
 
     for selectwidget in widgetarray:
-        if 'MyEntry' in str(type(selectwidget)):  
+        if isinstance(selectwidget, Entry):  
             selectwidget.configure(readonlybackground=color,
                 disabledbackground=color)
-        elif 'MyText' in str(type(selectwidget)): 
+        elif isinstance(selectwidget, Text): 
             selectwidget.configure(background=color)
-        elif 'MyLabel' in str(type(selectwidget)): 
+        elif isinstance(selectwidget, Label): 
             selectwidget.configure(fg=color)
             if labelstyle!=None: selectwidget.configure(font=labelstyle)
 
-    if (('MyLabel' in str(type(widget))) or ('MyText' in str(type(widget)))): 
+    if isinstance(widget, Label) or isinstance(widget, Text): 
         widget.configure(background=selectcolor)

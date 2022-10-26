@@ -15,8 +15,8 @@ class EmployeeDatabase(DataTableWindow):
     def __init__(self, master, **kw) -> None:
         super().__init__(master,
         sort_function=self.sortfunction,
-        left_options = self.leftoptions, 
-        additional_popups = self.additonalOptions, 
+        leftoptions = self.leftoptions, 
+        additional_windows = self.additonalOptions, 
         program_title = PROGRAMTITLE,
         format_dict = 'staff',
         rowheight = 2, searchbar=True,
