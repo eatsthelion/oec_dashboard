@@ -14,7 +14,7 @@ from GUI.window_edit import *
 
 class EditDocumentGUI(EditWindow):
     def __init__(self, master, **kw) -> None:
-        super().__init__(master, bg='royalblue3', width=500, height=500, 
+        super().__init__(master, bg='royalblue3', width=520, height=500, 
         programt_title = PROGRAMTITLE, **kw)
         self.data = None
         self.file = None

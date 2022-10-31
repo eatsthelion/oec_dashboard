@@ -47,3 +47,6 @@ with open(r'.\Assets\SQL_statements\select_task_applicants.sql', 'r') as f:
 
 with open(r'.\Assets\SQL_statements\select_task_assignments.sql', 'r') as f:
     TASKASSIGNMENTS = f.read() 
+
+with open(r'.\Assets\SQL_statements\select_project_engineers.sql', 'r') as f:
+    PROJECTENGINEERS = f.read() 

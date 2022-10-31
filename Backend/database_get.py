@@ -25,6 +25,9 @@ def get_my_project_info(user) -> list:
     WHERE project_info.rowid = project_engineers.project_id
     )""")
 
+def get_project_engineers(project_id:int) -> list:
+    return DB_connect2(PROJECTDB, PROJECTENGINEERS.format(project_id))
+
 def get_project_data(project_id):
     project_data = get_project_info(filter=f'AND rowid = {project_id}')
     if len(project_data) == 0:

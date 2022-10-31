@@ -1,11 +1,11 @@
 ATTACH ':EMPLOYEEDB:' AS staff;
 SELECT
-app.rowid, staff.users.full_name, 
+pe.rowid, staff.users.full_name, 
 (   
     SELECT COUNT(*)
-    FROM project_task_assignments AS app
-    WHERE app.project_person_id = staff.users.rowid
-    AND app.assigned = 1
+    FROM project_task_assignments AS pa
+    WHERE pa.project_person_id = staff.users.rowid
+    AND pa.assigned = 1
 ) AS assigned_tasks, 
 (   
     SELECT COUNT(*) 
@@ -15,8 +15,7 @@ app.rowid, staff.users.full_name,
     WHERE project_engineers.employee_id = users.rowid 
     AND project_info.active_status = 'ACTIVE'
 ) AS assigned_projects
-FROM project_task_assignments AS app
+FROM project_engineers AS pe
 LEFT JOIN staff.users 
-ON app.project_person_id = staff.users.rowid
-WHERE app.project_task_id = {}
-AND app.assigned = 0
+ON pe.employee_id = staff.users.rowid
+WHERE pe.project_id = {}

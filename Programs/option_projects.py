@@ -24,6 +24,7 @@ from Backend.database_delete import delete_project
 from GUI.window_option import *
 
 from Programs.project_budgets import ProjectBudgetsGUI
+from Programs.project_engineers import ProjectEngineers
 from Programs.project_schedule import ProjectScheduleGUI
 from Programs.project_packages import ProjectPackagesGUI
 from Programs.project_documents import ProjectDocumentsGUI
@@ -49,7 +50,7 @@ class ProjectOptionsWindow(OptionWindow):
             text='BUDGET', command=lambda: self.show_next_window('budget'))
 
         self.documents_button = MyButton(self.button_frame, width=button_width, 
-            text='DOCUMENTS', command=lambda: self.show_next_window('documents'))
+            text='DOC SEARCH', command=lambda: self.show_next_window('documents'))
 
         self.dates_button = MyButton(self.button_frame, width=button_width, 
             text='SCHEDULE', command=lambda: self.show_next_window("schedule"))
@@ -64,6 +65,9 @@ class ProjectOptionsWindow(OptionWindow):
         self.contacts_button = MyButton(self.button_frame, width=button_width,
             text='CONTACTS', command=lambda: self.show_next_window("people"))
 
+        self.pe_button = MyButton(self.button_frame, width=button_width,
+            text='PEs', command=lambda: self.show_next_window("pe"))
+
         self.delete_button  = MyButton(self.button_frame, bg='red', 
             font=FONT, text='DELETE PROJECT',fg='white', 
             command=self.delete_project_command)
@@ -76,7 +80,8 @@ class ProjectOptionsWindow(OptionWindow):
         self.status_log_button  .grid(row=0, column=1, sticky=EW, padx=5,pady=5)
         self.documents_button   .grid(row=1, column=0, sticky=EW, padx=5,pady=5)
         self.packages_button    .grid(row=1, column=1, sticky=EW, padx=5,pady=5)
-        
+        self.pe_button          .grid(row=2, column=0, sticky=EW, padx=5,pady=5)
+        self.contacts_button    .grid(row=2, column=1, sticky=EW, padx=5,pady=5)
         return super().configure()
 
     def show_next_window(self, windowname):
@@ -102,6 +107,11 @@ class ProjectOptionsWindow(OptionWindow):
                 self.parent.frame_master, parent = self)
             dataget = lambda: get_schedule(self.data[0])
             title = "SCHEDULE OF"
+        elif windowname == 'pe':
+            next_window = self.schedule_window = ProjectEngineers(
+                self.parent.frame_master, parent = self)
+            dataget = lambda: get_project_engineers(self.data[0])
+            title = "PROJECT ENGINEERS OF"
         
         elif windowname in ['documents','packages']:
             self.document_window = ProjectDocumentsGUI(
@@ -141,20 +151,17 @@ class ProjectOptionsWindow(OptionWindow):
         """Displays project OEC number on pop-up header"""
         self.data = data
         self.titlelabel.configure(text='PROJECT {}'.format(self.data[1]))
-        if self.clearance_check(7, self.data[7]):
-            self.budget_button.grid(row=2, column=0, sticky=EW,
+        if self.clearance_check(7, self.get_data('project_engineers_ids')):
+            self.budget_button.grid(row=3, column=0, sticky=EW,
             padx=5,pady=5)
 
-            self.contacts_button.grid(row=2, column=1, sticky=EW, 
+            self.delete_button.grid(row=3, column=1, sticky=EW, 
             padx=5,pady=5)
-
-            self.delete_button.grid(row=3, column=0, sticky=EW, 
-            padx=5,pady=5,columnspan=2)
         else:
             self.delete_button.grid_forget()
-            self.contacts_button.grid(row=2, column=0, 
-            columnspan=2, sticky=EW, padx=5,pady=5)
         self.show_window()
+
+    
 
     def delete_project_command(self):
         if not delete_project(self.data,self.user.user_id):

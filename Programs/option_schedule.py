@@ -46,6 +46,7 @@ class ScheduleOptionsWindow(OptionWindow):
     def display_data(self, data, project_data):
         self.data = data
         self.project_data = project_data
+        self.project_data_dict = self.parent.data_dict
         self.titlelabel.configure(text=self.data[1])
         if self.data[12] == 0:
             self.taskpost_button.configure(text='POST TO TASKBOARD',

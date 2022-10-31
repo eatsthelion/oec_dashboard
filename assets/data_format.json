@@ -173,6 +173,12 @@
         "3":{"name":"assigned_tasks", "title":"Active Assignments",              "width":15},
         "4":{"name":"assigned_projects", "title":"Total Active Assigned Projects",  "width":15}
     }, 
+    "project_engineers":{
+        "1":{"name":"full_name", "title":"Project Engineer",                   "width":30},
+        "2":{"name":"position", "title":"Position",                        "width":20},
+        "3":{"name":"assigned_tasks", "title":"Active Assignments",              "width":15},
+        "4":{"name":"assigned_projects", "title":"Total Active Assigned Projects",  "width":15}
+    }, 
     "project_people":{
         "1":{"name":"full_name", "title":"Name", "width":20},
         "2":{"name":"role", "title":"Role", "width":20},

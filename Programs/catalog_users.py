@@ -1,10 +1,10 @@
 ###################################################################################################
-# catalog_materials.py
+# catalog_users.py
 # 
 # Created: 9/02/22
 # Creator: Ethan de Leon
 # Purposes:
-#   - Organize the database of coded materials
+#   - Displays all active employees
 ###################################################################################################
 
 from GUI.window_datatable import *

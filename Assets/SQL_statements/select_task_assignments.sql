@@ -21,4 +21,5 @@ FROM users
 LEFT JOIN projects.project_task_assignments AS pa
 ON pa.project_person_id = users.rowid
 WHERE (active_status = 'Full' OR active_status = 'Part-Time')
-AND pa.project_task_id = {task_id}
+AND pa.project_task_id = {}
+AND pa.assigned = 1
