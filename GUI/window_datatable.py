@@ -60,7 +60,7 @@ class DataTableWindow(PopupWindow):
         except AttributeError:
             pass
 
-        print("Data_dict:", self.data_dict)
+        #print("Data_dict:", self.data_dict)
 
         self.searchwindow = SearchWindow(self.frame, self.dataset_get,
             pagesystem=self.pagesystem, searchsystem=self.searchsystem,  

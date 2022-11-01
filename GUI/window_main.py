@@ -296,6 +296,7 @@ class PopupWindow(WindowAttributes):
         return
 
     def clearance_check(self, clearance_lvl, data:int or str or list = None):
+        print(data)
         if self.user == None:
             return False
         
@@ -313,7 +314,7 @@ class PopupWindow(WindowAttributes):
                 return False
 
         if isinstance(data, str):
-            data = [int(x.strip('\n').strip()) for x in data.split(',')]
+            data = [int(x.strip('\n').strip()) for x in data.strip(' ').strip(',').split(',')]
         
         if (self.user.data_clearance >= clearance_lvl) or (
             self.user.user_id in data):

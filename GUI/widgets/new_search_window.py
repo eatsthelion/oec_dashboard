@@ -522,7 +522,8 @@ class SearchWindow(MyFrame):
     # region Zoom Terminal Functions
     def display_to_terminal(self,event):
         data = event.widget.get()
-        zoom_window = TerminalWindow(self)
+        zoom_window = TerminalWindow(self.master)
+        zoom_window.hide_back_button()
         zoom_window.terminal.print_terminal(data)
         headertext = \
             self.get_column_from_widget(event.widget).strip('\n').upper() + \
