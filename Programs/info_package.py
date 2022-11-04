@@ -1,3 +1,12 @@
+###############################################################################
+# info_package.py
+# 
+# Created: 10/19/22
+# Creator: Ethan de Leon
+# Purposes:
+#   - Displays information regarding a package
+###############################################################################
+
 from Backend.database_get import get_package_info
 
 from GUI.window_info import *

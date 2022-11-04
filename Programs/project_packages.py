@@ -1,3 +1,16 @@
+###############################################################################
+# project_packages.py
+# 
+# Created: 10/19/22
+# Creator: Ethan de Leon
+# Purposes:
+#   - Displays and organizes the packages of a project
+#   - Connects to
+#       - option_packages.py to see package options
+#       - edit_packages.py for package insertion or package editing
+#       - project_package_documents.py to view a package's contents
+###############################################################################
+
 from Backend.database_get import get_docs_in_package, get_project_documents
 from Backend.filesystem import FileSystem
 

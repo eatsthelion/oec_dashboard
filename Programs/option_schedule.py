@@ -1,3 +1,17 @@
+###############################################################################
+# option_schedule.py
+# 
+# Created: 10/19/22
+# Creator: Ethan de Leon
+# Purposes:
+#   - Displays the options of a scheduled event
+#   - Post and remove scheduled events on the taskboard
+#   - Connects to
+#       - project_packages.py to display packages for event
+#       - project_task_assign.py to display assigned employees for event
+#       - project_task_applicants.py to display applicants for event
+###############################################################################
+
 PROGRAMTITLE = 'Schedule Options'
 
 from Backend.database_get import *

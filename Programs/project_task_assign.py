@@ -1,4 +1,15 @@
-PROGRAMTITLE = "Task Applicants"
+###############################################################################
+# project_task_assign.py
+# 
+# Created: 10/19/22
+# Creator: Ethan de Leon
+# Purposes:
+#   - View and organize employees assigned to a task
+#   - Remove people from a task
+#   - Assign new people to a task
+###############################################################################
+
+PROGRAMTITLE = "Task Assignments"
 
 from Backend.database import PROJECTDB, DB_connect
 from Backend.database_get import get_active_employees

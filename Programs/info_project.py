@@ -1,3 +1,12 @@
+###############################################################################
+# info_project.py
+# 
+# Created: 10/19/22
+# Creator: Ethan de Leon
+# Purposes:
+#   - Displays information regarding a project
+###############################################################################
+
 from Backend.database_get import get_project_data
 
 from GUI.window_info import *

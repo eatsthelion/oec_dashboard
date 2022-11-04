@@ -1,3 +1,12 @@
+###############################################################################
+# info_schedule.py
+# 
+# Created: 10/19/22
+# Creator: Ethan de Leon
+# Purposes:
+#   - Displays information regarding a scheduled event
+###############################################################################
+
 from Backend.database_get import get_event_info
 
 from GUI.window_info import *

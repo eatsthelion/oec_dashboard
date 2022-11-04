@@ -1,3 +1,17 @@
+###############################################################################
+# catalog_users.py
+# 
+# Created: 9/02/22
+# Creator: Ethan de Leon
+# Purposes:
+#   - Displays all available tasks
+#   - Displays personal assigned tasks
+#   - Displays applied tasks
+#   - Connects to
+#       - info_schedule.py to view schedule info of a task
+#       - info_project.py to view project info of a task
+###############################################################################
+
 from Backend import PROJECTDB, DB_connect, get_my_applied_tasks, \
     get_my_taskboard, get_taskboard
 

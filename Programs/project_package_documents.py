@@ -1,3 +1,16 @@
+###############################################################################
+# project_package_documents.py
+# 
+# Created: 10/19/22
+# Creator: Ethan de Leon
+# Purposes:
+#   - Organizes and displays the change orders of a purchase order
+#   - Allows users to check in and out documents
+#   - Connects to 
+#       - option_dwglist.py
+#       - edit_document.py
+###############################################################################
+
 from Backend.database import DOCDB
 from Backend.filesystem import FileSystem
 
@@ -72,8 +85,10 @@ class PackageDocumentsGUI(DataTableWindow):
             checkout = 0
 
         datapair = [(checkout, 'checked out', 'checked_out_by')]
+
         project_edit_entry(self.data[0], dataset[0], 
-        "documents", DOCDB, 'check out','CHECKOUT', dataset, self.data_dict, datapair)
+        "documents", DOCDB, 'check out','CHECKOUT', 
+        dataset, self.data_dict, datapair)
 
         self.searchwindow.refresh_page()
 

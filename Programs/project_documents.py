@@ -1,10 +1,20 @@
+###############################################################################
+# project_documents.py
+# 
+# Created: 10/19/22
+# Creator: Ethan de Leon
+# Purposes:
+#   - Organizes and displays all documents of a project
+#   - Connects to 
+#       - edit_document.py for document editing only
+###############################################################################
+
 from Backend.database import DOCDB
 from Backend.filesystem import FileSystem
 
 from GUI.window_datatable import *
 
 from Programs.edit_document import EditDocumentGUI
-from Programs.option_dwglist import DWGListWindow
 
 from Backend.database_get import get_packages
 from Backend.database_send import project_edit_entry
@@ -43,10 +53,14 @@ class ProjectDocumentsGUI(DataTableWindow):
         details          .grid(row=0,column=3,padx=5) 
         
         if self.get_data("checked_out_by", dataset):
-            if self.clearance_check(100, self.get_data("checked_out_by", dataset)):
+            if self.clearance_check(100, 
+                self.get_data("checked_out_by", dataset)):
+
                 check_out.configure(text = 'CHECK IN')
             elif self.clearance_check(7, 
-                self.get_data('project_engineers_ids', self.data, self.project_data_dict)):
+                self.get_data('project_engineers_ids', 
+                self.data, self.project_data_dict)):
+
                 check_out.configure(text = 'CHECKED OUT',
                     command = lambda m=dataset: self.toggle_checkout(m))
             else:
@@ -54,7 +68,8 @@ class ProjectDocumentsGUI(DataTableWindow):
                 check_out.configure(text = 'CHECKED OUT', bg='gold2',
                     command = lambda:
                     messagebox.showerror('Document is Checked Out', 
-                    f'The document is currently checked out by {dataset[self.data_dict["checked_out_name"]]}'))
+                    'The document is currently checked out by ' + \
+                        f'{dataset[self.data_dict["checked_out_name"]]}'))
         return    
 
     def toggle_checkout(self, dataset):
@@ -80,20 +95,7 @@ class ProjectDocumentsGUI(DataTableWindow):
         edit_doc_window = EditDocumentGUI(self.frame, parent=self)
         edit_doc_window.display_data(self.package_id, data)
 
-    def show_package_window_full(self):
-        dataget = lambda: get_packages(self.data[0])
-        self.parent.package_window.project_data = self.data
-        self.parent.package_window.project_data_dict = self.data_dict
-        self.parent.package_window.display_data(self.data, dataget)
-        self.parent.package_window.show_full_window()
-        self.parent.package_window.back_direction = self.parent.show_window
-        self.cancel_window()
-
     def show_option_window(self, dataset):
         pass
-
-    def show_dwglist_options(self):
-        dwglist_window = DWGListWindow(self.frame, parent=self)
-        dwglist_window.display_data(self.package_id)
 
     

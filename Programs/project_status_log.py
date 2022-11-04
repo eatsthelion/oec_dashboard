@@ -1,4 +1,13 @@
-from tkinter import messagebox, DISABLED, LEFT, N, NORMAL
+###############################################################################
+# project_status_log.py
+# 
+# Created: 10/19/22
+# Creator: Ethan de Leon
+# Purposes:
+#   - Displays and organizes the status log of a project
+#   - Connects to
+#       - edit_comment.py to insert or edit comments
+###############################################################################
 
 from Backend.database import  PROJECTDB, DB_connect
 

@@ -1,3 +1,12 @@
+###############################################################################
+# edit_project_people.py
+# 
+# Created: 8/02/22
+# Creator: Ethan de Leon
+# Purposes: 
+#   - GUI for both inserting and modifying contacts
+###############################################################################
+
 PROGRAMTITLE = 'Contact Edits'
 from Backend.database import PROJECTDB
 from Backend.database_send import project_edit_entry, project_input_entry

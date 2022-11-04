@@ -1,3 +1,12 @@
+###############################################################################
+# edit_packages.py
+# 
+# Created: 8/02/22
+# Creator: Ethan de Leon
+# Purposes: 
+#   - GUI for both inserting and modifying packages
+###############################################################################
+
 PROGRAMTITLE = 'Package Edits'
 import os
 from datetime import datetime

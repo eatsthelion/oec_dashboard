@@ -1,4 +1,16 @@
-from Backend.database import PROJECTDB, DB_connect, DB_connect2
+###############################################################################
+# project_engineers.py
+# 
+# Created: 10/19/22
+# Creator: Ethan de Leon
+# Purposes:
+#   - Organizes and displays the project engineers of a project
+#   - Assigns staff as project engineers to a project
+#   - Removes project engineers from a project
+#   - Connects to
+#       - catalog_users.py for project engineer assignments
+###############################################################################
+from Backend.database import PROJECTDB, DB_connect
 from Backend.database_get import get_active_employees
 
 

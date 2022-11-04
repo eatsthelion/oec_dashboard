@@ -1,11 +1,14 @@
-###################################################################################################
-# catalog_budgets.py
+###############################################################################
+# project_change_orders.py
 # 
-# Created: 9/09/22
+# Created: 10/19/22
 # Creator: Ethan de Leon
 # Purposes:
-#   - Organize the database project budgets
-###################################################################################################
+#   - Organizes and displays the change orders of a purchase order
+#   - Connects to 
+#       - edit_change_order.py for change order insertion and editing
+###############################################################################
+
 PROGRAMTITLE = "Change Order Catalog"
 
 from Backend.database_delete import delete_change_order
@@ -48,7 +51,8 @@ class ProjectChangeOrders(DataTableWindow):
                 named_entries.append(data)
             named_entries.sort(key=lambda i:i[2])
             dataset = named_entries + nameless_entries
-        elif sortby == 'SORT BY OEC NUMBER': dataset.sort(key=lambda i:i[2],reverse=True)
+        elif sortby == 'SORT BY OEC NUMBER': dataset.sort(
+            key=lambda i:i[2],reverse=True)
         
         return dataset 
 

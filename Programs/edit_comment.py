@@ -1,3 +1,12 @@
+###############################################################################
+# edit_comment.py
+# 
+# Created: 8/02/22
+# Creator: Ethan de Leon
+# Purposes: 
+#   - GUI for both inserting and modifying a comment
+###############################################################################
+
 PROGRAMTITLE = "Comment Edits"
 
 from datetime import datetime

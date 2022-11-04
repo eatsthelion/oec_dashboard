@@ -1,3 +1,13 @@
+###############################################################################
+# option_budgets.py
+# 
+# Created: 10/19/22
+# Creator: Ethan de Leon
+# Purposes:
+#   - Displays the options for budgets
+#   - Option to delete purchase orders
+#   - Option to see package assigned
+###############################################################################
 
 import tkinter as tk
 from tkinter import *

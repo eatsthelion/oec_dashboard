@@ -1,3 +1,13 @@
+###############################################################################
+# option_dwglist.py
+# 
+# Created: 10/19/22
+# Creator: Ethan de Leon
+# Purposes:
+#   - Displays the options for drawing lists
+#   - Creates a drawing list based on package contents
+#   - Updates package contents to reflect information from a drawing list
+###############################################################################
 
 PROGRAMTITLE = 'Document Options'
 

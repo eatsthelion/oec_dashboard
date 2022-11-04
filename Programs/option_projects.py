@@ -7,12 +7,13 @@
 #   - Creates the Pop-up Window for Project Options
 #   - Sets up for buttons for navigation
 #   - Links to the following windows:
-#       - Project Schedule Window
-#       - Project Status Log Window
-#       - Project Documents Window
-#       - Project Packages/Deliverables Window
-#       - Project Budget Window
-#       - Project People Assignements Window
+#       - project_budgets.py to view the project budget
+#       - project_engineers.py to view the project engineers
+#       - project_schedule.py to view scheduled events
+#       - project_packages.py to view the packages of the project
+#       - project_documents.py to view the documents of the project
+#       - project_status_log.py to view the project status log
+#       - project_assignments.py to view the project contacts
 #   - Creates an option to delete a project from the catalog
 # Required Installs: None
 ###############################################################################

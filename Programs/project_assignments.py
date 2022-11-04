@@ -1,4 +1,13 @@
-
+###############################################################################
+# project_assignments.py
+# 
+# Created: 10/19/22
+# Creator: Ethan de Leon
+# Purposes:
+#   - Organizes and displays the contacts of a project
+#   - Connects to 
+#       - edit_project_people.py for contact inserting and editing
+###############################################################################
 from GUI.window_datatable import *
 from Programs.edit_project_people import EditPeopleGUI
 

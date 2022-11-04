@@ -1,4 +1,16 @@
 
+###############################################################################
+# project_budgets.py
+# 
+# Created: 10/19/22
+# Creator: Ethan de Leon
+# Purposes:
+#   - Organizes and displays the budgets of a project
+#   - Connects to 
+#       - edit_budget.py for budget inserting and editing
+#       - project_change_orders.py to display change orders for a purchase
+#         order
+###############################################################################
 from Backend.exports import see_all_budgets
 from Backend.database_get import get_change_orders
 

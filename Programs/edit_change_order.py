@@ -1,3 +1,12 @@
+###############################################################################
+# edit_change_order.py
+# 
+# Created: 8/02/22
+# Creator: Ethan de Leon
+# Purposes: 
+#   - GUI for both inserting and modifying change orders
+###############################################################################
+
 PROGRAMTITLE = 'Change Order Edits'
 
 from tkinter import messagebox

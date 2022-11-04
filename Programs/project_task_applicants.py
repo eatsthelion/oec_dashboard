@@ -1,3 +1,13 @@
+###############################################################################
+# project_task_applicants.py
+# 
+# Created: 10/19/22
+# Creator: Ethan de Leon
+# Purposes:
+#   - Assign applicants to tasks
+#   - Reject applicants from being assigned to tasks
+###############################################################################
+
 from Backend.database import PROJECTDB, DB_connect
 
 from GUI.window_datatable import *

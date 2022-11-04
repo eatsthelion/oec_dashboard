@@ -1,3 +1,12 @@
+###############################################################################
+# edit_document.py
+# 
+# Created: 8/02/22
+# Creator: Ethan de Leon
+# Purposes: 
+#   - GUI for both inserting and modifying document metadata
+###############################################################################
+
 PROGRAMTITLE = 'Document Edits'
 
 import os

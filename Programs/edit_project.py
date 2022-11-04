@@ -1,3 +1,12 @@
+###############################################################################
+# edit_project.py
+# 
+# Created: 8/02/22
+# Creator: Ethan de Leon
+# Purposes: 
+#   - GUI for both inserting and modifying project data in the database
+###############################################################################
+
 PROGRAMTITLE = 'Project Edits'
 import os
 from datetime import datetime

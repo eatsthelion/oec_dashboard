@@ -1,3 +1,15 @@
+###############################################################################
+# project_schedule.py
+# 
+# Created: 10/19/22
+# Creator: Ethan de Leon
+# Purposes:
+#   - Displays and organizes the schedule of a project
+#   - Connects to
+#       - option_packages.py to see package options
+#       - edit_packages.py for package insertion or package editing
+#       - project_package_documents.py to view a package's contents
+###############################################################################
 
 from GUI.window_datatable import *
 from Programs.edit_schedule_event import EditScheduleEventGUI

@@ -1,3 +1,15 @@
+###############################################################################
+# option_packages.py
+# 
+# Created: 10/19/22
+# Creator: Ethan de Leon
+# Purposes:
+#   - Displays the options of a packages
+#   - Post and remove scheduled events on the taskboard
+#   - Connects to
+#       - project_schedule.py to assign packages to scheduled events
+#       - info_schedule.py to see scheduled event info
+###############################################################################
 
 PROGRAMTITLE = 'Package Options'
 
