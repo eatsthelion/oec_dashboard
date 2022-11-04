@@ -1,0 +1,90 @@
+{
+    "project_documents.db":{
+
+    },
+    "oec_projects.db":{
+        "change_order_log":{
+            "purchase_order":{"col":1, "type":"TEXT"},
+            "change_order_number":{"col":2, "type":"INTEGER"},
+            "description":{"col":3, "type":"TEXT"},
+            "change_order_submitted":{"col":4, "type":"REAL"},
+            "change_order_acceptance":{"col":5, "type":"REAL"},
+            "submitted_date":{"col":6, "type":"TEXT"},
+            "accepted_date":{"col":7, "type":"TEXT"},
+            "input_date":{"col":8, "type":"TEXT"},
+            "modify_date":{"col":9, "type":"TEXT"},
+            "last_modified_by":{"col":10, "type":"INTEGER"}
+        },
+        "project_budget":{
+            "purchase_order":{"col":1, "type":"TEXT"},
+            "project_id":{"col":2, "type":"INTEGER"},
+            "client_job":{"col":3, "type":"TEXT"},
+            "description":{"col":4, "type":"TEXT"},
+            "cwa_num":{"col":5, "type":"TEXT"},
+            "cwa_type":{"col":6, "type":"TEXT"},
+            "items":{"col":7, "type":"INTEGER"},
+            "cwa_proposal_date":{"col":8, "type":"TEXT"},
+            "cwa_recieved_date":{"col":9, "type":"TEXT"},
+            "billed_to_date":{"col":10, "type":"REAL"},
+            "cwa_completion_date":{"col":11, "type":"TEXT"},
+            "status":{"col":12, "type":"TEXT"},
+            "continued_from":{"col":13, "type":"TEXT"},
+            "input_date":{"col":14, "type":"TEXT"},
+            "modify_date":{"col":15, "type":"TEXT"},
+            "last_modified_by":{"col":16, "type":"INTEGER"}
+        },
+        "project_dates":{
+            "project_id":{"col":1, "type":"INTEGER"},
+            "event":{"col":2, "type":"TEXT"},
+            "description":{"col":3, "type":"TEXT"},
+            "event_type":{"col":4, "type":"TEXT"},
+            "progress_percent":{"col":5, "type":"REAL"},
+            "forecast_date":{"col":6, "type":"TEXT"},
+            "actual_date":{"col":7, "type":"TEXT"},
+            "taskboard":{"col":8, "type":"INTEGER"},
+            "difficulty":{"col":9, "type":"INTEGER"},
+            "priority":{"col":10, "type":"INTGER"},
+            "status":{"col":11, "type":"TEXT"},
+            "input_date":{"col":12, "type":"TEXT"},
+            "modify_date":{"col":13, "type":"TEXT"},
+            "last_modified_by":{"col":14, "type":"INTEGER"}
+        }, 
+        "project_engineers":{
+            "project_id":{"col":1, "type":"INTEGER"},
+            "employee_id":{"col":2, "type":"INTEGER"}
+        }
+    },
+    "itemcatalog.db":{
+
+    },
+    "oec_documents.db":{
+
+    },
+    "project_packages.db":{
+
+    },
+    "project_statuses.db":{
+
+    },
+    "oec_staff.db":{
+        "users":{
+            "employee_num":{"col":1, "type":"TEXT"},
+            "first_name":{"col":2, "type":"TEXT"},
+            "last_name":{"col":3, "type":"TEXT"},
+            "full_name":{"col":4, "type":"TEXT"},
+            "username":{"col":5, "type":"TEXT"},
+            "password":{"col":6, "type":"TEXT"},
+            "position":{"col":7, "type":"TEXT"},
+            "active_status":{"col":8, "type":"TEXT"},
+            "last_4_ssn":{"col":9, "type":"TEXT"},
+            "online":{"col":10, "type":"INTEGER"},
+            "lan_id":{"col":11, "type":"TEXT"},
+            "start_date":{"col":12, "type":"TEXT"},
+            "termination_date":{"col":13, "type":"TEXT"}
+        },
+        "positions":{
+            "position":{"col":1, "type":"TEXT"},
+            "data_clearance":{"col":2, "type":"INTEGER"} 
+        }
+    }
+}

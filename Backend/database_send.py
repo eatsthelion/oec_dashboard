@@ -17,6 +17,19 @@ def send_project_status(project_id:int, statuses:str, status_type:str,
     '{tt}', '{tt}', '{modifier}')"""
     DB_connect(sql_array, database=STATUSDB)
 
+def input_database_entry(project_id:int, table:str, database:str,
+data_dict:dict, status_str:str, status_tag:str, user:object=None):
+    if user==None:
+        user_id = os.getlogin().upper()
+    else:
+        user_id = user.user_id
+    columnlist = DB_connect(f"PRAGMA table_info('{table}')", database=database)
+    insert_str = ""
+    for column in columnlist:
+        insert_str += f"'{data_dict.get(column[1], default='NULL')}',"
+    DB_connect(f"INSERT INTO {table} VALUES ({insert_str.strip(',')})")
+    
+
 def project_input_entry(project_id:int, table:str, database:str, 
     insert_vals:str, status_str:str, status_tag:str, 
     user:object=None) -> None:
